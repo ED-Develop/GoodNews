@@ -6,8 +6,8 @@ const Aside = ({articles}) => {
     return (
         <aside className={style.aside}>
             <div className={style.btnGroup}>
-                <button className='btn'>POPULAR</button>
-                <button className={`btn ${style.active}`}>LATEST</button>
+                <button className={`btn ${style.active}`}>POPULAR</button>
+                <button className={`btn`}>LATEST</button>
             </div>
             <AsideList articles={articles}/>
         </aside>
