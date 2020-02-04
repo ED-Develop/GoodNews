@@ -8,7 +8,7 @@ const Articles = ({articles}) => {
         <div>
             <Row>
                 <Col sm={4}>
-                    <AsideContainer articles={articles}/>
+                    <AsideContainer/>
                 </Col>
                 <Col sm={8}>
                     <ArticlesList articles={articles}/>

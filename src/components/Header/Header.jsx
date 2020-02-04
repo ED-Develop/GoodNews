@@ -28,7 +28,7 @@ const Header = () => {
                     </Col>
                     <Col sm={6}>
                         <div className={`d-flex justify-content-end align-items-center h-100 ${style.login}`}>
-                            Welcome <span> Maria <FontAwesomeIcon icon={faSortDown}/></span>
+                            Welcome <span> Edward <FontAwesomeIcon icon={faSortDown}/></span>
                         </div>
                     </Col>
                 </Row>

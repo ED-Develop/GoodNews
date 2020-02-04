@@ -1,11 +1,11 @@
 import React from 'react';
 import Articles from "./Articles";
 import {connect} from "react-redux";
-import {getArticles} from "../../redux/articles-reducer";
+import {getEverythingArticles} from "../../redux/articles-reducer";
 
 class ArticlesContainer extends React.Component{
     componentDidMount() {
-        this.props.getArticles();
+        this.props.getEverythingArticles();
     }
 
     render() {
@@ -17,16 +17,10 @@ class ArticlesContainer extends React.Component{
     }
 }
 
-const mapDispatchToProps = (dispatch) => {
-    return ({
-        getArticles
-    })
-};
-
 const mapStateToProps = (state) => {
     return ({
-        articles: state.articles.articles
+        articles: state.articles.everythingArticles
     })
 };
 
-export default connect(mapStateToProps, mapDispatchToProps())(ArticlesContainer)
+export default connect(mapStateToProps, {getEverythingArticles})(ArticlesContainer)
