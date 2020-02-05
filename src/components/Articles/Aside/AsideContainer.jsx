@@ -34,7 +34,7 @@ class AsideContainer extends React.Component {
 const mapsStateToProps = (state) => {
     return {
         articles: getArticlesTitle(state),
-        asideFilter: state.articles.asideFilter
+        asideFilter: state.articles.asideFilter,
     }
 };
 
