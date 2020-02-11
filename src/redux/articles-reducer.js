@@ -23,6 +23,12 @@ const articlesReducer = (state = initialState, action) => {
                 })
             };
         case SET_EVERYTHING_ARTICLES:
+            if (action.page === 1) {
+                return {
+                    ...state,
+                    everythingArticles: [...action.articles]
+                }
+            }
             return {
                 ...state,
                 everythingArticles: [...state.everythingArticles, ...action.articles].map((a, index) => {
@@ -59,13 +65,13 @@ export const getAsideArticles = () => async (dispatch, getState) => {
     }
 };
 
-export const getEverythingArticles = (page = 1) => async (dispatch) => {
+export const getEverythingArticles = (page = 1, keyword = 'headlines') => async (dispatch) => {
     try {
         dispatch(toggleIsFetching(true));
 
-        let response = await everythingAPI.getArticles({pageSize: '5', page});
+        let response = await everythingAPI.getArticles({pageSize: '5', page, keyword});
 
-        dispatch(setEverythingArticles(response.articles));
+        dispatch(setEverythingArticles(response.articles, page));
         dispatch(setCurrentPage(page));
         dispatch(toggleIsFetching(false));
     } catch (e) {
@@ -87,9 +93,10 @@ export const setAsideArticles = (articles) => ({
     articles
 });
 
-export const setEverythingArticles = (articles) => ({
+export const setEverythingArticles = (articles, page) => ({
     type: SET_EVERYTHING_ARTICLES,
-    articles
+    articles,
+    page
 });
 
 export const setCurrentPage = (page) => {

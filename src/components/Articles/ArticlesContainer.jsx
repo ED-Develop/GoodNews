@@ -5,6 +5,8 @@ import {getEverythingArticles} from "../../redux/articles-reducer";
 import Preloader from "../common/Preloader/Preloader";
 import GoTop from "../common/GoTop/GoTop";
 import {toggleIsGoTop} from "../../redux/app-reducer";
+import {compose} from "redux";
+import {withRouter} from "react-router-dom";
 
 class ArticlesContainer extends React.Component {
     componentDidMount() {
@@ -15,6 +17,12 @@ class ArticlesContainer extends React.Component {
     componentWillUnmount() {
         window.removeEventListener('scroll', this.onScrollEnd)
     };
+
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        if (this.props.match.params.category !== prevProps.match.params.category) {
+            this.props.getEverythingArticles(1, this.props.match.params.category);
+        }
+    }
 
     onScrollEnd = (e) => {
         let scroll = window.pageYOffset;
@@ -63,4 +71,4 @@ const mapStateToProps = (state) => {
     })
 };
 
-export default connect(mapStateToProps, {getEverythingArticles, toggleIsGoTop})(ArticlesContainer)
+export default compose(connect(mapStateToProps, {getEverythingArticles, toggleIsGoTop}), withRouter)(ArticlesContainer);

@@ -2,6 +2,7 @@ import React from 'react';
 import style from './Navbar.module.css';
 import {faTimes} from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {NavLink} from "react-router-dom";
 
 const Navbar = ({toggleIsShowNavbar}) => {
     const onCloseNavbar = () => {
@@ -16,9 +17,9 @@ const Navbar = ({toggleIsShowNavbar}) => {
             <div>
                 <h4>Category</h4>
                 <ul>
-                    <li>Technology</li>
-                    <li>Politics</li>
-                    <li>Sport</li>
+                    <li><NavLink to='/articles/technology'>Technology</NavLink></li>
+                    <li><NavLink to='/articles/politics'>Politics</NavLink></li>
+                    <li><NavLink to='/articles/sport'>Sport</NavLink></li>
                 </ul>
             </div>
         </nav>

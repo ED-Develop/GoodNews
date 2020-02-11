@@ -74,7 +74,7 @@ class TopHeadlinesAPI extends Api {
 class EverythingAPI extends Api {
     constructor() {
         super();
-        this.endpoint = 'everything?q=technology&'
+        this.endpoint = 'everything?q=headlines&'
     }
 
     _setLanguage = (endpoint, language) => {

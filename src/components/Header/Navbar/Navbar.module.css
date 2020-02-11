@@ -3,7 +3,6 @@
     height: 100vh;
     width: 213px;
     background-color: white;
-    color: #181818;
     z-index: 10;
     border-right: 1px solid #e9e9e9;
     box-shadow: 2px 0 10px rgba(194, 194, 194, 0.4);
@@ -18,14 +17,17 @@
     padding: 0 17px;
 }
 
-.navbar li {
+.navbar li a {
+    display: block;
     font-size: 16px;
     cursor: pointer;
     line-height: 36px;
     padding: 0 17px;
+    text-decoration: none;
+    color: #181818;
 }
 
-.navbar li:hover {
+.navbar li a:hover {
     color: #000000;
     background-color: #eaeaea;
     font-weight: bold;
