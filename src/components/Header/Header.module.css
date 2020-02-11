@@ -1,6 +1,7 @@
 .header {
     background-color: #e8280b;
     color: #fff;
+    position: relative;
 }
 
 .btnBurger {

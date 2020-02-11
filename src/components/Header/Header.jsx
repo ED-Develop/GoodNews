@@ -2,21 +2,28 @@ import React from 'react';
 import style from './Header.module.css';
 import {Col, Container, Row} from "react-bootstrap";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faBars, faSearch, faSortDown} from "@fortawesome/free-solid-svg-icons";
+import {faBars, faSearch} from "@fortawesome/free-solid-svg-icons";
 import FollowHover from "./FollowHover";
 import UserInfo from "./UserInfo";
-import UserTooltip from "./UserTooltip";
+import Navbar from "./Navbar/Navbar";
+import {CSSTransitionGroup} from "react-transition-group";
 
-const Header = () => {
-
+const Header = ({isShowNavbar, toggleIsShowNavbar}) => {
+    const onOpenNavbar = () => {
+        toggleIsShowNavbar(true);
+    };
 
     return (
         <header className={style.header}>
+            <CSSTransitionGroup
+                transitionName="navbar">
+                {isShowNavbar && <Navbar toggleIsShowNavbar={toggleIsShowNavbar}/>}
+            </CSSTransitionGroup>
             <Container>
                 <Row>
                     <Col sm={6}>
                         <div className={`d-flex align-items-center ${style.logo}`}>
-                            <div className={style.btnBurger}>
+                            <div className={style.btnBurger} onClick={onOpenNavbar}>
                                 <FontAwesomeIcon icon={faBars}/>
                             </div>
                             <div className={style.search}>

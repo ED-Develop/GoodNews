@@ -39,6 +39,30 @@ a {
     transition: all .3s;
 }
 
+.navbar-enter {
+    opacity: 0.01;
+    transform: translate(-213px, 0);
+    transition: all .3s;
+}
+
+.navbar-enter.navbar-enter-active {
+    opacity: 1;
+    transform: translate(0, 0);
+    transition: all .3s;
+}
+
+.navbar-leave {
+    opacity: 1;
+    transform: translate(0, 0);
+    transition: all .3s;
+}
+
+.navbar-leave.navbar-leave-active {
+    opacity: 0.01;
+    transform: translate(-213px, 0);
+    transition: all .3s;
+}
+
 .hoverContainer {
     position: relative;
     cursor: pointer;
