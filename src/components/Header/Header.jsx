@@ -3,8 +3,13 @@ import style from './Header.module.css';
 import {Col, Container, Row} from "react-bootstrap";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faBars, faSearch, faSortDown} from "@fortawesome/free-solid-svg-icons";
+import FollowHover from "./FollowHover";
+import UserInfo from "./UserInfo";
+import UserTooltip from "./UserTooltip";
 
 const Header = () => {
+
+
     return (
         <header className={style.header}>
             <Container>
@@ -18,17 +23,12 @@ const Header = () => {
                                 <FontAwesomeIcon icon={faSearch}/>
                             </div>
                             <h1>Good News</h1>
-                            <div className={style.follow}>
-                                Follow Us
-                                <span>
-                                    <FontAwesomeIcon icon={faSortDown}/>
-                                </span>
-                            </div>
+                            <FollowHover/>
                         </div>
                     </Col>
                     <Col sm={6}>
                         <div className={`d-flex justify-content-end align-items-center h-100 ${style.login}`}>
-                            Welcome <span> Edward <FontAwesomeIcon icon={faSortDown}/></span>
+                            <UserInfo/>
                         </div>
                     </Col>
                 </Row>

@@ -14,3 +14,32 @@ li, ul {
 a {
     text-decoration: none;
 }
+
+.hoverTooltip-enter {
+    opacity: 0.01;
+    transform: translate(0, 20px);
+    transition: all .3s;
+}
+
+.hoverTooltip-enter.hoverTooltip-enter-active {
+    opacity: 1;
+    transform: translate(0, 0);
+    transition: all .3s;
+}
+
+.hoverTooltip-leave {
+    opacity: 1;
+    transform: translate(0, 0);
+    transition: all .3s;
+}
+
+.hoverTooltip-leave.hoverTooltip-leave-active {
+    opacity: 0.01;
+    transform: translate(0, 20px);
+    transition: all .3s;
+}
+
+.hoverContainer {
+    position: relative;
+    cursor: pointer;
+}

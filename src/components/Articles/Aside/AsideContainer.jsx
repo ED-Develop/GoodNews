@@ -3,6 +3,7 @@ import Aside from "./Aside";
 import {connect} from "react-redux";
 import {getAsideArticles, setAsideFilter} from "../../../redux/articles-reducer";
 import {getArticlesTitle} from "../../../redux/articles-selector";
+import Preloader from "../../common/Preloader/Preloader";
 
 class AsideContainer extends React.Component {
     componentDidMount() {

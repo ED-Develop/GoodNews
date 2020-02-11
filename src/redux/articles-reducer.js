@@ -1,4 +1,5 @@
 import {topHeadlinesAPI, everythingAPI} from "../api/api";
+import {toggleIsFetching} from "./app-reducer";
 
 const SET_ASIDE_ARTICLES = 'good-news/articles/SET_TOP_ARTICLES';
 const SET_EVERYTHING_ARTICLES = 'good-news/articles/SET_EVERYTHING_ARTICLES';
@@ -29,7 +30,7 @@ const articlesReducer = (state = initialState, action) => {
                 })
             };
         case SET_ASIDE_FILTER:
-            SET_CURRENT_PAGE:
+        case SET_CURRENT_PAGE:
             return {
                 ...state,
                 ...action.payload
@@ -43,6 +44,8 @@ export const getAsideArticles = () => async (dispatch, getState) => {
     try {
         let response;
 
+        dispatch(toggleIsFetching(true));
+
         if (getState().articles.asideFilter === 'popular') {
             response = await topHeadlinesAPI.getArticles({pageSize: 60});
         } else {
@@ -50,6 +53,7 @@ export const getAsideArticles = () => async (dispatch, getState) => {
         }
 
         dispatch(setAsideArticles(response.articles));
+        dispatch(toggleIsFetching(false));
     } catch (e) {
         console.log(e);
     }
@@ -57,9 +61,13 @@ export const getAsideArticles = () => async (dispatch, getState) => {
 
 export const getEverythingArticles = (page = 1) => async (dispatch) => {
     try {
+        dispatch(toggleIsFetching(true));
+
         let response = await everythingAPI.getArticles({pageSize: '5', page});
+
         dispatch(setEverythingArticles(response.articles));
         dispatch(setCurrentPage(page));
+        dispatch(toggleIsFetching(false));
     } catch (e) {
         console.log(e);
     }
