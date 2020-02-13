@@ -7,10 +7,12 @@ import GoTop from "../common/GoTop/GoTop";
 import {toggleIsGoTop} from "../../redux/app-reducer";
 import {compose} from "redux";
 import {withRouter} from "react-router-dom";
+import Navbar from "../Header/Navbar/Navbar";
+import {CSSTransitionGroup} from "react-transition-group";
 
 class ArticlesContainer extends React.Component {
     componentDidMount() {
-        this.props.getEverythingArticles();
+        this.props.getEverythingArticles(1, this.props.match.params.category);
         window.addEventListener('scroll', this.onScrollEnd)
     };
 
@@ -21,6 +23,7 @@ class ArticlesContainer extends React.Component {
     componentDidUpdate(prevProps, prevState, snapshot) {
         if (this.props.match.params.category !== prevProps.match.params.category) {
             this.props.getEverythingArticles(1, this.props.match.params.category);
+            this.scrollTop();
         }
     }
 
@@ -29,7 +32,7 @@ class ArticlesContainer extends React.Component {
         let heightDocument = document.querySelector('#root').scrollHeight;
 
         if (scroll >= heightDocument - document.documentElement.clientHeight - 300 && !this.props.isFetching) {
-            this.props.getEverythingArticles(this.props.page + 1);
+            this.props.getEverythingArticles(this.props.page + 1, this.props.match.params.category);
         }
 
         if (scroll > 600) {
@@ -54,7 +57,11 @@ class ArticlesContainer extends React.Component {
 
         return (
             <div>
-                {isGoTop && <GoTop scrollTop={this.scrollTop}/>}
+                <CSSTransitionGroup
+                    transitionName="btnGoTop">
+                    {isGoTop && <GoTop scrollTop={this.scrollTop}/>}
+                </CSSTransitionGroup>
+
                 {isFetching && <Preloader/>}
                 <Articles articles={articles}/>
             </div>

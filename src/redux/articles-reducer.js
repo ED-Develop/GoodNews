@@ -26,15 +26,18 @@ const articlesReducer = (state = initialState, action) => {
             if (action.page === 1) {
                 return {
                     ...state,
-                    everythingArticles: [...action.articles]
+                    everythingArticles: action.articles.map( (a, index) => {
+                        return ({...a, source: {...a.source, id: index}})
+                    })
                 }
+            } else {
+                return {
+                    ...state,
+                    everythingArticles: [...state.everythingArticles, ...action.articles].map((a, index) => {
+                        return ({...a, source: {...a.source, id: index}})
+                    })
+                };
             }
-            return {
-                ...state,
-                everythingArticles: [...state.everythingArticles, ...action.articles].map((a, index) => {
-                    return ({...a, source: {...a.source, id: index}})
-                })
-            };
         case SET_ASIDE_FILTER:
         case SET_CURRENT_PAGE:
             return {

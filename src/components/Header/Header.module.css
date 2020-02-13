@@ -1,7 +1,9 @@
 .header {
+    width: 100%;
     background-color: #e8280b;
     color: #fff;
-    position: relative;
+    position: fixed;
+    z-index: 10;
 }
 
 .btnBurger {

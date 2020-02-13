@@ -14,10 +14,12 @@ function App() {
        <Provider store={store}>
            <div className="App">
                <HeaderContainer/>
-               <Container>
-                   <Route path='/' exact component={() => <Redirect to='/articles'/>}/>
-                   <Route path="/articles/:category?" component={ArticlesContainer}/>
-               </Container>
+               <main className='appMain'>
+                   <Container>
+                       <Route path='/' exact component={() => <Redirect to='/articles'/>}/>
+                       <Route path="/articles/:category?" component={ArticlesContainer}/>
+                   </Container>
+               </main>
            </div>
        </Provider>
    </BrowserRouter>
