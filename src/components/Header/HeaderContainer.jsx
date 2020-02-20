@@ -1,5 +1,6 @@
 import React from 'react';
 import Header from "./Header";
+import {authApi} from "../../api/authApi";
 
 class HeaderContainer extends React.Component {
     state = {
@@ -9,6 +10,10 @@ class HeaderContainer extends React.Component {
     toggleIsShowNavbar = (isShowNavbar) => {
         this.setState({isShowNavbar})
     };
+
+    /*componentDidMount() {
+        authApi.login()
+    }*/
 
     render() {
         return (

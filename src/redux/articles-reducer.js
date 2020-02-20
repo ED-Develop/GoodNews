@@ -68,11 +68,11 @@ export const getAsideArticles = () => async (dispatch, getState) => {
     }
 };
 
-export const getEverythingArticles = (page = 1, keyword = 'headlines') => async (dispatch) => {
+export const getEverythingArticles = (page = 1, q) => async (dispatch) => {
     try {
         dispatch(toggleIsFetching(true));
 
-        let response = await everythingAPI.getArticles({pageSize: '5', page, keyword});
+        let response = await everythingAPI.getArticles({pageSize: '5', page, q});
 
         dispatch(setEverythingArticles(response.articles, page));
         dispatch(setCurrentPage(page));
