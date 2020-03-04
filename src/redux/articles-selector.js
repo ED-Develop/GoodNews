@@ -5,10 +5,11 @@ const getAsideArticles = (state) => {
 };
 
 export const getArticlesTitle = createSelector(getAsideArticles, (articles) => {
-    return articles.map(a => {
+    return articles.map((a, index) => {
         return {
             title: a.title,
-            url: a.url
+            url: a.url,
+            id: index
         }
     })
 });

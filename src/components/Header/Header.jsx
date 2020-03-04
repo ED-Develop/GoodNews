@@ -15,8 +15,7 @@ const Header = ({isShowNavbar, toggleIsShowNavbar}) => {
 
     return (
         <header className={style.header}>
-            <CSSTransitionGroup
-                transitionName="navbar">
+            <CSSTransitionGroup transitionName="navbar" transitionEnterTimeout={300} transitionLeaveTimeout={300}>
                 {isShowNavbar && <Navbar toggleIsShowNavbar={toggleIsShowNavbar}/>}
             </CSSTransitionGroup>
             <Container>

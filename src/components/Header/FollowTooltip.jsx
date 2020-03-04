@@ -15,7 +15,7 @@ const FollowTooltip = () => {
         <ul className={style.followTooltip}>
             {social.map(i => {
                 return (
-                    <li>
+                    <li key={i}>
                         <a href="#"> <img src={icon[i.toLowerCase()]} alt={i}/>Follow us on {i}</a>
                     </li>
                 )

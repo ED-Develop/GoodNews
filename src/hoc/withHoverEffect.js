@@ -10,7 +10,9 @@ const withHoverEffect = (Tooltip) => (Component) => {
                  onMouseLeave={() => setIsHover(false)}>
                 <Component/>
                 <CSSTransitionGroup
-                    transitionName="hoverTooltip">
+                    transitionName="hoverTooltip"
+                    transitionEnterTimeout={300}
+                    transitionLeaveTimeout={300}>
                     {isHover && <Tooltip/>}
                 </CSSTransitionGroup>
             </div>

@@ -58,7 +58,9 @@ class ArticlesContainer extends React.Component {
         return (
             <div>
                 <CSSTransitionGroup
-                    transitionName="btnGoTop">
+                    transitionName="btnGoTop"
+                    transitionEnterTimeout={300}
+                    transitionLeaveTimeout={300}>
                     {isGoTop && <GoTop scrollTop={this.scrollTop}/>}
                 </CSSTransitionGroup>
 

@@ -11,9 +11,11 @@ class HeaderContainer extends React.Component {
         this.setState({isShowNavbar})
     };
 
-    /*componentDidMount() {
-        authApi.login()
-    }*/
+    componentDidMount() {
+        authApi.login().then(r => {
+            console.log(r);
+        })
+    }
 
     render() {
         return (

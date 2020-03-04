@@ -5,7 +5,7 @@ const AsideList = ({articles}) => {
     return (
         <div>
             {articles.map( a => {
-                return <AsideItem link={a.url} title={a.title}/>
+                return <AsideItem key={a.id} link={a.url} title={a.title}/>
             })}
         </div>
     )

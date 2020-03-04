@@ -3,7 +3,7 @@ import * as axios from "axios";
 
 const mock = new MockAdapter(axios);
 
-mock.onGet('/login', {params: {login: 'test', password: '12345'}}).reply(200, {
+mock.onGet('/login', {login: 'admin', password: '12345'}).reply(200, {
     users: [
         {id: 1, name: 'John Smith'}
     ]
