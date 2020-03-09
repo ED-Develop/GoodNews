@@ -1,0 +1,30 @@
+{
+  "files": {
+    "main.css": "/good-news/static/css/main.87a30e40.chunk.css",
+    "main.js": "/good-news/static/js/main.13c13810.chunk.js",
+    "main.js.map": "/good-news/static/js/main.13c13810.chunk.js.map",
+    "runtime-main.js": "/good-news/static/js/runtime-main.f54b346b.js",
+    "runtime-main.js.map": "/good-news/static/js/runtime-main.f54b346b.js.map",
+    "static/css/2.47e06e2e.chunk.css": "/good-news/static/css/2.47e06e2e.chunk.css",
+    "static/js/2.9302f953.chunk.js": "/good-news/static/js/2.9302f953.chunk.js",
+    "static/js/2.9302f953.chunk.js.map": "/good-news/static/js/2.9302f953.chunk.js.map",
+    "index.html": "/good-news/index.html",
+    "precache-manifest.b37e1a687b40d05b574e8accbbfcd55c.js": "/good-news/precache-manifest.b37e1a687b40d05b574e8accbbfcd55c.js",
+    "service-worker.js": "/good-news/service-worker.js",
+    "static/css/2.47e06e2e.chunk.css.map": "/good-news/static/css/2.47e06e2e.chunk.css.map",
+    "static/css/main.87a30e40.chunk.css.map": "/good-news/static/css/main.87a30e40.chunk.css.map",
+    "static/js/2.9302f953.chunk.js.LICENSE.txt": "/good-news/static/js/2.9302f953.chunk.js.LICENSE.txt",
+    "static/media/facebook.svg": "/good-news/static/media/facebook.53757d93.svg",
+    "static/media/google.svg": "/good-news/static/media/google.276f52a7.svg",
+    "static/media/linkedIn.svg": "/good-news/static/media/linkedIn.1e01f0c0.svg",
+    "static/media/pinterest.svg": "/good-news/static/media/pinterest.74f3c20a.svg",
+    "static/media/twitter.svg": "/good-news/static/media/twitter.6620c8ae.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.f54b346b.js",
+    "static/css/2.47e06e2e.chunk.css",
+    "static/js/2.9302f953.chunk.js",
+    "static/css/main.87a30e40.chunk.css",
+    "static/js/main.13c13810.chunk.js"
+  ]
+}
