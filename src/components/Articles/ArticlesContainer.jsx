@@ -7,7 +7,6 @@ import GoTop from "../common/GoTop/GoTop";
 import {toggleIsGoTop} from "../../redux/app-reducer";
 import {compose} from "redux";
 import {withRouter} from "react-router-dom";
-import Navbar from "../Header/Navbar/Navbar";
 import {CSSTransitionGroup} from "react-transition-group";
 
 class ArticlesContainer extends React.Component {

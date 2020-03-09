@@ -8,8 +8,8 @@ import pinterest from '../../assets/image/pinterest.svg';
 
 
 const FollowTooltip = () => {
-    let [social, setSocial] = useState(['Facebook', 'Twitter', 'Google', 'Linkedin', 'Pinterest']);
-    let [icon, setIcon] = useState({facebook, twitter, google, linkedin, pinterest});
+    let [social] = useState(['Facebook', 'Twitter', 'Google', 'Linkedin', 'Pinterest']);
+    let [icon] = useState({facebook, twitter, google, linkedin, pinterest});
 
     return (
         <ul className={style.followTooltip}>

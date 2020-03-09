@@ -8,12 +8,12 @@ const withHoverEffect = (Tooltip) => (Component) => {
         return (
             <div className='hoverContainer' onMouseOver={() => setIsHover(true)}
                  onMouseLeave={() => setIsHover(false)}>
-                <Component/>
+                <Component {...props}/>
                 <CSSTransitionGroup
                     transitionName="hoverTooltip"
                     transitionEnterTimeout={300}
                     transitionLeaveTimeout={300}>
-                    {isHover && <Tooltip/>}
+                    {isHover && <Tooltip {...props}/>}
                 </CSSTransitionGroup>
             </div>
         )

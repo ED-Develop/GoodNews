@@ -19,6 +19,35 @@ a {
     padding-top: 60px;
 }
 
+.input-group {
+    position: relative;
+}
+
+.input-group-prepend {
+    position: absolute;
+    z-index: 5;
+    height: 100%;
+    max-height: 38px;
+}
+
+.input-group-prepend > span {
+    background-color: transparent;
+    border: none;
+    padding-right: 5px;
+}
+
+.input-group-prepend + input {
+    width: 100%;
+    border-radius: .25rem !important;
+    padding-left: 40px;
+}
+
+.input-group-prepend.is-invalid > span{
+    border-color: #dc3545;
+}
+
+/*animation*/
+
 .hoverTooltip-enter {
     opacity: 0.01;
     transform: translate(0, 20px);
@@ -98,4 +127,24 @@ a {
 
 .hoverContainer {
     position: relative;
+}
+
+.loginModal-enter {
+    opacity: 0;
+    transition: all .3s;
+}
+
+.loginModal-enter.loginModal-enter-active {
+    opacity: 1;
+    transition: all .3s;
+}
+
+.loginModal-leave {
+    opacity: 1;
+    transition: all .3s;
+}
+
+.loginModal-leave.loginModal-leave-active {
+    opacity: 0;
+    transition: all .3s;
 }

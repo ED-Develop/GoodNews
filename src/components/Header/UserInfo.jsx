@@ -6,10 +6,10 @@ import withHoverEffect from "../../hoc/withHoverEffect";
 import FollowTooltip from "./FollowTooltip";
 import UserTooltip from "./UserTooltip";
 
-const UserInfo = () => {
+const UserInfo = ({userName}) => {
     return (
         <div className={style.userInfoTriger}>
-            Welcome <span> Edward <FontAwesomeIcon icon={faSortDown}/></span>
+            Welcome <span> {userName} <FontAwesomeIcon icon={faSortDown}/></span>
         </div>
     )
 };

@@ -1,29 +1,50 @@
 import React from 'react';
 import Header from "./Header";
-import {authApi} from "../../api/authApi";
+import {connect} from "react-redux";
+import Login from "./Login/Login";
+import {CSSTransitionGroup} from "react-transition-group";
+import {login, logout} from "../../redux/auth-reducer";
 
 class HeaderContainer extends React.Component {
     state = {
-        isShowNavbar: false
+        isShowNavbar: false,
+        isLoginMode: false
     };
+
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        if (!prevProps.isAuth && this.props.isAuth) {
+            this.setState({isLoginMode: false})
+        }
+    }
 
     toggleIsShowNavbar = (isShowNavbar) => {
         this.setState({isShowNavbar})
     };
 
-    componentDidMount() {
-        authApi.login().then(r => {
-            console.log(r);
-        })
-    }
+    toggleLoginMode = (isLoginMode) => {
+        this.setState({isLoginMode})
+    };
 
     render() {
         return (
             <div>
-                <Header toggleIsShowNavbar={this.toggleIsShowNavbar} isShowNavbar={this.state.isShowNavbar}/>
+                <CSSTransitionGroup transitionName="loginModal" transitionEnterTimeout={300}
+                                    transitionLeaveTimeout={300}>
+                    {this.state.isLoginMode && <Login login={this.props.login} closeLoginForm={this.toggleLoginMode}/>}
+                </CSSTransitionGroup>
+                <Header isAuth={this.props.isAuth} toggleIsShowNavbar={this.toggleIsShowNavbar}
+                        isShowNavbar={this.state.isShowNavbar} openLoginForm={this.toggleLoginMode}
+                        logout={this.props.logout} userName={this.props.userName}/>
             </div>
         )
     }
 }
 
-export default HeaderContainer;
+const mapStateToProps = (state) => {
+    return {
+        isAuth: state.auth.isAuth,
+        userName: state.auth.login
+    }
+};
+
+export default connect(mapStateToProps, {login, logout})(HeaderContainer);

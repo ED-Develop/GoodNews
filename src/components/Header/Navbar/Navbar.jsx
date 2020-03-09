@@ -1,11 +1,21 @@
-import React from 'react';
+import React, {useState} from 'react';
 import style from './Navbar.module.css';
 import {faTimes} from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {NavLink} from "react-router-dom";
 
 const Navbar = ({toggleIsShowNavbar}) => {
+    const [menuItems] = useState({
+        'Technology': '/articles/technology',
+        'Politics': '/articles/politics',
+        'Sport': '/articles/sport'
+    });
+
     const onCloseNavbar = () => {
+        toggleIsShowNavbar(false);
+    };
+
+    const onSelectMenuItem = () => {
         toggleIsShowNavbar(false);
     };
 
@@ -17,9 +27,13 @@ const Navbar = ({toggleIsShowNavbar}) => {
             <div>
                 <h4>Category</h4>
                 <ul>
-                    <li><NavLink to='/articles/technology'>Technology</NavLink></li>
-                    <li><NavLink to='/articles/politics'>Politics</NavLink></li>
-                    <li><NavLink to='/articles/sport'>Sport</NavLink></li>
+                    {Object.entries(menuItems).map(i => {
+                        return (
+                            <li key={i[0]}>
+                                <NavLink onClick={onSelectMenuItem} to={i[1]}>{i[0]}</NavLink>
+                            </li>
+                        )
+                    })}
                 </ul>
             </div>
         </nav>

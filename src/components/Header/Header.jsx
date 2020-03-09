@@ -8,9 +8,13 @@ import UserInfo from "./UserInfo";
 import Navbar from "./Navbar/Navbar";
 import {CSSTransitionGroup} from "react-transition-group";
 
-const Header = ({isShowNavbar, toggleIsShowNavbar}) => {
+const Header = ({isShowNavbar, toggleIsShowNavbar, isAuth, openLoginForm, logout, userName}) => {
     const onOpenNavbar = () => {
         toggleIsShowNavbar(true);
+    };
+
+    const onOpenLoginForm = () => {
+        openLoginForm(true);
     };
 
     return (
@@ -34,7 +38,8 @@ const Header = ({isShowNavbar, toggleIsShowNavbar}) => {
                     </Col>
                     <Col sm={6}>
                         <div className={`d-flex justify-content-end align-items-center h-100 ${style.login}`}>
-                            <UserInfo/>
+                            {isAuth ? <UserInfo userName={userName} logout={logout}/>
+                            : <button onClick={onOpenLoginForm}>Login</button>}
                         </div>
                     </Col>
                 </Row>

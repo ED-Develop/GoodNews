@@ -48,6 +48,17 @@
     margin-left: 5px;
 }
 
+.login button {
+    background-color: transparent;
+    border: none;
+    color: white;
+    outline: none;
+}
+
+.login button:hover {
+    text-decoration: underline;
+}
+
 .follow:hover .followTooltip {
     display: block;
 }
