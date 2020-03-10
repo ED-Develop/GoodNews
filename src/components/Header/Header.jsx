@@ -7,6 +7,7 @@ import FollowHover from "./FollowHover";
 import UserInfo from "./UserInfo";
 import Navbar from "./Navbar/Navbar";
 import {CSSTransitionGroup} from "react-transition-group";
+import {NavLink} from "react-router-dom";
 
 const Header = ({isShowNavbar, toggleIsShowNavbar, isAuth, openLoginForm, logout, userName}) => {
     const onOpenNavbar = () => {
@@ -32,7 +33,7 @@ const Header = ({isShowNavbar, toggleIsShowNavbar, isAuth, openLoginForm, logout
                             <div className={style.search}>
                                 <FontAwesomeIcon icon={faSearch}/>
                             </div>
-                            <h1>Good News</h1>
+                            <h1><NavLink to='/'>Good News</NavLink></h1>
                             <FollowHover/>
                         </div>
                     </Col>

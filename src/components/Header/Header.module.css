@@ -27,6 +27,11 @@
     height: 60px;
 }
 
+.logo a {
+    color: white;
+    text-decoration: none;
+}
+
 .follow > span:first-child {
     display: flex;
     justify-content: center;

@@ -1,14 +1,17 @@
 import {topHeadlinesAPI, everythingAPI} from "../api/api";
 import {toggleIsFetching} from "./app-reducer";
+import {setIdInArrayObjects} from "../helpers/redux";
 
-const SET_ASIDE_ARTICLES = 'good-news/articles/SET_TOP_ARTICLES';
+const SET_ASIDE_ARTICLES = 'good-news/articles/SET_ASIDE_ARTICLES';
 const SET_EVERYTHING_ARTICLES = 'good-news/articles/SET_EVERYTHING_ARTICLES';
+const SET_TOP_ARTICLES = 'good-news/articles/SET_TOP_ARTICLES';
 const SET_ASIDE_FILTER = 'good-news/articles/SET_ASIDE_FILTER';
 const SET_CURRENT_PAGE = 'good-news/articles/SET_CURRENT_PAGE';
 
 const initialState = {
     asideArticles: [],
     everythingArticles: [],
+    topArticles: [],
     asideFilter: 'popular',
     page: 1
 };
@@ -18,24 +21,23 @@ const articlesReducer = (state = initialState, action) => {
         case SET_ASIDE_ARTICLES:
             return {
                 ...state,
-                asideArticles: action.articles.map((a, index) => {
-                    return ({...a, source: {...a.source, id: index}})
-                })
+                asideArticles: setIdInArrayObjects(action.articles)
+            };
+        case SET_TOP_ARTICLES:
+            return {
+                ...state,
+                topArticles: setIdInArrayObjects(action.articles)
             };
         case SET_EVERYTHING_ARTICLES:
             if (action.page === 1) {
                 return {
                     ...state,
-                    everythingArticles: action.articles.map( (a, index) => {
-                        return ({...a, source: {...a.source, id: index}})
-                    })
+                    everythingArticles: setIdInArrayObjects(action.articles)
                 }
             } else {
                 return {
                     ...state,
-                    everythingArticles: [...state.everythingArticles, ...action.articles].map((a, index) => {
-                        return ({...a, source: {...a.source, id: index}})
-                    })
+                    everythingArticles: setIdInArrayObjects([...state.everythingArticles, ...action.articles])
                 };
             }
         case SET_ASIDE_FILTER:
@@ -48,6 +50,44 @@ const articlesReducer = (state = initialState, action) => {
             return state;
     }
 };
+
+export const setAsideFilter = (asideFilter) => {
+    return {
+        type: SET_ASIDE_FILTER,
+        payload: {
+            asideFilter
+        }
+    }
+};
+
+//actions
+
+export const setAsideArticles = (articles) => ({
+    type: SET_ASIDE_ARTICLES,
+    articles
+});
+
+export const setTopArticles = (articles) => ({
+    type: SET_TOP_ARTICLES,
+    articles
+});
+
+export const setEverythingArticles = (articles, page) => ({
+    type: SET_EVERYTHING_ARTICLES,
+    articles,
+    page
+});
+
+export const setCurrentPage = (page) => {
+    return {
+        type: SET_CURRENT_PAGE,
+        payload: {
+            page
+        }
+    }
+};
+
+//thunks
 
 export const getAsideArticles = () => async (dispatch, getState) => {
     try {
@@ -82,32 +122,15 @@ export const getEverythingArticles = (page = 1, q) => async (dispatch) => {
     }
 };
 
-export const setAsideFilter = (asideFilter) => {
-    return {
-        type: SET_ASIDE_FILTER,
-        payload: {
-            asideFilter
-        }
-    }
-};
+export const getTopArticles = (pageSize) => async (dispatch) => {
+    try {
+        dispatch(toggleIsFetching(true));
 
-export const setAsideArticles = (articles) => ({
-    type: SET_ASIDE_ARTICLES,
-    articles
-});
+        let response = await topHeadlinesAPI.getArticles({pageSize});
 
-export const setEverythingArticles = (articles, page) => ({
-    type: SET_EVERYTHING_ARTICLES,
-    articles,
-    page
-});
-
-export const setCurrentPage = (page) => {
-    return {
-        type: SET_CURRENT_PAGE,
-        payload: {
-            page
-        }
+        dispatch(setTopArticles(response.articles))
+    } catch (e) {
+        console.log(e);
     }
 };
 

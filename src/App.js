@@ -6,8 +6,9 @@ import {connect, Provider} from "react-redux";
 import store from "./redux/store";
 import ArticlesContainer from "./components/Articles/ArticlesContainer";
 import HeaderContainer from "./components/Header/HeaderContainer";
-import {BrowserRouter, Redirect, Route} from "react-router-dom";
+import {HashRouter, Route} from "react-router-dom";
 import {authMe} from "./redux/auth-reducer";
+import HomeContainer from "./components/Home/HomeContainer";
 
 class App extends React.Component {
     componentDidMount() {
@@ -16,19 +17,15 @@ class App extends React.Component {
 
     render() {
         return (
-            <BrowserRouter>
-                <Provider store={store}>
-                    <div className="App">
-                        <HeaderContainer/>
-                        <main className='appMain'>
-                            <Container>
-                                <Route path='/' exact component={() => <Redirect to='/articles'/>}/>
-                                <Route path="/articles/:category?" component={ArticlesContainer}/>
-                            </Container>
-                        </main>
-                    </div>
-                </Provider>
-            </BrowserRouter>
+            <div className="App">
+                <HeaderContainer/>
+                <main className='appMain'>
+                    <Container>
+                        <Route path='/' exact component={HomeContainer}/>
+                        <Route path="/articles/:category?" component={ArticlesContainer}/>
+                    </Container>
+                </main>
+            </div>
         );
     }
 }
@@ -41,11 +38,11 @@ const AppContainer = connect(mapStateToProps, {authMe})(App);
 
 const RootApp = () => {
     return (
-        <BrowserRouter>
+        <HashRouter>
             <Provider store={store}>
                 <AppContainer/>
             </Provider>
-        </BrowserRouter>
+        </HashRouter>
     )
 };
 
