@@ -122,11 +122,11 @@ export const getEverythingArticles = (page = 1, q) => async (dispatch) => {
     }
 };
 
-export const getTopArticles = (pageSize) => async (dispatch) => {
+export const getTopArticles = (pageSize, category) => async (dispatch) => {
     try {
         dispatch(toggleIsFetching(true));
 
-        let response = await topHeadlinesAPI.getArticles({pageSize});
+        let response = await topHeadlinesAPI.getArticles({pageSize, category});
 
         dispatch(setTopArticles(response.articles))
     } catch (e) {

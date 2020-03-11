@@ -6,7 +6,7 @@ import {getCarouselData} from "../../redux/articles-selector";
 
 class HomeContainer extends React.Component {
     componentDidMount() {
-        this.props.getTopArticles(5);
+        this.props.getTopArticles(5, 'technology');
     }
 
     render() {
