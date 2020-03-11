@@ -8,6 +8,7 @@ import ArticlesContainer from "./components/Articles/ArticlesContainer";
 import HeaderContainer from "./components/Header/HeaderContainer";
 import {BrowserRouter, Redirect, Route} from "react-router-dom";
 import {authMe} from "./redux/auth-reducer";
+import ProfileContainer from "./components/Profile/ProfileContainer";
 
 class App extends React.Component {
     componentDidMount() {
@@ -23,7 +24,8 @@ class App extends React.Component {
                         <main className='appMain'>
                             <Container>
                                 <Route path='/' exact component={() => <Redirect to='/articles'/>}/>
-                                <Route path="/articles/:category?" component={ArticlesContainer}/>
+                                <Route path='/articles/:category?' component={ArticlesContainer}/>
+                                <Route path='/profile' component={ProfileContainer}/>
                             </Container>
                         </main>
                     </div>
