@@ -28,7 +28,7 @@ class HeaderContainer extends React.Component {
     render() {
         return (
             <div>
-                <CSSTransitionGroup transitionName="loginModal" transitionEnterTimeout={300}
+                <CSSTransitionGroup transitionName="fade" transitionEnterTimeout={300}
                                     transitionLeaveTimeout={300}>
                     {this.state.isLoginMode && <Login login={this.props.login} closeLoginForm={this.toggleLoginMode}/>}
                 </CSSTransitionGroup>

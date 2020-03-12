@@ -9,5 +9,8 @@ export const authApi = {
     },
     authMe: function () {
         return axios.get('/auth').then(response => response.data);
+    },
+    subscribe: function (email) {
+        return axios.post('/subscribe', {params:email}).then(response => response.data.resultCode);
     }
 };

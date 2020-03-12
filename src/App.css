@@ -103,22 +103,22 @@ a {
     position: relative;
 }
 
-.loginModal-enter {
+.fade-enter {
     opacity: 0;
     transition: all .3s;
 }
 
-.loginModal-enter.loginModal-enter-active {
+.fade-enter.fade-enter-active {
     opacity: 1;
     transition: all .3s;
 }
 
-.loginModal-leave {
+.fade-leave {
     opacity: 1;
     transition: all .3s;
 }
 
-.loginModal-leave.loginModal-leave-active {
+.fade-leave.fade-leave-active {
     opacity: 0;
     transition: all .3s;
 }

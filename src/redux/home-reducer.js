@@ -1,6 +1,7 @@
 import {setIdInArrayObjects} from "../helpers/redux";
 import {toggleIsFetching} from "./app-reducer";
 import {topHeadlinesAPI} from "../api/api";
+import {authApi} from "../api/authApi";
 
 const SET_TOP_ARTICLES = 'good-news/articles/SET_TOP_ARTICLES';
 const SET_CATEGORY_ARTICLES = 'good-news/articles/SET_CATEGORY_ARTICLES';
@@ -72,5 +73,6 @@ export const getCategoryArticles = (categories, pageSize) => async (dispatch) =>
         console.log(e)
     }
 };
+
 
 export default homeReducer;

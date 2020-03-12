@@ -45,3 +45,22 @@ export const articleDateFormatter = (date) => {
     return date.slice(date.indexOf('T') + 1, date.lastIndexOf(':')) + ' on ' + month + ' '
         + date.slice(date.indexOf('T') - 2, date.lastIndexOf('T'));
 };
+
+
+export const archiveDateFormatter = (date) => {
+    let archiveDates = [];
+
+    for (let i = 0; i < 12; i++) {
+        date.setDate(1);
+
+        let archiveDate = {
+            title: new Intl.DateTimeFormat('en', {month: 'long', year: 'numeric'}).format(date),
+            from: new Intl.DateTimeFormat('default', {month: '2-digit', year: 'numeric', day: '2-digit'}).format(date)
+        };
+
+        date.setMonth(date.getMonth() - 1);
+        archiveDates.push(archiveDate);
+    }
+
+    return archiveDates
+};

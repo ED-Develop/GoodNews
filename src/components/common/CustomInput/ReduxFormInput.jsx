@@ -4,11 +4,11 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 
 const ReduxFormInput = ({input, label, type, placeholder, icon, isError, meta}) => {
     let customInput = <Form.Control type={type} {...input} placeholder={placeholder}
-                                    isInvalid={isError || (meta.touched && meta.error) }/>;
+                                    isInvalid={isError || (meta.touched && meta.error)}/>;
 
     return (
         <Form.Group>
-            {label &&  <Form.Label>{label}</Form.Label>}
+            {label && <Form.Label>{label}</Form.Label>}
             {icon
                 ? <InputGroup>
                     <InputGroup.Prepend>
@@ -19,7 +19,10 @@ const ReduxFormInput = ({input, label, type, placeholder, icon, isError, meta}) 
                     {customInput}
                     <Form.Control.Feedback type="invalid">{meta.error}</Form.Control.Feedback>
                 </InputGroup>
-                : customInput
+                : <div>
+                    {customInput}
+                    <Form.Control.Feedback type="invalid">{meta.error}</Form.Control.Feedback>
+                </div>
             }
         </Form.Group>
     )
