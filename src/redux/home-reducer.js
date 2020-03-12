@@ -47,7 +47,8 @@ export const getTopArticles = (pageSize, category) => async (dispatch) => {
 
         let response = await topHeadlinesAPI.getArticles({pageSize, category});
 
-        dispatch(setTopArticles(response.articles))
+        dispatch(setTopArticles(response.articles));
+        dispatch(toggleIsFetching(false));
     } catch (e) {
         console.log(e);
     }
@@ -55,15 +56,21 @@ export const getTopArticles = (pageSize, category) => async (dispatch) => {
 
 
 export const getCategoryArticles = (categories, pageSize) => async (dispatch) => {
-    let articles = [];
+    try {
+        dispatch(toggleIsFetching(true));
+        let articles = [];
 
-    for (let i = 0; i < categories.length; i++) {
-        let response = await topHeadlinesAPI.getArticles({pageSize, category: categories[i]});
+        for (let i = 0; i < categories.length; i++) {
+            let response = await topHeadlinesAPI.getArticles({pageSize, category: categories[i]});
 
-        articles = [...articles, {category: categories[i], data: setIdInArrayObjects(response.articles)}]
+            articles = [...articles, {category: categories[i], data: setIdInArrayObjects(response.articles)}]
+        }
+
+        dispatch(setCategoryArticles(articles));
+        dispatch(toggleIsFetching(false));
+    } catch (e) {
+        console.log(e)
     }
-
-    dispatch(setCategoryArticles(articles));
 };
 
 export default homeReducer;

@@ -8,7 +8,8 @@ const Navbar = ({toggleIsShowNavbar}) => {
     const [menuItems] = useState({
         'Technology': '/articles/technology',
         'Politics': '/articles/politics',
-        'Sport': '/articles/sport'
+        'Sport': '/articles/sport',
+        'Business': '/articles/business'
     });
 
     const onCloseNavbar = () => {

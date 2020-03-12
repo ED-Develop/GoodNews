@@ -3,17 +3,20 @@ import Home from "./Home";
 import {connect} from "react-redux";
 import {getCarouselData} from "../../redux/articles-selector";
 import {getCategoryArticles, getTopArticles} from "../../redux/home-reducer";
+import Preloader from "../common/Preloader/Preloader";
 
 class HomeContainer extends React.Component {
     componentDidMount() {
         this.props.getTopArticles(5, 'business');
-        this.props.getCategoryArticles(['technology', 'sport'], 7)
+        this.props.getCategoryArticles(['politics', 'technology', 'sport', 'business'], 6)
     }
 
     render() {
         return (
             <>
-                <Home categories={this.props.categories} carouselData={this.props.carouselData}/>
+                {this.props.isFetching
+                    ? <Preloader/>
+                    : <Home categories={this.props.categories} carouselData={this.props.carouselData}/>}
             </>
         )
     }
@@ -22,7 +25,8 @@ class HomeContainer extends React.Component {
 const mapStateToProps = (state) => {
     return {
         carouselData: getCarouselData(state),
-        categories: state.home.categoryArticles
+        categories: state.home.categoryArticles,
+        isFetching: state.app.isFetching
     }
 };
 

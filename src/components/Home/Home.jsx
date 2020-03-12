@@ -8,21 +8,19 @@ import Category from "./Category/Category";
 const Home = ({carouselData, categories}) => {
     return (
         <div className={style.home}>
-            <Container>
-                <section>
-                    <Row>
-                        <Col sm={8}>
-                            <Slider carouselData={carouselData}/>
-                            {categories.map( c => {
-                                return <Category category={c}/>
-                            })}
-                        </Col>
-                        <Col sm={4}>
-                            <Subscribe/>
-                        </Col>
-                    </Row>
-                </section>
-            </Container>
+            <section>
+                <Row>
+                    <Col sm={8}>
+                        <Slider carouselData={carouselData}/>
+                        {categories.map(c => {
+                            return <Category key={c.category} category={c}/>
+                        })}
+                    </Col>
+                    <Col sm={4}>
+                        <Subscribe/>
+                    </Col>
+                </Row>
+            </section>
         </div>
     )
 };

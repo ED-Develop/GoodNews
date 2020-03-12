@@ -1,3 +1,8 @@
+.categoryContainer {
+    border-top: 4px solid #ebebeb;
+    margin-bottom: 57px;
+}
+
 .categoryContainer img {
     width: 100%;
 }
@@ -10,13 +15,15 @@
     text-transform: capitalize;
     text-decoration: none;
     font-size: 24px;
+    line-height: 36px;
     color: #181818;
     font-weight: 400;
     transition: color .3s;
 }
 
 .categoryContainer h2 a:hover,
-.categoryBigItem h3 a:hover {
+.categoryBigItem h3 a:hover,
+.categoryItem h4 a:hover {
     color: #e8280b;
     transition: color .3s;
 }
@@ -45,4 +52,27 @@
 
 .author span {
     color: #e8280b;
+}
+
+
+.categoryItem h4 a {
+    font-size: 16px;
+    color: #181818;
+    text-decoration: none;
+    transition: color .3s;
+    line-height: 16px;
+    font-weight: normal;
+}
+
+.categoryItemDate {
+    font-size: 14px;
+    color: #959595;
+}
+
+.categoryItemImage {
+    padding-right: 0;
+}
+
+.categoryItemDescr {
+    margin-top: -7px;
 }
