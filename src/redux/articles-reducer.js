@@ -4,14 +4,12 @@ import {setIdInArrayObjects} from "../helpers/redux";
 
 const SET_ASIDE_ARTICLES = 'good-news/articles/SET_ASIDE_ARTICLES';
 const SET_EVERYTHING_ARTICLES = 'good-news/articles/SET_EVERYTHING_ARTICLES';
-const SET_TOP_ARTICLES = 'good-news/articles/SET_TOP_ARTICLES';
 const SET_ASIDE_FILTER = 'good-news/articles/SET_ASIDE_FILTER';
 const SET_CURRENT_PAGE = 'good-news/articles/SET_CURRENT_PAGE';
 
 const initialState = {
     asideArticles: [],
     everythingArticles: [],
-    topArticles: [],
     asideFilter: 'popular',
     page: 1
 };
@@ -22,11 +20,6 @@ const articlesReducer = (state = initialState, action) => {
             return {
                 ...state,
                 asideArticles: setIdInArrayObjects(action.articles)
-            };
-        case SET_TOP_ARTICLES:
-            return {
-                ...state,
-                topArticles: setIdInArrayObjects(action.articles)
             };
         case SET_EVERYTHING_ARTICLES:
             if (action.page === 1) {
@@ -64,11 +57,6 @@ export const setAsideFilter = (asideFilter) => {
 
 export const setAsideArticles = (articles) => ({
     type: SET_ASIDE_ARTICLES,
-    articles
-});
-
-export const setTopArticles = (articles) => ({
-    type: SET_TOP_ARTICLES,
     articles
 });
 
@@ -122,16 +110,5 @@ export const getEverythingArticles = (page = 1, q) => async (dispatch) => {
     }
 };
 
-export const getTopArticles = (pageSize, category) => async (dispatch) => {
-    try {
-        dispatch(toggleIsFetching(true));
-
-        let response = await topHeadlinesAPI.getArticles({pageSize, category});
-
-        dispatch(setTopArticles(response.articles))
-    } catch (e) {
-        console.log(e);
-    }
-};
 
 export default articlesReducer;

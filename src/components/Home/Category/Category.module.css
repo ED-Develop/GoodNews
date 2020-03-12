@@ -1,0 +1,48 @@
+.categoryContainer img {
+    width: 100%;
+}
+
+.categoryContainer h2 {
+    margin: 7px 0 13px;
+}
+
+.categoryContainer h2 a {
+    text-transform: capitalize;
+    text-decoration: none;
+    font-size: 24px;
+    color: #181818;
+    font-weight: 400;
+    transition: color .3s;
+}
+
+.categoryContainer h2 a:hover,
+.categoryBigItem h3 a:hover {
+    color: #e8280b;
+    transition: color .3s;
+}
+
+.categoryBigItem h3 {
+    margin-top: 24px;
+}
+
+.categoryBigItem h3 a {
+    text-decoration: none;
+    font-size: 24px;
+    color: #181818;
+    transition: color .3s;
+}
+
+.categoryBigItem p {
+    font-size: 18px;
+    line-height: 30px;
+    margin-bottom: 10px;
+}
+
+.author {
+    font-size: 14px;
+    color: #181818;
+}
+
+.author span {
+    color: #e8280b;
+}

@@ -1,5 +1,9 @@
 .slider {
-
+    overflow: hidden;
+}
+.slider p {
+    font-size: 24px;
+    text-align: left;
 }
 
 .home {
@@ -18,4 +22,5 @@
     left: 0;
     bottom: 0;
     color: white;
+    padding: 30px;
 }

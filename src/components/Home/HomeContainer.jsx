@@ -1,18 +1,19 @@
 import React from "react";
 import Home from "./Home";
 import {connect} from "react-redux";
-import {getTopArticles} from "../../redux/articles-reducer";
 import {getCarouselData} from "../../redux/articles-selector";
+import {getCategoryArticles, getTopArticles} from "../../redux/home-reducer";
 
 class HomeContainer extends React.Component {
     componentDidMount() {
-        this.props.getTopArticles(5, 'technology');
+        this.props.getTopArticles(5, 'business');
+        this.props.getCategoryArticles(['technology', 'sport'], 7)
     }
 
     render() {
         return (
             <>
-                <Home carouselData={this.props.carouselData}/>
+                <Home categories={this.props.categories} carouselData={this.props.carouselData}/>
             </>
         )
     }
@@ -20,8 +21,9 @@ class HomeContainer extends React.Component {
 
 const mapStateToProps = (state) => {
     return {
-        carouselData: getCarouselData(state)
+        carouselData: getCarouselData(state),
+        categories: state.home.categoryArticles
     }
 };
 
-export default connect(mapStateToProps, {getTopArticles})(HomeContainer);
+export default connect(mapStateToProps, {getTopArticles, getCategoryArticles})(HomeContainer);

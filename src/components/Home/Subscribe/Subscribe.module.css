@@ -1,0 +1,38 @@
+.subscribe {
+    padding: 22px 27px;
+    border: 1px solid #ebebeb;
+    border-radius: 3px;
+}
+
+.subscribe h3 {
+    color: #e8280b;
+    font-weight: 400;
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.subscribe p {
+    color: #2d3340;
+    font-size: 14px;
+}
+
+.subscribe input {
+    height: 42px;
+    border-radius: 4px 0 0 4px;
+    color: #3f3f3f;
+    border-color:  #dfdfdf;
+}
+
+.subscribe button {
+    width: 98px;
+    height: 42px;
+    background-color: #e8280b;
+    color: white;
+    font-size: 14px;
+    border: none;
+    border-radius: 0 4px 4px 0;
+}
+
+.subscribeForm {
+    display: flex;
+}

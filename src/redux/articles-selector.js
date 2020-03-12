@@ -5,7 +5,7 @@ const getAsideArticles = (state) => {
 };
 
 const getTopArticles = (state) => {
-    return state.articles.topArticles;
+    return state.home.topArticles;
 };
 
 export const getArticlesTitle = createSelector(getAsideArticles, (articles) => {

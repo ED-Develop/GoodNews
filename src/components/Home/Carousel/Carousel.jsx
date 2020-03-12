@@ -2,6 +2,8 @@ import React, {useEffect, useState} from 'react';
 import style from '../Home.module.css';
 import {Carousel} from "react-bootstrap";
 import {CSSTransitionGroup} from "react-transition-group";
+import {faChevronLeft, faChevronRight} from "@fortawesome/free-solid-svg-icons";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 
 const Slider = ({carouselData}) => {
     const [index, setIndex] = useState(0);
@@ -24,7 +26,10 @@ const Slider = ({carouselData}) => {
 
     return (
         <>
-            <Carousel fade={true} activeIndex={index} direction={direction} className={style.slider} onSelect={onSlide}>
+            <Carousel fade={true} activeIndex={index} direction={direction} className={`${style.slider} custom-slider`}
+                      onSelect={onSlide} indicators={false}
+                      prevIcon={<FontAwesomeIcon icon={faChevronLeft}/>}
+                      nextIcon={<FontAwesomeIcon icon={faChevronRight}/>}>
                 {carouselData.map(i => {
                     return (
                         <Carousel.Item key={i.id} className={style.sliderItem}>

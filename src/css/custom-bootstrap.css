@@ -1,0 +1,66 @@
+.input-group {
+    position: relative;
+}
+
+.input-group-prepend {
+    position: absolute;
+    z-index: 5;
+    height: 100%;
+    max-height: 38px;
+}
+
+.input-group-prepend > span {
+    background-color: transparent;
+    border: none;
+    padding-right: 5px;
+}
+
+.input-group-prepend + input {
+    width: 100%;
+    border-radius: .25rem !important;
+    padding-left: 40px;
+}
+
+.input-group-prepend.is-invalid > span{
+    border-color: #dc3545;
+}
+
+/*custom slider*/
+.custom-slider a.carousel-control-next,
+.custom-slider a.carousel-control-prev {
+    width: 57px;
+    height: 57px;
+    box-sizing: border-box;
+    border: 3px solid #6a686a;
+    color: #6a686a;
+    font-size: 24px;
+    border-radius: 50%;
+    top: calc(50% - 28px);
+    opacity: 0;
+    transition: opacity .4s;
+}
+
+.custom-slider a.carousel-control-next:hover,
+.custom-slider a.carousel-control-prev:hover {
+    border: 3px solid #fff;
+    color: #fff;
+}
+
+.custom-slider:hover a.carousel-control-next,
+.custom-slider:hover a.carousel-control-prev {
+    opacity: 1;
+    transform: translate(0, 0);
+    transition: all .4s;
+}
+
+.custom-slider a.carousel-control-next {
+    right: 20px;
+    transform: translate(57px, 0);
+    transition: all .4s;
+}
+
+.custom-slider a.carousel-control-prev {
+    left: 20px;
+    transform: translate(-57px, 0);
+    transition: all .4s;
+}

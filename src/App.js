@@ -1,5 +1,6 @@
 import React from 'react';
 import './App.css';
+import './css/custom-bootstrap.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {Container} from "react-bootstrap";
 import {connect, Provider} from "react-redux";

@@ -19,32 +19,6 @@ a {
     padding-top: 60px;
 }
 
-.input-group {
-    position: relative;
-}
-
-.input-group-prepend {
-    position: absolute;
-    z-index: 5;
-    height: 100%;
-    max-height: 38px;
-}
-
-.input-group-prepend > span {
-    background-color: transparent;
-    border: none;
-    padding-right: 5px;
-}
-
-.input-group-prepend + input {
-    width: 100%;
-    border-radius: .25rem !important;
-    padding-left: 40px;
-}
-
-.input-group-prepend.is-invalid > span{
-    border-color: #dc3545;
-}
 
 /*animation*/
 
@@ -148,6 +122,7 @@ a {
     opacity: 0;
     transition: all .3s;
 }
+
 
 .slider-enter {
     opacity: 0;
