@@ -3,7 +3,7 @@ import style from './Category.module.css';
 import {Col, Row} from "react-bootstrap";
 import CategoryBigItem from "./CategoryBigItem";
 import {NavLink} from "react-router-dom";
-import CategoryItem from "./CategoryItem";
+import ArticleItem from "../ArticleItem/ArticleItem";
 
 const Category = ({category}) => {
     return (
@@ -17,7 +17,7 @@ const Category = ({category}) => {
                     {category.data.map( (a, index) => {
                         if (index === 0) return false;
 
-                        return <CategoryItem key={a.source.id} article={a}/>
+                        return <ArticleItem key={a.source.id} article={a}/>
                     })}
                 </Col>
             </Row>

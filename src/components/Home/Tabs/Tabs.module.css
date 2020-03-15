@@ -1,0 +1,23 @@
+.tab {
+    padding: 20px;
+    border: 1px solid #ebebeb;
+    border-radius: 3px;
+    margin-bottom: 30px;
+}
+
+.tags a {
+    display: inline-block;
+    padding: 5px 12px;
+    margin: 0 5px 5px 0;
+    border-radius: 3px;
+    color: #2d3340;
+    background-color: #f4f4f4;
+    text-decoration: none;
+    transition: all .3s;
+}
+
+.tags a:hover {
+    background-color: #e8280b;
+    color: white;
+    transition: all .3s;
+}

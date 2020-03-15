@@ -1,5 +1,4 @@
 const TOGGLE_IS_FETCHING = 'good-news/app/TOGGLE_IS_FETCHING';
-const TOGGLE_IS_GO_TOP = 'good-news/app/TOGGLE_IS_GO_TOP';
 
 const initialState = {
     isFetching: false,
@@ -9,7 +8,6 @@ const initialState = {
 const appReducer = (state = initialState, action) => {
     switch (action.type) {
         case TOGGLE_IS_FETCHING:
-        case TOGGLE_IS_GO_TOP:
             return {
                 ...state,
                 ...action.payload
@@ -24,15 +22,6 @@ export const toggleIsFetching = (isFetching) => {
         type: TOGGLE_IS_FETCHING,
         payload: {
             isFetching
-        }
-    }
-};
-
-export const toggleIsGoTop = (isGoTop) => {
-    return {
-        type: TOGGLE_IS_GO_TOP,
-        payload: {
-            isGoTop
         }
     }
 };

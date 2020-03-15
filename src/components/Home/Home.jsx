@@ -4,16 +4,17 @@ import {Col, Row} from "react-bootstrap";
 import Slider from "./Carousel/Carousel";
 import Subscribe from "./Subscribe/Subscribe";
 import Category from "./Category/Category";
-import Archives from "./Archives/Archives";
+import AsideTabs from "./Tabs/Tabs";
+import Social from "./Social/Social";
 
-const Home = ({carouselData, categories, subscribe, isSubscribe, isAuth}) => {
+const Home = ({carouselData, categories, subscribe, isSubscribe, isAuth, popularArticles}) => {
     const [isSubscribeChange, setIsSubscribeChange] = useState(false);
 
     useEffect(() => {
         if (isSubscribe && !isAuth) {
             setIsSubscribeChange(true);
         }
-    }, [isSubscribe]);
+    }, [isSubscribe, isAuth]);
 
     return (
         <div className={style.home}>
@@ -28,7 +29,8 @@ const Home = ({carouselData, categories, subscribe, isSubscribe, isAuth}) => {
                     <Col sm={4}>
                         {!isSubscribe && !isAuth && <Subscribe isSubscribeChange={isSubscribeChange} subscribe={subscribe}/>}
                         {isSubscribeChange && !isAuth  && <Subscribe isSubscribeChange={isSubscribeChange} subscribe={subscribe}/>}
-                        <Archives/>
+                        <AsideTabs articles={popularArticles}/>
+                        <Social/>
                     </Col>
                 </Row>
             </section>

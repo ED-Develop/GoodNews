@@ -1,0 +1,30 @@
+.articleItem h4 a {
+    font-size: 16px;
+    color: #181818;
+    text-decoration: none;
+    transition: color .3s;
+    line-height: 16px;
+    font-weight: normal;
+}
+
+.articleItemDate {
+    font-size: 14px;
+    color: #959595;
+}
+
+.articleItemImage {
+    padding-right: 0;
+}
+
+.articleItemDescr {
+    margin-top: -7px;
+}
+
+.articleItem img {
+    width: 100%;
+}
+
+.articleItem h4 a:hover {
+    color: #e8280b;
+    transition: color .3s;
+}
