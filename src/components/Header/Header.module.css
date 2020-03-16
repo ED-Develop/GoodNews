@@ -206,3 +206,9 @@
     height: 60px;
     line-height: 60px;
 }
+
+.search {
+    line-height: 60px;
+    position: relative;
+    height: 100%;
+}

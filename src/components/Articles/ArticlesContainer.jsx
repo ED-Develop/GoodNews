@@ -6,11 +6,13 @@ import Preloader from "../common/Preloader/Preloader";
 import {compose} from "redux";
 import {withRouter} from "react-router-dom";
 import {withScrollTop} from "../../hoc/withScrollTop";
+import queryString from 'query-string';
 
 class ArticlesContainer extends React.Component {
     componentDidMount() {
         this.props.getEverythingArticles(1, this.props.match.params.category);
-        window.addEventListener('scroll', this.onScrollEnd)
+        window.addEventListener('scroll', this.onScrollEnd);
+        console.log(queryString.parse(this.props.location.search))
     };
 
     componentWillUnmount() {
@@ -22,7 +24,7 @@ class ArticlesContainer extends React.Component {
             this.props.getEverythingArticles(1, this.props.match.params.category);
             this.props.scrollTop();
         }
-    }
+    };
 
     onScrollEnd = (e) => {
         let scroll = window.pageYOffset;
@@ -30,6 +32,16 @@ class ArticlesContainer extends React.Component {
 
         if (scroll >= heightDocument - document.documentElement.clientHeight - 300 && !this.props.isFetching) {
             this.props.getEverythingArticles(this.props.page + 1, this.props.match.params.category);
+        }
+    };
+
+    getArticles = () => {
+        const options = {
+            page: 1,
+            pageSize: 5
+        };
+        if (this.props.location.search) {
+            options.q = queryString.parse(this.props.location.search).search;
         }
     };
 

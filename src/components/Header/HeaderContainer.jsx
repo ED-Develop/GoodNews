@@ -4,11 +4,14 @@ import {connect} from "react-redux";
 import Login from "./Login/Login";
 import {CSSTransitionGroup} from "react-transition-group";
 import {login, logout} from "../../redux/auth-reducer";
+import {compose} from "redux";
+import {withRouter} from "react-router-dom";
 
 class HeaderContainer extends React.Component {
     state = {
         isShowNavbar: false,
-        isLoginMode: false
+        isLoginMode: false,
+        isSearch: false
     };
 
     componentDidUpdate(prevProps, prevState, snapshot) {
@@ -25,16 +28,30 @@ class HeaderContainer extends React.Component {
         this.setState({isLoginMode})
     };
 
+    toggleIsSearch = () => {
+        this.setState((state, props) => ({
+            isSearch: !state.isSearch
+        }))
+    };
+
+    searchArticles = (searchRequest) => {
+        this.props.history.push(`/articles?search=${searchRequest}`);
+    };
+
     render() {
+        const {login, isAuth, logout, userName} = this.props;
+        const {isLoginMode, isSearch, isShowNavbar} = this.state;
+
         return (
             <div>
                 <CSSTransitionGroup transitionName="fade" transitionEnterTimeout={300}
                                     transitionLeaveTimeout={300}>
-                    {this.state.isLoginMode && <Login login={this.props.login} closeLoginForm={this.toggleLoginMode}/>}
+                    {isLoginMode && <Login login={login} closeLoginForm={this.toggleLoginMode}/>}
                 </CSSTransitionGroup>
-                <Header isAuth={this.props.isAuth} toggleIsShowNavbar={this.toggleIsShowNavbar}
-                        isShowNavbar={this.state.isShowNavbar} openLoginForm={this.toggleLoginMode}
-                        logout={this.props.logout} userName={this.props.userName}/>
+                <Header isAuth={isAuth} toggleIsShowNavbar={this.toggleIsShowNavbar}
+                        isShowNavbar={isShowNavbar} openLoginForm={this.toggleLoginMode}
+                        logout={logout} userName={userName} isSearch={isSearch} toggleIsSearch={this.toggleIsSearch}
+                        searchArticles={this.searchArticles}/>
             </div>
         )
     }
@@ -47,4 +64,4 @@ const mapStateToProps = (state) => {
     }
 };
 
-export default connect(mapStateToProps, {login, logout})(HeaderContainer);
+export default compose(connect(mapStateToProps, {login, logout}), withRouter)(HeaderContainer);
