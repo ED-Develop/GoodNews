@@ -11,7 +11,7 @@ import {HashRouter, Route} from "react-router-dom";
 import {authMe} from "./redux/auth-reducer";
 import HomeContainer from "./components/Home/HomeContainer";
 
-class App extends React.Component {
+class AppContainer extends React.Component {
     componentDidMount() {
         this.props.authMe();
     }
@@ -35,16 +35,16 @@ const mapStateToProps = () => {
     return {}
 };
 
-const AppContainer = connect(mapStateToProps, {authMe})(App);
+const AppConnected = connect(mapStateToProps, {authMe})(AppContainer);
 
-const RootApp = () => {
+const App = () => {
     return (
         <HashRouter>
             <Provider store={store}>
-                <AppContainer/>
+                <AppConnected/>
             </Provider>
         </HashRouter>
     )
 };
 
-export default RootApp;
+export default App;

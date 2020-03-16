@@ -8,11 +8,10 @@ import {withRouter} from "react-router-dom";
 import {withScrollTop} from "../../hoc/withScrollTop";
 import queryString from 'query-string';
 
-class ArticlesContainer extends React.Component {
+class ArticlesContainer extends React.PureComponent {
     componentDidMount() {
-        this.props.getEverythingArticles(1, this.props.match.params.category);
+        this.getArticles(this.props.page, 5);
         window.addEventListener('scroll', this.onScrollEnd);
-        console.log(queryString.parse(this.props.location.search))
     };
 
     componentWillUnmount() {
@@ -20,8 +19,9 @@ class ArticlesContainer extends React.Component {
     };
 
     componentDidUpdate(prevProps, prevState, snapshot) {
-        if (this.props.match.params.category !== prevProps.match.params.category) {
-            this.props.getEverythingArticles(1, this.props.match.params.category);
+        if (this.props.match.params.category !== prevProps.match.params.category
+            || this.props.location.search !== prevProps.location.search) {
+            this.getArticles(1);
             this.props.scrollTop();
         }
     };
@@ -31,18 +31,22 @@ class ArticlesContainer extends React.Component {
         let heightDocument = document.querySelector('#root').scrollHeight;
 
         if (scroll >= heightDocument - document.documentElement.clientHeight - 300 && !this.props.isFetching) {
-            this.props.getEverythingArticles(this.props.page + 1, this.props.match.params.category);
+            this.getArticles(this.props.page + 1);
         }
     };
 
-    getArticles = () => {
+    getArticles = (page = 1, pageSize = 5) => {
         const options = {
-            page: 1,
-            pageSize: 5
+            page: page,
+            pageSize: pageSize
         };
         if (this.props.location.search) {
             options.q = queryString.parse(this.props.location.search).search;
+        } else if (this.props.match.params.category) {
+            options.qInTitle = this.props.match.params.category;
         }
+
+        this.props.getEverythingArticles(options);
     };
 
     render() {

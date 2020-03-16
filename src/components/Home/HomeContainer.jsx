@@ -11,7 +11,7 @@ import {withScrollTop} from "../../hoc/withScrollTop";
 class HomeContainer extends React.Component {
     componentDidMount() {
         this.props.getTopArticles(5);
-        this.props.getCategoryArticles(['politics', 'technology', 'sport', 'business'], 6)
+        this.props.getCategoryArticles(['politics', 'technology', 'sport', 'business', 'science'], 6)
     }
 
     render() {

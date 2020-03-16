@@ -1,6 +1,6 @@
 import {topHeadlinesAPI, everythingAPI} from "../api/api";
 import {toggleIsFetching} from "./app-reducer";
-import {setIdInArrayObjects} from "../helpers/redux";
+import {setIdInArrayObjects} from "../helpers/redux-helpers";
 
 const SET_ASIDE_ARTICLES = 'good-news/articles/SET_ASIDE_ARTICLES';
 const SET_EVERYTHING_ARTICLES = 'good-news/articles/SET_EVERYTHING_ARTICLES';
@@ -96,14 +96,14 @@ export const getAsideArticles = () => async (dispatch, getState) => {
     }
 };
 
-export const getEverythingArticles = (page = 1, q) => async (dispatch) => {
+export const getEverythingArticles = (options) => async (dispatch) => {
     try {
         dispatch(toggleIsFetching(true));
 
-        let response = await everythingAPI.getArticles({pageSize: '5', page, q});
+        let response = await everythingAPI.getArticles(options);
 
-        dispatch(setEverythingArticles(response.articles, page));
-        dispatch(setCurrentPage(page));
+        dispatch(setEverythingArticles(response.articles, options.page));
+        dispatch(setCurrentPage(options.page));
         dispatch(toggleIsFetching(false));
     } catch (e) {
         console.log(e);

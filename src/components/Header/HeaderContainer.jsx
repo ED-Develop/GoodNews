@@ -38,6 +38,10 @@ class HeaderContainer extends React.Component {
         this.props.history.push(`/articles?search=${searchRequest}`);
     };
 
+    onOutsideClick = () => {
+
+    };
+
     render() {
         const {login, isAuth, logout, userName} = this.props;
         const {isLoginMode, isSearch, isShowNavbar} = this.state;

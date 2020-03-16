@@ -45,7 +45,7 @@ const Header = ({isShowNavbar, toggleIsShowNavbar, isAuth, openLoginForm, logout
                                 <FontAwesomeIcon onClick={onToggleSearch} icon={faSearch}/>
                                 <CSSTransitionGroup transitionName="fade" transitionEnterTimeout={300}
                                                     transitionLeaveTimeout={300}>
-                                    {isSearch && <Search onSubmit={onSearch}/>}
+                                    {isSearch && <Search onToggleSearch={toggleIsSearch} onSubmit={onSearch}/>}
                                 </CSSTransitionGroup>
                             </div>
                             <h1><NavLink to='/'>Good News</NavLink></h1>

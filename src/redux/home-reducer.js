@@ -1,4 +1,4 @@
-import {setIdInArrayObjects} from "../helpers/redux";
+import {setIdInArrayObjects} from "../helpers/redux-helpers";
 import {toggleIsFetching} from "./app-reducer";
 import {topHeadlinesAPI} from "../api/api";
 
@@ -43,12 +43,9 @@ const setCategoryArticles = (articles) => ({
 
 export const getTopArticles = (pageSize, category = 'general') => async (dispatch) => {
     try {
-        dispatch(toggleIsFetching(true));
-
         let response = await topHeadlinesAPI.getArticles({pageSize, category});
 
         dispatch(setTopArticles(response.articles));
-        dispatch(toggleIsFetching(false));
     } catch (e) {
         console.log(e);
     }
@@ -72,6 +69,5 @@ export const getCategoryArticles = (categories, pageSize) => async (dispatch) =>
         console.log(e)
     }
 };
-
 
 export default homeReducer;

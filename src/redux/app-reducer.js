@@ -17,6 +17,7 @@ const appReducer = (state = initialState, action) => {
     }
 };
 
+//actions
 export const toggleIsFetching = (isFetching) => {
     return {
         type: TOGGLE_IS_FETCHING,
@@ -25,6 +26,7 @@ export const toggleIsFetching = (isFetching) => {
         }
     }
 };
+
 
 export default appReducer;
 

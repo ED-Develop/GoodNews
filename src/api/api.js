@@ -19,7 +19,7 @@ class RootApi {
 
         if (url === 'top-headlines?' && !options.country) {
             options.country = 'us';
-        } else if (url === 'everything?' && !options.q) {
+        } else if (url === 'everything?' && !options.q && !options.qInTitle) {
             options.q = 'headlines';
         }
 
