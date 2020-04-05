@@ -15,6 +15,7 @@ mock.onGet('/login').reply((config) => {
             rememberMe: true,
             isAuth: false,
             login: "admin",
+            isSubscribe: false
         }
     }
 
@@ -28,7 +29,7 @@ mock.onGet('/login').reply((config) => {
             isAuth: true,
         }));
 
-        return [200, {resultCode: 0, data: {id: user.id, login: user.login, email: user.email}}]
+        return [200, {resultCode: 0, data: {id: user.id, login: user.login, email: user.email, isSubscribe: user.isSubscribe}}]
     } else {
         return [201, {
             resultCode: 1,
@@ -60,12 +61,16 @@ mock.onGet('/auth').reply((config) => {
     const user = JSON.parse(localStorage.getItem(getCookie('user')));
 
     if (user) {
-        return [200, {resultCode: 0, data: {id: user.id, login: user.login, email: user.email}}]
+        return [200, {resultCode: 0, data: {id: user.id, login: user.login, email: user.email, isSubscribe: user.isSubscribe}}]
     } else {
         return [201, {
             resultCode: 1
         }]
     }
+});
+
+mock.onPost('/subscribe').reply(config => {
+    return [200, {resultCode: 0}]
 });
 
 

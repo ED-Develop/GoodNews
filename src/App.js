@@ -1,36 +1,32 @@
 import React from 'react';
 import './App.css';
+import './css/custom-bootstrap.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {Container} from "react-bootstrap";
 import {connect, Provider} from "react-redux";
 import store from "./redux/store";
 import ArticlesContainer from "./components/Articles/ArticlesContainer";
 import HeaderContainer from "./components/Header/HeaderContainer";
-import {BrowserRouter, Redirect, Route} from "react-router-dom";
+import {HashRouter, Route} from "react-router-dom";
 import {authMe} from "./redux/auth-reducer";
-import ProfileContainer from "./components/Profile/ProfileContainer";
+import HomeContainer from "./components/Home/HomeContainer";
 
-class App extends React.Component {
+class AppContainer extends React.Component {
     componentDidMount() {
         this.props.authMe();
     }
 
     render() {
         return (
-            <BrowserRouter>
-                <Provider store={store}>
-                    <div className="App">
-                        <HeaderContainer/>
-                        <main className='appMain'>
-                            <Container>
-                                <Route path='/' exact component={() => <Redirect to='/articles'/>}/>
-                                <Route path='/articles/:category?' component={ArticlesContainer}/>
-                                <Route path='/profile' component={ProfileContainer}/>
-                            </Container>
-                        </main>
-                    </div>
-                </Provider>
-            </BrowserRouter>
+            <div className="App">
+                <HeaderContainer/>
+                <main className='appMain'>
+                    <Container>
+                        <Route path='/' exact component={HomeContainer}/>
+                        <Route path="/articles/:category?" component={ArticlesContainer}/>
+                    </Container>
+                </main>
+            </div>
         );
     }
 }
@@ -39,16 +35,16 @@ const mapStateToProps = () => {
     return {}
 };
 
-const AppContainer = connect(mapStateToProps, {authMe})(App);
+const AppConnected = connect(mapStateToProps, {authMe})(AppContainer);
 
-const RootApp = () => {
+const App = () => {
     return (
-        <BrowserRouter>
+        <HashRouter>
             <Provider store={store}>
-                <AppContainer/>
+                <AppConnected/>
             </Provider>
-        </BrowserRouter>
+        </HashRouter>
     )
 };
 
-export default RootApp;
+export default App;

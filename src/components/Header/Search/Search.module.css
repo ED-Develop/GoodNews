@@ -1,0 +1,33 @@
+.search {
+    position: absolute;
+    width: 300px;
+    top: calc(100% + 7px);
+    left: -20px;
+}
+
+.search::before, .search::after {
+    content: "";
+    display: block;
+    position: absolute;
+    bottom: 100%;
+    left: 15px;
+    border: 15px solid transparent;
+    border-bottom: 15px solid #ebebeb;
+}
+
+.search::after {
+    border-bottom: 15px solid white;
+    bottom: calc(100% - 1px);
+}
+
+.search input {
+    border-color: #ebebeb;
+    padding: 4px 14px;
+    font-size: 16px;
+    height: 43px;
+    box-shadow: 0 0 4px rgba(194, 194, 194, 0.4);
+}
+
+.search input:focus {
+    box-shadow: none;
+}

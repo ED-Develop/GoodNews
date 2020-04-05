@@ -27,6 +27,11 @@
     height: 60px;
 }
 
+.logo a {
+    color: white;
+    text-decoration: none;
+}
+
 .follow > span:first-child {
     display: flex;
     justify-content: center;
@@ -200,4 +205,10 @@
 .userInfoTriger {
     height: 60px;
     line-height: 60px;
+}
+
+.search {
+    line-height: 60px;
+    position: relative;
+    height: 100%;
 }

@@ -1,0 +1,32 @@
+.social {
+    padding: 30px;
+    border: 1px solid #ebebeb;
+    border-radius: 3px;
+}
+
+.social h4 {
+    font-size: 24px;
+    font-weight: 400;
+    color: #181818;
+    margin-bottom: 20px;
+}
+
+.social a {
+    display: inline-block;
+    width: 45px;
+    height: 45px;
+    color: white;
+    font-size: 24px;
+    text-align: center;
+    line-height: 45px;
+    border-radius: 3px;
+    margin-right: 5px;
+    opacity: 1;
+    transition: all .5s;
+}
+
+.social a:hover {
+    opacity: 0.8;
+    color: #e8280b;
+    transition: all .5s;
+}

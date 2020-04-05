@@ -7,14 +7,26 @@ import FollowHover from "./FollowHover";
 import UserInfo from "./UserInfo";
 import Navbar from "./Navbar/Navbar";
 import {CSSTransitionGroup} from "react-transition-group";
+import {NavLink} from "react-router-dom";
+import Search from "./Search/Search";
 
-const Header = ({isShowNavbar, toggleIsShowNavbar, isAuth, openLoginForm, logout, userName}) => {
+const Header = ({isShowNavbar, toggleIsShowNavbar, isAuth, openLoginForm, logout, userName, isSearch, toggleIsSearch,
+                    searchArticles}) => {
     const onOpenNavbar = () => {
         toggleIsShowNavbar(true);
     };
 
     const onOpenLoginForm = () => {
         openLoginForm(true);
+    };
+
+    const onToggleSearch = () => {
+        toggleIsSearch();
+    };
+
+    const onSearch = ({search}) => {
+        searchArticles(search);
+        onToggleSearch();
     };
 
     return (
@@ -30,16 +42,20 @@ const Header = ({isShowNavbar, toggleIsShowNavbar, isAuth, openLoginForm, logout
                                 <FontAwesomeIcon icon={faBars}/>
                             </div>
                             <div className={style.search}>
-                                <FontAwesomeIcon icon={faSearch}/>
+                                <FontAwesomeIcon onClick={onToggleSearch} icon={faSearch}/>
+                                <CSSTransitionGroup transitionName="fade" transitionEnterTimeout={300}
+                                                    transitionLeaveTimeout={300}>
+                                    {isSearch && <Search onToggleSearch={toggleIsSearch} onSubmit={onSearch}/>}
+                                </CSSTransitionGroup>
                             </div>
-                            <h1>Good News</h1>
+                            <h1><NavLink to='/'>Good News</NavLink></h1>
                             <FollowHover/>
                         </div>
                     </Col>
                     <Col sm={6}>
                         <div className={`d-flex justify-content-end align-items-center h-100 ${style.login}`}>
                             {isAuth ? <UserInfo userName={userName} logout={logout}/>
-                            : <button onClick={onOpenLoginForm}>Login</button>}
+                                : <button onClick={onOpenLoginForm}>Login</button>}
                         </div>
                     </Col>
                 </Row>

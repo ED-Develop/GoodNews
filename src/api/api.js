@@ -1,7 +1,8 @@
 import * as axios from 'axios';
 
-class Api {
-    constructor() {
+class RootApi {
+    constructor(endpoint) {
+        this.endpoint = endpoint;
         this.instanse = axios.create({
             baseURL: 'https://newsapi.org/v2/'
         });
@@ -18,7 +19,7 @@ class Api {
 
         if (url === 'top-headlines?' && !options.country) {
             options.country = 'us';
-        } else if (url === 'everything?' && !options.q) {
+        } else if (url === 'everything?' && !options.q && !options.qInTitle) {
             options.q = 'headlines';
         }
 
@@ -31,19 +32,5 @@ class Api {
     };
 }
 
-class TopHeadlinesAPI extends Api {
-    constructor() {
-        super();
-        this.endpoint = 'top-headlines?';
-    }
-}
-
-class EverythingAPI extends Api {
-    constructor() {
-        super();
-        this.endpoint = 'everything?'
-    }
-}
-
-export const topHeadlinesAPI = new TopHeadlinesAPI();
-export const everythingAPI = new EverythingAPI();
+export const topHeadlinesAPI = new RootApi('top-headlines?');
+export const everythingAPI = new RootApi('everything?');

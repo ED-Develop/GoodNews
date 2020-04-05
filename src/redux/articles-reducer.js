@@ -1,7 +1,8 @@
 import {topHeadlinesAPI, everythingAPI} from "../api/api";
 import {toggleIsFetching} from "./app-reducer";
+import {setIdInArrayObjects} from "../helpers/redux-helpers";
 
-const SET_ASIDE_ARTICLES = 'good-news/articles/SET_TOP_ARTICLES';
+const SET_ASIDE_ARTICLES = 'good-news/articles/SET_ASIDE_ARTICLES';
 const SET_EVERYTHING_ARTICLES = 'good-news/articles/SET_EVERYTHING_ARTICLES';
 const SET_ASIDE_FILTER = 'good-news/articles/SET_ASIDE_FILTER';
 const SET_CURRENT_PAGE = 'good-news/articles/SET_CURRENT_PAGE';
@@ -18,24 +19,18 @@ const articlesReducer = (state = initialState, action) => {
         case SET_ASIDE_ARTICLES:
             return {
                 ...state,
-                asideArticles: action.articles.map((a, index) => {
-                    return ({...a, source: {...a.source, id: index}})
-                })
+                asideArticles: setIdInArrayObjects(action.articles)
             };
         case SET_EVERYTHING_ARTICLES:
             if (action.page === 1) {
                 return {
                     ...state,
-                    everythingArticles: action.articles.map( (a, index) => {
-                        return ({...a, source: {...a.source, id: index}})
-                    })
+                    everythingArticles: setIdInArrayObjects(action.articles)
                 }
             } else {
                 return {
                     ...state,
-                    everythingArticles: [...state.everythingArticles, ...action.articles].map((a, index) => {
-                        return ({...a, source: {...a.source, id: index}})
-                    })
+                    everythingArticles: setIdInArrayObjects([...state.everythingArticles, ...action.articles])
                 };
             }
         case SET_ASIDE_FILTER:
@@ -49,39 +44,6 @@ const articlesReducer = (state = initialState, action) => {
     }
 };
 
-export const getAsideArticles = () => async (dispatch, getState) => {
-    try {
-        let response;
-
-        dispatch(toggleIsFetching(true));
-
-        if (getState().articles.asideFilter === 'popular') {
-            response = await topHeadlinesAPI.getArticles({pageSize: 60});
-        } else {
-            response = await everythingAPI.getArticles({sortBy: 'publishedAt', pageSize: 60});
-        }
-
-        dispatch(setAsideArticles(response.articles));
-        dispatch(toggleIsFetching(false));
-    } catch (e) {
-        console.log(e);
-    }
-};
-
-export const getEverythingArticles = (page = 1, q) => async (dispatch) => {
-    try {
-        dispatch(toggleIsFetching(true));
-
-        let response = await everythingAPI.getArticles({pageSize: '5', page, q});
-
-        dispatch(setEverythingArticles(response.articles, page));
-        dispatch(setCurrentPage(page));
-        dispatch(toggleIsFetching(false));
-    } catch (e) {
-        console.log(e);
-    }
-};
-
 export const setAsideFilter = (asideFilter) => {
     return {
         type: SET_ASIDE_FILTER,
@@ -90,6 +52,8 @@ export const setAsideFilter = (asideFilter) => {
         }
     }
 };
+
+//actions
 
 export const setAsideArticles = (articles) => ({
     type: SET_ASIDE_ARTICLES,
@@ -110,5 +74,41 @@ export const setCurrentPage = (page) => {
         }
     }
 };
+
+//thunks
+
+export const getAsideArticles = () => async (dispatch, getState) => {
+    try {
+        let response;
+
+        dispatch(toggleIsFetching(true));
+
+        if (getState().articles.asideFilter === 'popular') {
+            response = await topHeadlinesAPI.getArticles({pageSize: 60});
+        } else {
+            response = await everythingAPI.getArticles({sortBy: 'publishedAt', pageSize: 60});
+        }
+
+        dispatch(setAsideArticles(response.articles));
+        dispatch(toggleIsFetching(false));
+    } catch (e) {
+        console.log(e);
+    }
+};
+
+export const getEverythingArticles = (options) => async (dispatch) => {
+    try {
+        dispatch(toggleIsFetching(true));
+
+        let response = await everythingAPI.getArticles(options);
+
+        dispatch(setEverythingArticles(response.articles, options.page));
+        dispatch(setCurrentPage(options.page));
+        dispatch(toggleIsFetching(false));
+    } catch (e) {
+        console.log(e);
+    }
+};
+
 
 export default articlesReducer;

@@ -1,10 +1,11 @@
 {
-  "name": "news",
+  "name": "good-news",
   "version": "0.1.0",
   "private": true,
   "homepage": "http://ed-develop.github.io/good-news",
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.26",
+    "@fortawesome/free-brands-svg-icons": "^5.12.1",
     "@fortawesome/free-solid-svg-icons": "^5.12.0",
     "@fortawesome/react-fontawesome": "^0.1.8",
     "@testing-library/jest-dom": "^4.2.4",
@@ -13,6 +14,7 @@
     "axios": "^0.19.2",
     "axios-mock-adapter": "^1.17.0",
     "bootstrap": "^4.4.1",
+    "query-string": "^6.11.1",
     "react": "^16.12.0",
     "react-bootstrap": "^1.0.0-beta.16",
     "react-dom": "^16.12.0",
