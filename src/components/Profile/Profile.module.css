@@ -1,9 +1,48 @@
 .profileWrapper {
-    padding-top: 40px;
+    min-height: calc(100vh - 60px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.profileContainer {
+    flex: 0 1 70%;
+    border: 1px solid #ebebeb;
+    border-radius: 3px;
+}
+
+.profileImage {
+    border-right: 1px solid #ebebeb;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .profileImage img {
-    width: 200px;
-    height: 200px;
+    width: 150px;
+    height: 150px;
     border-radius: 50%;
+}
+
+.userInfo,
+.profileImage {
+    padding: 40px 25px;
+}
+
+.userInfo {
+    padding-left: 25px;
+    color: #181818;
+}
+
+.userInfo h2 {
+    font-size: 26px;
+    margin-bottom: 24px;
+}
+
+.userInfo p {
+    font-size: 18px;
+}
+
+.userInfo p span {
+    font-weight: 500;
 }
