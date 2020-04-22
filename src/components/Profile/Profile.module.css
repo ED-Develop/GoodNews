@@ -36,13 +36,36 @@
 
 .userInfo h2 {
     font-size: 26px;
+    margin: 0;
+}
+
+.userInfoItem {
+    display: flex;
+    justify-content: space-between;
     margin-bottom: 24px;
+}
+
+.userInfoItem:first-child {
+    border-bottom: 1px solid #ebebeb;
+    padding-bottom: 12px;
+    margin-bottom: 12px;
+}
+
+.userInfoItem button,
+.userInfoItem a {
+    width: 30px;
+    height: 30px;
+    background-color: #e8280b;
+    font-size: 12px;
 }
 
 .userInfo p {
     font-size: 18px;
+    margin: 0;
+    color: #7d7d7d;
 }
 
 .userInfo p span {
     font-weight: 500;
+    color: #191919;
 }

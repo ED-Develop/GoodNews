@@ -1,0 +1,125 @@
+.hoverTooltip-enter {
+    opacity: 0.01;
+    transform: translate(0, 20px);
+    transition: all .3s;
+}
+
+.hoverTooltip-enter.hoverTooltip-enter-active {
+    opacity: 1;
+    transform: translate(0, 0);
+    transition: all .3s;
+}
+
+.hoverTooltip-leave {
+    opacity: 1;
+    transform: translate(0, 0);
+    transition: all .3s;
+}
+
+.hoverTooltip-leave.hoverTooltip-leave-active {
+    opacity: 0.01;
+    transform: translate(0, 20px);
+    transition: all .3s;
+}
+
+.navbar-enter {
+    opacity: 0.01;
+    transform: translate(-213px, 0);
+    transition: all .3s;
+}
+
+.navbar-enter.navbar-enter-active {
+    opacity: 1;
+    transform: translate(0, 0);
+    transition: all .3s;
+}
+
+.navbar-leave {
+    opacity: 1;
+    transform: translate(0, 0);
+    transition: all .3s;
+}
+
+.navbar-leave.navbar-leave-active {
+    opacity: 0.01;
+    transform: translate(-213px, 0);
+    transition: all .3s;
+}
+
+.hoverContainer {
+    position: relative;
+    cursor: pointer;
+}
+
+.btnGoTop-enter {
+    opacity: 0.01;
+    transform: translate(50px, 0);
+    transition: all .3s ease-out;
+}
+
+.btnGoTop-enter.btnGoTop-enter-active {
+    opacity: 1;
+    transform: translate(0, 0);
+    transition: all .3s ease-out;
+}
+
+.btnGoTop-leave {
+    opacity: 1;
+    transform: translate(0, 0);
+    transition: all .3s ease-out;
+}
+
+.btnGoTop-leave.btnGoTop-leave-active {
+    opacity: 0.01;
+    transform: translate(50px, 0);
+    transition: all .3s ease-out;
+}
+
+.hoverContainer {
+    position: relative;
+}
+
+.fade-enter {
+    opacity: 0;
+    transition: all .3s;
+}
+
+.fade-enter.fade-enter-active {
+    opacity: 1;
+    transition: all .3s;
+}
+
+.fade-leave {
+    opacity: 1;
+    transition: all .3s;
+}
+
+.fade-leave.fade-leave-active {
+    opacity: 0;
+    transition: all .3s;
+}
+
+
+.slider-enter {
+    opacity: 0;
+    transform: translate(-100%, 0);
+    transition: all .6s;
+}
+
+.slider-enter.slider-enter-active {
+    opacity: 1;
+    transform: translate(0, 0);
+    transition: all .6s;
+}
+
+.slider-leave {
+    opacity: 1;
+    transform: translate(0, 0);
+    transition: all .6s;
+}
+
+.slider-leave.slider-leave-active {
+    opacity: 0;
+    transform: translate(-100%, 0);
+    transition: all .6s;
+}

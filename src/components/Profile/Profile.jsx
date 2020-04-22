@@ -2,8 +2,12 @@ import React from "react";
 import style from './Profile.module.css';
 import {Col, Row} from "react-bootstrap";
 import profileImage from '../../assets/image/user.jpg';
+import UserInfoItem from "./UserInfo/UserInfoItem";
+import {startUpperCase} from "../../helpers/stringFormater";
 
-const Profile = ({userName}) => {
+const Profile = ({user, confirmChanges, changeReduxForm, startSubmit}) => {
+    const {login, email, dateOfBirth, membership, region} = user;
+
     return (
         <div className={style.profileWrapper}>
             <div className={style.profileContainer}>
@@ -12,10 +16,18 @@ const Profile = ({userName}) => {
                         <img src={profileImage} alt="image"/>
                     </Col>
                     <Col md={8} className={style.userInfo}>
-                        <h2>Admin</h2>
-                        <p><span>Date of Birth:</span> 26.07.1999</p>
-                        <p><span>Your tariff plan:</span> trial for 30 days</p>
-                        <p><span>Your news region:</span> USA</p>
+                        <UserInfoItem property='Login' value={startUpperCase(login)} isTitle={true} typeField='input'
+                                      confirmChanges={confirmChanges} changeReduxForm={changeReduxForm}
+                                      startSubmit={startSubmit}/>
+                        <UserInfoItem property='Email' value={email} typeField='input'
+                                      confirmChanges={confirmChanges} changeReduxForm={changeReduxForm}
+                                      startSubmit={startSubmit}/>
+                        <UserInfoItem property='Date of Birth' value={dateOfBirth} typeField='datepicker'
+                                      confirmChanges={confirmChanges} startSubmit={startSubmit}/>
+                        <UserInfoItem property='Membership' value={membership} isLink={true}
+                                      confirmChanges={confirmChanges}/>
+                        <UserInfoItem property='Region' value={region || 'USA'} typeField='select'
+                                      confirmChanges={confirmChanges}/>
                     </Col>
                 </Row>
             </div>

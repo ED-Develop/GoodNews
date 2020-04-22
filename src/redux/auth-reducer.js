@@ -1,4 +1,4 @@
-import {authApi} from "../api/authApi";
+import {mockApi} from "../api/mockApi";
 import {stopSubmit} from "redux-form";
 
 const SET_USER_DATA = 'good-news/auth/SET_USER_DATA';
@@ -26,7 +26,7 @@ const authReducer = (state = initialState, action) => {
 
 // actions
 
-const setUserData = (id, login, email, isAuth) => {
+export const setUserData = (id, login, email, isAuth) => {
     return {
         type: SET_USER_DATA,
         payload: {id, login, email, isAuth}
@@ -46,10 +46,11 @@ const toggleIsSubscribe = (isSubscribe) => {
 
 export const login = (loginData) => async (dispatch) => {
     try {
-        const response = await authApi.login(loginData);
+        const response = await mockApi.login(loginData);
+        const {id, login, email} = response.data;
 
         if (response.resultCode === 0) {
-            dispatch(setUserData(response.data.id, response.data.login, response.data.email, true))
+            dispatch(setUserData(id, login, email, true))
         } else if (response.resultCode === 1) {
             dispatch(stopSubmit('login', {_error: response.message}))
         }
@@ -60,7 +61,7 @@ export const login = (loginData) => async (dispatch) => {
 
 export const logout = () => async (dispatch, getState) => {
     try {
-        const resultCode = await authApi.logout(getState().auth.email);
+        const resultCode = await mockApi.logout(getState().auth.id);
 
         if (resultCode === 0) {
             dispatch(setUserData(null, null, null, false, false))
@@ -72,10 +73,11 @@ export const logout = () => async (dispatch, getState) => {
 
 export const authMe = () => async (dispatch) => {
     try {
-        const response = await authApi.authMe();
+        const response = await mockApi.authMe();
+        const {id, login, email} = response.data;
 
         if (response.resultCode === 0) {
-            dispatch(setUserData(response.data.id, response.data.login, response.data.email, true));
+            dispatch(setUserData(id, login, email, true));
         }
     } catch (e) {
         console.log(e);
@@ -85,7 +87,7 @@ export const authMe = () => async (dispatch) => {
 
 export const subscribe = (email) => async (dispatch) => {
     try {
-        let resultCode = await authApi.subscribe(email);
+        let resultCode = await mockApi.subscribe(email);
 
         if (resultCode === 0) {
             dispatch(toggleIsSubscribe(true))

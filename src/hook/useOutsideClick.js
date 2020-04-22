@@ -1,9 +1,9 @@
 import {useEffect} from "react";
 
-const useOutsideClick = (callback, ref) => {
+const useOutsideClick = (callback, ref, dependency) => {
     const onMouseDown = (e) => {
         if (ref.current && !ref.current.contains(e.target)) {
-            callback();
+            callback(dependency);
         }
     };
 
@@ -13,7 +13,7 @@ const useOutsideClick = (callback, ref) => {
         return () => {
             document.removeEventListener('mousedown', onMouseDown)
         }
-    })
+    });
 };
 
 export default useOutsideClick;

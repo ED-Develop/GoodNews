@@ -7,3 +7,5 @@ export const email = value => {
 export const minLength = min => value => {
     return value && value.length < min ? `Must be ${min} characters or more!` : undefined;
 };
+
+export const minLength3 = minLength(3);

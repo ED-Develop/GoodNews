@@ -53,3 +53,14 @@
     -ms-transform: rotate(45deg);
     transform: rotate(45deg);
 }
+
+.formGroup {
+    position: relative;
+}
+
+.clear {
+    position: absolute;
+    right: 0;
+    z-index: 5;
+    cursor: pointer;
+}
