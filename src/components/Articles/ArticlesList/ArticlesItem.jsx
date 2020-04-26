@@ -1,8 +1,9 @@
 import React from 'react';
 import style from './ArticleList.module.css';
-import {faBars, faCommentAlt} from "@fortawesome/free-solid-svg-icons";
+import {faCommentAlt} from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {articleDateFormatter} from "../../../helpers/dateFormater";
+import defaultImage from '../../../assets/image/newsDefault.jpg';
 
 const ArticlesItem = ({article}) => {
     return (
@@ -16,7 +17,7 @@ const ArticlesItem = ({article}) => {
                 </div>
             </div>
             <div className={style.picture}>
-                <img className='w-100' src={article.urlToImage} alt="photo"/>
+                <img className='w-100' src={article.urlToImage || defaultImage} alt="photo"/>
             </div>
             <p>{article.content}</p>
             <div className={style.comment}>

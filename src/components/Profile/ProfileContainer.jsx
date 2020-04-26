@@ -6,7 +6,7 @@ import Preloader from "../common/Preloader/Preloader";
 import {change, submit} from "redux-form";
 import ModalDialog from "../common/Modal/ModalDialog";
 
-class ProfileContainer extends React.Component {
+class ProfileContainer extends React.PureComponent {
     constructor(props) {
         super(props);
         this.state = {
@@ -15,8 +15,12 @@ class ProfileContainer extends React.Component {
         }
     }
 
+    componentDidMount() {
+        this.props.getUserProfile();
+    }
+
     componentDidUpdate(prevProps, prevState, snapshot) {
-        if (this.props.isAuth && this.props.isAuth !== prevProps.isAuth) {
+        if (this.props.isAuth && this.props.isAuth !== prevProps.isAuth && !this.props.user) {
             this.props.getUserProfile();
         }
     }
@@ -37,11 +41,20 @@ class ProfileContainer extends React.Component {
     render() {
         return (
             <>
-                <ModalDialog isShow={this.state.isModal} title='Confirm changes' body={'Do you want to save changes?'}
-                             closeModal={this.closeModal} updateProfile={this.updateProfile}/>
+                <ModalDialog
+                    isShow={this.state.isModal}
+                    title='Confirm changes'
+                    body={'Do you want to save changes?'}
+                    closeModal={this.closeModal}
+                    updateProfile={this.updateProfile}
+                />
                 {this.props.isFetching && <Preloader/>}
-                {this.props.user && <Profile user={this.props.user} confirmChanges={this.confirmChanges}
-                                             changeReduxForm={this.props.change} startSubmit={this.props.submit}/>}
+                {this.props.user && <Profile
+                    user={this.props.user}
+                    confirmChanges={this.confirmChanges}
+                    changeReduxForm={this.props.change}
+                    startSubmit={this.props.submit}
+                />}
             </>
         )
     }

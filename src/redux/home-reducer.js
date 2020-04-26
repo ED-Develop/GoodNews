@@ -1,6 +1,6 @@
 import {setIdInArrayObjects} from "../helpers/redux-helpers";
 import {toggleIsFetching} from "./app-reducer";
-import {topHeadlinesAPI} from "../api/api";
+import {topHeadlinesAPI} from "../api/newsApi";
 
 const SET_TOP_ARTICLES = 'good-news/articles/SET_TOP_ARTICLES';
 const SET_CATEGORY_ARTICLES = 'good-news/articles/SET_CATEGORY_ARTICLES';

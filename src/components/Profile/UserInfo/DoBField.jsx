@@ -5,7 +5,7 @@ import {faCheck} from "@fortawesome/free-solid-svg-icons";
 import {Field, reduxForm} from "redux-form";
 import ReduxFormSelect from "../../common/CustomInput/ReduxFormSelect";
 
-const DoBField = ({date, name, onSubmit}) => {
+const DoBField = ({initialValues, name, onSubmit}) => {
     const dateOptions = generateDateOptions();
 
     const submitHandler = ({dateOfBirth:{year, month, day}}) => {
@@ -16,7 +16,7 @@ const DoBField = ({date, name, onSubmit}) => {
         <>
             <DoBReduxForm
                 dateOptions={dateOptions}
-                initialValues={parseInitialValue(date, dateOptions)}
+                initialValues={parseInitialValue(initialValues[name], dateOptions)}
                 onSubmit={submitHandler}/>
         </>
     )

@@ -4,9 +4,11 @@ import {Col, Row} from "react-bootstrap";
 import profileImage from '../../assets/image/user.jpg';
 import UserInfoItem from "./UserInfo/UserInfoItem";
 import {startUpperCase} from "../../helpers/stringFormater";
+import InputField from "./UserInfo/InputField";
+import DoBField from "./UserInfo/DoBField";
 
 const Profile = ({user, confirmChanges, changeReduxForm, startSubmit}) => {
-    const {login, email, dateOfBirth, membership, region} = user;
+    const {login, email, dateOfBirth, membership} = user;
 
     return (
         <div className={style.profileWrapper}>
@@ -16,18 +18,36 @@ const Profile = ({user, confirmChanges, changeReduxForm, startSubmit}) => {
                         <img src={profileImage} alt="image"/>
                     </Col>
                     <Col md={8} className={style.userInfo}>
-                        <UserInfoItem property='Login' value={startUpperCase(login)} isTitle={true} typeField='input'
-                                      confirmChanges={confirmChanges} changeReduxForm={changeReduxForm}
-                                      startSubmit={startSubmit}/>
-                        <UserInfoItem property='Email' value={email} typeField='input'
-                                      confirmChanges={confirmChanges} changeReduxForm={changeReduxForm}
-                                      startSubmit={startSubmit}/>
-                        <UserInfoItem property='Date of Birth' value={dateOfBirth} typeField='datepicker'
-                                      confirmChanges={confirmChanges} startSubmit={startSubmit}/>
-                        <UserInfoItem property='Membership' value={membership} isLink={true}
-                                      confirmChanges={confirmChanges}/>
-                        <UserInfoItem property='Region' value={region || 'USA'} typeField='select'
-                                      confirmChanges={confirmChanges}/>
+                        <UserInfoItem
+                            property='Login'
+                            isTitle
+                            value={startUpperCase(login)}
+                            confirmChanges={confirmChanges}
+                            changeReduxForm={changeReduxForm}
+                            startSubmit={startSubmit}
+                            EditComponent={InputField}
+                        />
+                        <UserInfoItem
+                            property='Email'
+                            value={email}
+                            confirmChanges={confirmChanges}
+                            changeReduxForm={changeReduxForm}
+                            startSubmit={startSubmit}
+                            EditComponent={InputField}
+                        />
+                        <UserInfoItem
+                            property='Date of Birth'
+                            value={dateOfBirth}
+                            confirmChanges={confirmChanges}
+                            startSubmit={startSubmit}
+                            EditComponent={DoBField}
+                        />
+                        <UserInfoItem
+                            property='Membership'
+                            linkTo='/membership'
+                            value={membership}
+                            confirmChanges={confirmChanges}
+                        />
                     </Col>
                 </Row>
             </div>

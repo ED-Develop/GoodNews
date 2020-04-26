@@ -4,6 +4,7 @@ import {Carousel} from "react-bootstrap";
 import {CSSTransitionGroup} from "react-transition-group";
 import {faChevronLeft, faChevronRight} from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import defaultImage from '../../../assets/image/newsDefault.jpg';
 
 const Slider = ({carouselData}) => {
     const [index, setIndex] = useState(0);
@@ -33,7 +34,7 @@ const Slider = ({carouselData}) => {
                 {carouselData.map(i => {
                     return (
                         <Carousel.Item key={i.id} className={style.sliderItem}>
-                            <img className='w-100 h-100' src={i.image} alt="image"/>
+                            <img className='w-100 h-100' src={i.image || defaultImage} alt="image"/>
                             <CSSTransitionGroup transitionName="slider" transitionEnterTimeout={300}
                                                 transitionLeaveTimeout={300}>
                                 {isShowDescription && <Carousel.Caption className={style.sliderDescription}>

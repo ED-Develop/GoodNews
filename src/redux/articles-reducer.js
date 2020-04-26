@@ -1,4 +1,4 @@
-import {topHeadlinesAPI, everythingAPI} from "../api/api";
+import {topHeadlinesAPI, everythingAPI} from "../api/newsApi";
 import {toggleIsFetching} from "./app-reducer";
 import {setIdInArrayObjects} from "../helpers/redux-helpers";
 
