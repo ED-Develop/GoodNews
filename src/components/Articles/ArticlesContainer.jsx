@@ -1,7 +1,7 @@
 import React from 'react';
 import Articles from "./Articles";
 import {connect} from "react-redux";
-import {getEverythingArticles} from "../../redux/articles-reducer";
+import {getEverythingArticles, initializeArticlesPage} from "../../redux/articles-reducer";
 import Preloader from "../common/Preloader/Preloader";
 import {compose} from "redux";
 import {withRouter} from "react-router-dom";
@@ -10,7 +10,7 @@ import queryString from 'query-string';
 
 class ArticlesContainer extends React.PureComponent {
     componentDidMount() {
-        this.getArticles(this.props.page, 5);
+        this.props.initializeArticlesPage([{page: this.props.page, pageSize: 5}]);
         window.addEventListener('scroll', this.onScrollEnd);
     };
 
@@ -50,12 +50,16 @@ class ArticlesContainer extends React.PureComponent {
     };
 
     render() {
-        const {isFetching, articles} = this.props;
+        const {isFetching, articles, isInitialized} = this.props;
 
         return (
             <div>
                 {isFetching && <Preloader/>}
-                <Articles articles={articles}/>
+                {
+                    isInitialized
+                        ? <Articles articles={articles}/>
+                        : <Preloader/>
+                }
             </div>
         )
     }
@@ -66,8 +70,9 @@ const mapStateToProps = (state) => {
         articles: state.articles.everythingArticles,
         page: state.articles.page,
         isFetching: state.app.isFetching,
+        isInitialized: state.app.isInitialized
     })
 };
 
-export default compose(connect(mapStateToProps, {getEverythingArticles}), withRouter,
+export default compose(connect(mapStateToProps, {getEverythingArticles, initializeArticlesPage}), withRouter,
     withScrollTop)(ArticlesContainer);

@@ -1,6 +1,6 @@
 import {topHeadlinesAPI, everythingAPI} from "../api/newsApi";
-import {toggleIsFetching} from "./app-reducer";
 import {setIdInArrayObjects} from "../helpers/redux-helpers";
+import {commonAsyncHandler, initializePage} from "./common";
 
 const SET_ASIDE_ARTICLES = 'good-news/articles/SET_ASIDE_ARTICLES';
 const SET_EVERYTHING_ARTICLES = 'good-news/articles/SET_EVERYTHING_ARTICLES';
@@ -76,12 +76,16 @@ export const setCurrentPage = (page) => {
 };
 
 //thunks
+export const initializeArticlesPage = (everythingArticlesArgs) => (dispatch, getState) => {
+    const promise1 = dispatch(getAsideArticles(false));
+    const promise2 = dispatch(getEverythingArticles(...everythingArticlesArgs, false));
 
-export const getAsideArticles = () => async (dispatch, getState) => {
-    try {
+    initializePage(dispatch, getState, [promise1, promise2]);
+};
+
+export const getAsideArticles = (isVisualization = true) => async (dispatch, getState) => {
+    await commonAsyncHandler(async () => {
         let response;
-
-        dispatch(toggleIsFetching(true));
 
         if (getState().articles.asideFilter === 'popular') {
             response = await topHeadlinesAPI.getArticles({pageSize: 60});
@@ -90,24 +94,20 @@ export const getAsideArticles = () => async (dispatch, getState) => {
         }
 
         dispatch(setAsideArticles(response.articles));
-        dispatch(toggleIsFetching(false));
-    } catch (e) {
-        console.log(e);
-    }
+
+        return response;
+    }, dispatch, isVisualization);
 };
 
-export const getEverythingArticles = (options) => async (dispatch) => {
-    try {
-        dispatch(toggleIsFetching(true));
-
+export const getEverythingArticles = (options, isVisualization = true) => async (dispatch, getState) => {
+    await commonAsyncHandler(async () => {
         let response = await everythingAPI.getArticles(options);
 
         dispatch(setEverythingArticles(response.articles, options.page));
         dispatch(setCurrentPage(options.page));
-        dispatch(toggleIsFetching(false));
-    } catch (e) {
-        console.log(e);
-    }
+
+        return response;
+    }, dispatch, isVisualization);
 };
 
 

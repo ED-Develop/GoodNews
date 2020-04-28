@@ -3,13 +3,8 @@ import Aside from "./Aside";
 import {connect} from "react-redux";
 import {getAsideArticles, setAsideFilter} from "../../../redux/articles-reducer";
 import {getArticlesTitle} from "../../../redux/articles-selector";
-import Preloader from "../../common/Preloader/Preloader";
 
 class AsideContainer extends React.Component {
-    componentDidMount() {
-        this.props.getAsideArticles();
-    }
-
     componentDidUpdate(prevProps, prevState) {
         if (prevProps.asideFilter !== this.props.asideFilter) {
             this.props.getAsideArticles();
@@ -24,8 +19,11 @@ class AsideContainer extends React.Component {
     render() {
         return (
             <div>
-                <Aside articles={this.props.articles} asideFilter={this.props.asideFilter}
-                       setActiveButton={this.setActiveButton}/>
+                <Aside
+                    articles={this.props.articles}
+                    asideFilter={this.props.asideFilter}
+                    setActiveButton={this.setActiveButton}
+                />
             </div>
         )
     }

@@ -65,27 +65,31 @@ mock.onGet('/logout').reply((config) => {
 
         return [200, {resultCode: 0}]
     } else {
-        return [400, {resultCode: 1}]
+        return [400, {resultCode: 1, message: 'Bad request'}]
     }
 });
 
 mock.onGet('/auth').reply((config) => {
     const users = JSON.parse(localStorage.getItem('users'));
-    const user = users.find( user => user.email === getCookie('user'));
+    const cookiesData = getCookie('user');
+    const user = users.find( user => user.email === cookiesData);
 
     if (user) {
         const {id, login, email, isSubscribe} = user;
 
         return [200, {resultCode: 0, data: {id, login, email, isSubscribe}}]
+    } else if (!cookiesData) {
+        return [200, {resultCode: 10, message: 'Not authorized'}]
     } else {
         return [201, {
-            resultCode: 1
+            resultCode: 1,
+            message: 'Some problem with cookies'
         }]
     }
 });
 
 mock.onPost('/subscribe').reply(config => {
-    return [200, {resultCode: 0}]
+    return [200, {resultCode: 0, message: 'Some problem'}]
 });
 
 const usersUri = "/profile";

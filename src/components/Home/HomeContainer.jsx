@@ -2,16 +2,18 @@ import React from "react";
 import Home from "./Home";
 import {connect} from "react-redux";
 import {getCarouselData} from "../../redux/articles-selector";
-import {getCategoryArticles, getTopArticles} from "../../redux/home-reducer";
-import Preloader from "../common/Preloader/Preloader";
+import {initializeHomePage} from "../../redux/home-reducer";
 import {subscribe} from "../../redux/auth-reducer";
 import {compose} from "redux";
 import {withScrollTop} from "../../hoc/withScrollTop";
+import Preloader from "../common/Preloader/Preloader";
 
 class HomeContainer extends React.Component {
     componentDidMount() {
-        this.props.getTopArticles(5);
-        this.props.getCategoryArticles(['politics', 'technology', 'sport', 'business', 'science'], 6)
+        this.props.initializeHomePage(
+            [5],
+            [['politics', 'technology', 'sport', 'business', 'science'], 6]
+        );
     }
 
     render() {
@@ -19,11 +21,18 @@ class HomeContainer extends React.Component {
 
         return (
             <>
-                {this.props.isFetching
-                    ? <Preloader/>
-                    : <Home isSubscribe={isSubscribe} subscribe={subscribe}
-                            categories={categories} carouselData={carouselData}
-                            isAuth={isAuth} popularArticles={popularArticles}/>}
+                {
+                    this.props.isInitialized
+                        ? <Home
+                            isSubscribe={isSubscribe}
+                            subscribe={subscribe}
+                            categories={categories}
+                            carouselData={carouselData}
+                            isAuth={isAuth}
+                            popularArticles={popularArticles}
+                        />
+                        : <Preloader/>
+                }
             </>
         )
     }
@@ -34,11 +43,11 @@ const mapStateToProps = (state) => {
         carouselData: getCarouselData(state),
         categories: state.home.categoryArticles,
         popularArticles: state.home.topArticles,
-        isFetching: state.app.isFetching,
         isSubscribe: state.auth.isSubscribe,
-        isAuth: state.auth.isAuth
+        isAuth: state.auth.isAuth,
+        isInitialized: state.app.isInitialized
     }
 };
 
-export default compose(connect(mapStateToProps, {getTopArticles, getCategoryArticles, subscribe}),
+export default compose(connect(mapStateToProps, {subscribe, initializeHomePage}),
     withScrollTop)(HomeContainer);
