@@ -2,9 +2,10 @@ import React from "react";
 import Profile from "./Profile";
 import {connect} from "react-redux";
 import {getUserProfile, updateUserProfile} from "../../redux/profile-reducer";
-import Preloader from "../common/Preloader/Preloader";
 import {change, submit} from "redux-form";
 import ModalDialog from "../common/Modal/ModalDialog";
+import {compose} from "redux";
+import {withFixedFooter} from "../../hoc/withFixedFooter";
 
 class ProfileContainer extends React.PureComponent {
     constructor(props) {
@@ -48,7 +49,6 @@ class ProfileContainer extends React.PureComponent {
                     closeModal={this.closeModal}
                     updateProfile={this.updateProfile}
                 />
-                {this.props.isFetching && <Preloader/>}
                 {this.props.user && <Profile
                     user={this.props.user}
                     confirmChanges={this.confirmChanges}
@@ -62,10 +62,12 @@ class ProfileContainer extends React.PureComponent {
 
 const mapStateToProps = (state) => {
     return {
-        isFetching: state.app.isFetching,
         isAuth: state.auth.isAuth,
         user: state.profile.user
     }
 };
 
-export default connect(mapStateToProps, {getUserProfile, updateUserProfile, change, submit})(ProfileContainer);
+export default compose(
+    connect(mapStateToProps, {getUserProfile, updateUserProfile, change, submit}),
+    withFixedFooter
+)(ProfileContainer);

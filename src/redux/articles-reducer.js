@@ -44,14 +44,12 @@ const articlesReducer = (state = initialState, action) => {
     }
 };
 
-export const setAsideFilter = (asideFilter) => {
-    return {
-        type: SET_ASIDE_FILTER,
-        payload: {
-            asideFilter
-        }
+export const setAsideFilter = (asideFilter) => ({
+    type: SET_ASIDE_FILTER,
+    payload: {
+        asideFilter
     }
-};
+});
 
 //actions
 

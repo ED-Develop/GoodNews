@@ -15,7 +15,7 @@ class ArticlesContainer extends React.PureComponent {
     };
 
     componentWillUnmount() {
-        window.removeEventListener('scroll', this.onScrollEnd)
+        window.removeEventListener('scroll', this.onScrollEnd);
     };
 
     componentDidUpdate(prevProps, prevState, snapshot) {
@@ -50,11 +50,10 @@ class ArticlesContainer extends React.PureComponent {
     };
 
     render() {
-        const {isFetching, articles, isInitialized} = this.props;
+        const {articles, isInitialized} = this.props;
 
         return (
             <div>
-                {isFetching && <Preloader/>}
                 {
                     isInitialized
                         ? <Articles articles={articles}/>
@@ -69,7 +68,6 @@ const mapStateToProps = (state) => {
     return ({
         articles: state.articles.everythingArticles,
         page: state.articles.page,
-        isFetching: state.app.isFetching,
         isInitialized: state.app.isInitialized
     })
 };

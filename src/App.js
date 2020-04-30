@@ -10,6 +10,7 @@ import Error from "./components/common/Error/Error";
 import {setGlobalError} from "./redux/app-reducer";
 import {CSSTransitionGroup} from "react-transition-group";
 import Preloader from "./components/common/Preloader/Preloader";
+import Footer from "./components/Footer/Footer";
 
 class AppContainer extends React.PureComponent {
     componentDidMount() {
@@ -33,6 +34,7 @@ class AppContainer extends React.PureComponent {
                 <main className='appMain'>
                     <Routes/>
                 </main>
+                <Footer isFixed={this.props.isFixedFooter}/>
             </div>
         );
     }
@@ -41,7 +43,8 @@ class AppContainer extends React.PureComponent {
 const mapStateToProps = (state) => {
     return {
         globalError: state.app.globalError,
-        isFetching: state.app.isFetching
+        isFetching: state.app.isFetching,
+        isFixedFooter: state.app.isFixedFooter
     }
 };
 
