@@ -51,6 +51,7 @@ class ProfileContainer extends React.PureComponent {
                 />
                 {this.props.user && <Profile
                     user={this.props.user}
+                    region={this.props.region}
                     confirmChanges={this.confirmChanges}
                     changeReduxForm={this.props.change}
                     startSubmit={this.props.submit}
@@ -63,7 +64,8 @@ class ProfileContainer extends React.PureComponent {
 const mapStateToProps = (state) => {
     return {
         isAuth: state.auth.isAuth,
-        user: state.profile.user
+        user: state.profile.user,
+        region: state.app.region
     }
 };
 

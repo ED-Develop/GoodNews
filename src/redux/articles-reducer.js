@@ -86,7 +86,7 @@ export const getAsideArticles = (isVisualization = true) => async (dispatch, get
         let response;
 
         if (getState().articles.asideFilter === 'popular') {
-            response = await topHeadlinesAPI.getArticles({pageSize: 60});
+            response = await topHeadlinesAPI.getArticles({pageSize: 60, country: getState().app.region});
         } else {
             response = await everythingAPI.getArticles({sortBy: 'publishedAt', pageSize: 60});
         }
@@ -99,7 +99,7 @@ export const getAsideArticles = (isVisualization = true) => async (dispatch, get
 
 export const getEverythingArticles = (options, isVisualization = true) => async (dispatch, getState) => {
     await commonAsyncHandler(async () => {
-        let response = await everythingAPI.getArticles(options);
+        let response = await topHeadlinesAPI.getArticles({...options, country: getState().app.region});
 
         dispatch(setEverythingArticles(response.articles, options.page));
         dispatch(setCurrentPage(options.page));

@@ -1,14 +1,19 @@
+import {commonAsyncHandler} from "./common";
+import geolocationApi from "../api/geolocationApi";
+
 const TOGGLE_IS_FETCHING = 'good-news/app/TOGGLE_IS_FETCHING';
 const TOGGLE_IS_FIXED_FOOTER = 'good-news/app/TOGGLE_IS_FIXED_FOOTER';
 const SET_GLOBAL_ERROR = 'good-news/app/SET_GLOBAL_ERROR';
 const TOGGLE_IS_INITIALIZED = 'good-news/app/TOGGLE_IS_INITIALIZED';
+const SET_REGION = 'good-news/app/SET_REGION';
 
 const initialState = {
     isFixedFooter: false,
     isFetching: false,
     isGoTop: false,
     globalError: null,
-    isInitialized: false
+    isInitialized: false,
+    region: null
 };
 
 const appReducer = (state = initialState, action) => {
@@ -17,6 +22,7 @@ const appReducer = (state = initialState, action) => {
         case SET_GLOBAL_ERROR:
         case TOGGLE_IS_INITIALIZED:
         case TOGGLE_IS_FIXED_FOOTER:
+        case SET_REGION:
             return {
                 ...state,
                 ...action.payload
@@ -54,6 +60,23 @@ export const toggleIsInitialized = (isInitialized) => ({
         isInitialized
     }
 });
+
+export const setRegion = (region) => ({
+    type: SET_REGION,
+    payload: {
+        region
+    }
+});
+
+// thunks
+
+export const getGeolocationPosition = () => async (dispatch) => {
+    await commonAsyncHandler(async () => {
+        const region = await geolocationApi.getCountryCode();
+
+        dispatch(setRegion(region));
+    }, dispatch);
+};
 
 
 export default appReducer;

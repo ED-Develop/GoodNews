@@ -1,5 +1,5 @@
 import {mockApi} from "../api/mockApi";
-import {toggleIsFetching} from "./app-reducer";
+import {setRegion, toggleIsFetching} from "./app-reducer";
 import {setUserData} from "./auth-reducer";
 
 const SET_USER_PROFILE = 'good-news/profile/SET_USER_PROFILE';
@@ -65,11 +65,12 @@ export const updateUserProfile = (data) => async (dispatch, getState) => {
     try {
         dispatch(toggleIsFetching(true));
         const response = await mockApi.updateProfile(getState().auth.id, data);
-        const {id, login, email} = response.data;
+        const {id, login, email, region} = response.data;
 
         if (response.resultCode === 0) {
             dispatch(editUserProfile(data));
             dispatch(setUserData(id, login, email, true));
+            dispatch(setRegion(region));
         }
         dispatch(toggleIsFetching(false));
     } catch (e) {

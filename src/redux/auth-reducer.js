@@ -1,6 +1,8 @@
 import {mockApi} from "../api/mockApi";
 import {stopSubmit} from "redux-form";
 import {commonAsyncHandler, withTryCatch} from "./common";
+import {getGeolocationPosition, setRegion} from "./app-reducer";
+import {updateUserProfile} from "./profile-reducer";
 
 const SET_USER_DATA = 'good-news/auth/SET_USER_DATA';
 const TOGGLE_IS_SUBSCRIBE = 'good-news/auth/TOGGLE_IS_SUBSCRIBE';
@@ -45,14 +47,24 @@ const toggleIsSubscribe = (isSubscribe) => {
 
 // thunks
 
+const setAuthUserData = (response, dispatch, getState) => {
+    const {id, login, email, region} = response.data;
+
+    dispatch(setUserData(id, login, email, true));
+
+    if (region) {
+        dispatch(setRegion(region));
+    } else {
+        dispatch(updateUserProfile({region: getState().app.region}));
+    }
+};
 
 export const login = (loginData) => async (dispatch, getState) => {
     await commonAsyncHandler(async () => {
         const response = await mockApi.login(loginData);
-        const {id, login, email} = response.data;
 
         if (response.resultCode === 0) {
-            dispatch(setUserData(id, login, email, true))
+            setAuthUserData(response, dispatch, getState);
         } else if (response.resultCode === 10) {
             dispatch(stopSubmit('login', {_error: response.message}))
         }
@@ -66,21 +78,20 @@ export const logout = () => async (dispatch, getState) => {
         const data = await mockApi.logout(getState().auth.id);
 
         if (data.resultCode === 0) {
-            dispatch(setUserData(null, null, null, false, false))
+            dispatch(setUserData(null, null, null, false, false));
+            dispatch(getGeolocationPosition());
         }
 
         return data;
     }, dispatch);
 };
 
-export const authMe = () => async (dispatch) => {
+export const authMe = () => async (dispatch, getState) => {
     await commonAsyncHandler(async () => {
         const response = await mockApi.authMe();
 
         if (response.resultCode === 0) {
-            const {id, login, email} = response.data;
-
-            dispatch(setUserData(id, login, email, true));
+            setAuthUserData(response, dispatch, getState);
         }
 
         return response;

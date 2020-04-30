@@ -6,9 +6,18 @@ import UserInfoItem from "./UserInfo/UserInfoItem";
 import {startUpperCase} from "../../helpers/stringFormater";
 import InputField from "./UserInfo/InputField";
 import DoBField from "./UserInfo/DoBField";
+import RegionField from "./UserInfo/RegioonField";
 
-const Profile = ({user, confirmChanges, changeReduxForm, startSubmit}) => {
+const Profile = ({user, region, confirmChanges, changeReduxForm, startSubmit}) => {
     const {login, email, dateOfBirth, membership} = user;
+
+    const profileData = [
+        {property: 'Login', value: startUpperCase(login), EditComponent: InputField},
+        {property: 'Email', value: email, EditComponent: InputField},
+        {property: 'Date of Birth', value: dateOfBirth, EditComponent: DoBField},
+        {property: 'Membership', value: membership, EditComponent: '/membership'},
+        {property: 'Region', value: region, EditComponent: RegionField}
+    ];
 
     return (
         <div className={style.profileWrapper}>
@@ -18,36 +27,17 @@ const Profile = ({user, confirmChanges, changeReduxForm, startSubmit}) => {
                         <img src={profileImage} alt="image"/>
                     </Col>
                     <Col md={8} className={style.userInfo}>
-                        <UserInfoItem
-                            property='Login'
-                            isTitle
-                            value={startUpperCase(login)}
-                            confirmChanges={confirmChanges}
-                            changeReduxForm={changeReduxForm}
-                            startSubmit={startSubmit}
-                            EditComponent={InputField}
-                        />
-                        <UserInfoItem
-                            property='Email'
-                            value={email}
-                            confirmChanges={confirmChanges}
-                            changeReduxForm={changeReduxForm}
-                            startSubmit={startSubmit}
-                            EditComponent={InputField}
-                        />
-                        <UserInfoItem
-                            property='Date of Birth'
-                            value={dateOfBirth}
-                            confirmChanges={confirmChanges}
-                            startSubmit={startSubmit}
-                            EditComponent={DoBField}
-                        />
-                        <UserInfoItem
-                            property='Membership'
-                            linkTo='/membership'
-                            value={membership}
-                            confirmChanges={confirmChanges}
-                        />
+                        {profileData.map((item, index) => {
+                            return <UserInfoItem
+                                property={item.property}
+                                isTitle={!index}
+                                value={item.value}
+                                confirmChanges={confirmChanges}
+                                changeReduxForm={changeReduxForm}
+                                startSubmit={startSubmit}
+                                EditComponent={item.EditComponent}
+                            />
+                        })}
                     </Col>
                 </Row>
             </div>

@@ -19,6 +19,6 @@ export const withFixedFooter = (Component) => {
         }
     }
 
-    return connect(() => undefined, {toggleIsFixedFooter})(ContainerComponent);
+    return connect(() => {}, {toggleIsFixedFooter})(ContainerComponent);
 };
 

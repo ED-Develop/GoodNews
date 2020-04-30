@@ -7,10 +7,13 @@ import useOutsideClick from "../../../hook/useOutsideClick";
 
 const Navbar = ({toggleIsShowNavbar}) => {
     const [menuItems] = useState({
+        'General': '/articles/general',
         'Technology': '/articles/technology',
-        'Politics': '/articles/politics',
-        'Sport': '/articles/sport',
-        'Business': '/articles/business'
+        'Entertainment': '/articles/entertainment',
+        'Sports': '/articles/sports',
+        'Business': '/articles/business',
+        'Health': '/articles/health',
+        'Science': '/articles/science',
     });
 
     const onCloseNavbar = () => {

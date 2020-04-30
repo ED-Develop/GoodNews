@@ -34,9 +34,9 @@ mock.onGet('/login').reply((config) => {
             return user;
         })));
 
-        const {id, login, email, isSubscribe} = users.find( user => user.email === config.params.email);
+        const {id, login, email, isSubscribe, region} = users.find( user => user.email === config.params.email);
 
-        return [200, {resultCode: 0, data: {id, login, email, isSubscribe}}]
+        return [200, {resultCode: 0, data: {id, login, email, isSubscribe, region}}]
     } else {
         return [201, {
             resultCode: 1,
@@ -75,9 +75,9 @@ mock.onGet('/auth').reply((config) => {
     const user = users.find( user => user.email === cookiesData);
 
     if (user) {
-        const {id, login, email, isSubscribe} = user;
+        const {id, login, email, isSubscribe, region} = user;
 
-        return [200, {resultCode: 0, data: {id, login, email, isSubscribe}}]
+        return [200, {resultCode: 0, data: {id, login, email, isSubscribe, region}}]
     } else if (!cookiesData) {
         return [200, {resultCode: 10, message: 'Not authorized'}]
     } else {

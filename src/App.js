@@ -7,7 +7,7 @@ import {HashRouter} from "react-router-dom";
 import {authMe} from "./redux/auth-reducer";
 import Routes from "./components/Routes";
 import Error from "./components/common/Error/Error";
-import {setGlobalError} from "./redux/app-reducer";
+import {getGeolocationPosition, setGlobalError} from "./redux/app-reducer";
 import {CSSTransitionGroup} from "react-transition-group";
 import Preloader from "./components/common/Preloader/Preloader";
 import Footer from "./components/Footer/Footer";
@@ -15,6 +15,7 @@ import Footer from "./components/Footer/Footer";
 class AppContainer extends React.PureComponent {
     componentDidMount() {
         this.props.authMe();
+        this.props.getGeolocationPosition();
     }
 
     closeErrorWindow = () => {
@@ -48,7 +49,7 @@ const mapStateToProps = (state) => {
     }
 };
 
-const AppConnected = connect(mapStateToProps, {authMe, setGlobalError})(AppContainer);
+const AppConnected = connect(mapStateToProps, {authMe, setGlobalError, getGeolocationPosition})(AppContainer);
 
 const App = () => {
     return (

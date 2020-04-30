@@ -7,7 +7,7 @@ import {NavLink} from "react-router-dom";
 import {formatToKey} from "../../../helpers/stringFormater";
 import useOutsideClick from "../../../hook/useOutsideClick";
 
-const UserInfoItem = ({isTitle, property, value, linkTo, confirmChanges, changeReduxForm, startSubmit, EditComponent}) => {
+const UserInfoItem = ({isTitle, property, value, confirmChanges, changeReduxForm, startSubmit, EditComponent}) => {
     const [editMode, setEditMode] = useState(false);
     const onEditMode = () => setEditMode(true);
 
@@ -35,8 +35,8 @@ const UserInfoItem = ({isTitle, property, value, linkTo, confirmChanges, changeR
             ? <h2>{value}</h2>
             : <p><span>{property}:</span> {value}</p>}
 
-        {linkTo
-            ? <NavLink className='btn btn-danger btn-sm' to={linkTo}><FontAwesomeIcon icon={faEdit}/></NavLink>
+        {typeof EditComponent === 'string'
+            ? <NavLink className='btn btn-danger btn-sm' to={EditComponent}><FontAwesomeIcon icon={faEdit}/></NavLink>
             : <button onClick={onEditMode} className='btn btn-danger btn-sm'><FontAwesomeIcon icon={faEdit}/></button>}
     </>;
 

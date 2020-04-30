@@ -1,6 +1,6 @@
 import * as axios from 'axios';
 
-class RootApi {
+class NewsApi {
     constructor(endpoint) {
         this.endpoint = endpoint;
         this.instanse = axios.create({
@@ -32,5 +32,5 @@ class RootApi {
     };
 }
 
-export const topHeadlinesAPI = new RootApi('top-headlines?');
-export const everythingAPI = new RootApi('everything?');
+export const topHeadlinesAPI = new NewsApi('top-headlines?');
+export const everythingAPI = new NewsApi('everything?');

@@ -40,10 +40,11 @@ class ArticlesContainer extends React.PureComponent {
             page: page,
             pageSize: pageSize
         };
+
         if (this.props.location.search) {
             options.q = queryString.parse(this.props.location.search).search;
         } else if (this.props.match.params.category) {
-            options.qInTitle = this.props.match.params.category;
+            options.category = this.props.match.params.category;
         }
 
         this.props.getEverythingArticles(options);
