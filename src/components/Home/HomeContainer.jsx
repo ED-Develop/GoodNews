@@ -10,11 +10,23 @@ import Preloader from "../common/Preloader/Preloader";
 
 class HomeContainer extends React.Component {
     componentDidMount() {
+       if (this.props.region) {
+           this.getArticles();
+       }
+    }
+
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        if (this.props.region && prevProps.region !== this.props.region) {
+           this.getArticles();
+        }
+    }
+
+    getArticles = () => {
         this.props.initializeHomePage(
             [5],
             [['politics', 'technology', 'sport', 'business', 'science'], 6]
         );
-    }
+    };
 
     render() {
         const {isSubscribe, subscribe, categories, carouselData, isAuth, popularArticles} = this.props;
@@ -45,7 +57,8 @@ const mapStateToProps = (state) => {
         popularArticles: state.home.topArticles,
         isSubscribe: state.auth.isSubscribe,
         isAuth: state.auth.isAuth,
-        isInitialized: state.app.isInitialized
+        isInitialized: state.app.isInitialized,
+        region: state.app.region
     }
 };
 

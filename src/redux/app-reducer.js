@@ -1,11 +1,13 @@
 import {commonAsyncHandler} from "./common";
 import geolocationApi from "../api/geolocationApi";
+import {authMe} from "./auth-reducer";
 
 const TOGGLE_IS_FETCHING = 'good-news/app/TOGGLE_IS_FETCHING';
 const TOGGLE_IS_FIXED_FOOTER = 'good-news/app/TOGGLE_IS_FIXED_FOOTER';
 const SET_GLOBAL_ERROR = 'good-news/app/SET_GLOBAL_ERROR';
 const TOGGLE_IS_INITIALIZED = 'good-news/app/TOGGLE_IS_INITIALIZED';
 const SET_REGION = 'good-news/app/SET_REGION';
+const INITIALIZE_APP = 'good-news/app/INITIALIZE_APP';
 
 const initialState = {
     isFixedFooter: false,
@@ -13,6 +15,7 @@ const initialState = {
     isGoTop: false,
     globalError: null,
     isInitialized: false,
+    isInitializedApp: false,
     region: null
 };
 
@@ -22,6 +25,7 @@ const appReducer = (state = initialState, action) => {
         case SET_GLOBAL_ERROR:
         case TOGGLE_IS_INITIALIZED:
         case TOGGLE_IS_FIXED_FOOTER:
+        case INITIALIZE_APP:
         case SET_REGION:
             return {
                 ...state,
@@ -68,6 +72,13 @@ export const setRegion = (region) => ({
     }
 });
 
+export const initializeAppSuccess = () => ({
+    type: INITIALIZE_APP,
+    payload: {
+        isInitializedApp: true
+    }
+});
+
 // thunks
 
 export const getGeolocationPosition = () => async (dispatch) => {
@@ -76,6 +87,14 @@ export const getGeolocationPosition = () => async (dispatch) => {
 
         dispatch(setRegion(region));
     }, dispatch);
+};
+
+export const initializeApp = () => async (dispatch) => {
+    const promise1 = dispatch(authMe());
+
+    Promise.all([promise1]).then(() => {
+        dispatch(initializeAppSuccess());
+    })
 };
 
 

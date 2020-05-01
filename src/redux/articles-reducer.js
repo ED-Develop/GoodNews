@@ -1,6 +1,6 @@
 import {topHeadlinesAPI, everythingAPI} from "../api/newsApi";
 import {setIdInArrayObjects} from "../helpers/redux-helpers";
-import {commonAsyncHandler, initializePage} from "./common";
+import {commonAsyncHandler, initializeAsyncHandler} from "./common";
 
 const SET_ASIDE_ARTICLES = 'good-news/articles/SET_ASIDE_ARTICLES';
 const SET_EVERYTHING_ARTICLES = 'good-news/articles/SET_EVERYTHING_ARTICLES';
@@ -74,11 +74,13 @@ export const setCurrentPage = (page) => {
 };
 
 //thunks
-export const initializeArticlesPage = (everythingArticlesArgs) => (dispatch, getState) => {
-    const promise1 = dispatch(getAsideArticles(false));
-    const promise2 = dispatch(getEverythingArticles(...everythingArticlesArgs, false));
+export const initializeArticlesPage = (everythingArticlesArgs) => async (dispatch, getState) => {
+    await initializeAsyncHandler(() => {
+        const promise1 = dispatch(getAsideArticles(false));
+        const promise2 = dispatch(getEverythingArticles(...everythingArticlesArgs, false));
 
-    initializePage(dispatch, getState, [promise1, promise2]);
+        return [promise1, promise2];
+    }, dispatch, getState);
 };
 
 export const getAsideArticles = (isVisualization = true) => async (dispatch, getState) => {

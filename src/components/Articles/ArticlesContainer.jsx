@@ -10,7 +10,10 @@ import queryString from 'query-string';
 
 class ArticlesContainer extends React.PureComponent {
     componentDidMount() {
-        this.props.initializeArticlesPage([{page: this.props.page, pageSize: 5}]);
+        if (this.props.region) {
+            this.props.initializeArticlesPage([this.getArticlesOptions(this.props.page, 5)]);
+        }
+
         window.addEventListener('scroll', this.onScrollEnd);
     };
 
@@ -19,9 +22,21 @@ class ArticlesContainer extends React.PureComponent {
     };
 
     componentDidUpdate(prevProps, prevState, snapshot) {
+        this.urlParamsObserver(prevProps);
+        this.regionObserver(prevProps);
+    };
+
+    urlParamsObserver = (prevProps) => {
         if (this.props.match.params.category !== prevProps.match.params.category
             || this.props.location.search !== prevProps.location.search) {
-            this.getArticles(1);
+            this.props.getEverythingArticles(this.getArticlesOptions(1));
+            this.props.scrollTop();
+        }
+    };
+
+    regionObserver = (prevProps) => {
+        if (this.props.region && prevProps.region !== this.props.region) {
+            this.props.initializeArticlesPage([this.getArticlesOptions(1, 5)]);
             this.props.scrollTop();
         }
     };
@@ -29,13 +44,14 @@ class ArticlesContainer extends React.PureComponent {
     onScrollEnd = (e) => {
         let scroll = window.pageYOffset;
         let heightDocument = document.querySelector('#root').scrollHeight;
+        const {isInitialized, isFetching} = this.props;
 
-        if (scroll >= heightDocument - document.documentElement.clientHeight - 300 && !this.props.isFetching) {
-            this.getArticles(this.props.page + 1);
+        if (scroll >= heightDocument - document.documentElement.clientHeight - 300 && !isFetching && isInitialized) {
+            this.props.getEverythingArticles(this.getArticlesOptions(this.props.page + 1));
         }
     };
 
-    getArticles = (page = 1, pageSize = 5) => {
+    getArticlesOptions = (page = 1, pageSize = 5) => {
         const options = {
             page: page,
             pageSize: pageSize
@@ -47,7 +63,7 @@ class ArticlesContainer extends React.PureComponent {
             options.category = this.props.match.params.category;
         }
 
-        this.props.getEverythingArticles(options);
+        return options;
     };
 
     render() {
@@ -69,7 +85,8 @@ const mapStateToProps = (state) => {
     return ({
         articles: state.articles.everythingArticles,
         page: state.articles.page,
-        isInitialized: state.app.isInitialized
+        isInitialized: state.app.isInitialized,
+        region: state.app.region
     })
 };
 

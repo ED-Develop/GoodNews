@@ -47,7 +47,11 @@ export const withResultCodeHandlingError = (operation, dispatch) => async () => 
     return result;
 };
 
-export const initializePage = (dispatch, getState, promises) => {
+export const initializeAsyncHandler = async (operation, dispatch, getState) => {
+    dispatch(toggleIsInitialized(false));
+
+    const promises = await operation();
+
     Promise.all(promises).then(() => {
         const error = getState().app.globalError;
 

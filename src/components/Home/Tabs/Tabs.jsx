@@ -6,7 +6,7 @@ import {NavLink} from "react-router-dom";
 
 const AsideTabs = ({articles}) => {
     const [key, setKey] = useState('popular');
-    const [tags] = useState(['business', 'good news', 'startups', 'politics', 'europe',]);
+    const [tags] = useState(['business', 'sports', 'technology', 'apple', 'samsung']);
 
     const onSelect = (key) => {
         setKey(key)
@@ -20,7 +20,7 @@ const AsideTabs = ({articles}) => {
                 })}
             </Tab>
             <Tab eventKey="tags" title="Tags" className={`${style.tab} ${style.tags}`}>
-                {tags.map( t => <NavLink key={t} to={`/articles/${t}`}>{t}</NavLink>)}
+                {tags.map( t => <NavLink key={t} to={`/articles?search=${t}`}>{t}</NavLink>)}
             </Tab>
         </Tabs>
     )
