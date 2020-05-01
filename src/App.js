@@ -6,10 +6,11 @@ import HeaderContainer from "./components/Header/HeaderContainer";
 import {HashRouter} from "react-router-dom";
 import Routes from "./components/Routes";
 import Error from "./components/common/Error/Error";
-import {getGeolocationPosition, initializeApp, setGlobalError} from "./redux/app-reducer";
+import {getGeolocationPosition, getInterfaceText, initializeApp, setGlobalError} from "./redux/app-reducer";
 import {CSSTransitionGroup} from "react-transition-group";
 import Preloader from "./components/common/Preloader/Preloader";
 import Footer from "./components/Footer/Footer";
+import {IntlProvider} from "react-intl";
 
 class AppContainer extends React.PureComponent {
     componentDidMount() {
@@ -20,6 +21,10 @@ class AppContainer extends React.PureComponent {
         if (this.props.isInitializedApp && !this.props.region) {
             this.props.getGeolocationPosition();
         }
+
+        if (this.props.region) {
+            this.props.getInterfaceText();
+        }
     }
 
     closeErrorWindow = () => {
@@ -27,21 +32,24 @@ class AppContainer extends React.PureComponent {
     };
 
     render() {
-        const {globalError, isInitializedApp} = this.props;
+        const {globalError, isInitializedApp, interfaceText} = this.props;
+
 
         if (isInitializedApp) {
             return (
-                <div className="App">
-                    {this.props.isFetching && <Preloader/>}
-                    <CSSTransitionGroup transitionName="fade" transitionEnterTimeout={300} transitionLeaveTimeout={300}>
-                        {globalError && <Error error={globalError} closeErrorWindow={this.closeErrorWindow}/>}
-                    </CSSTransitionGroup>
-                    <HeaderContainer/>
-                    <main className='appMain'>
-                        <Routes/>
-                    </main>
-                    <Footer isFixed={this.props.isFixedFooter}/>
-                </div>
+                <IntlProvider locale='en' messages={interfaceText}>
+                    <div className="App">
+                        {this.props.isFetching && <Preloader/>}
+                        <CSSTransitionGroup transitionName="fade" transitionEnterTimeout={300} transitionLeaveTimeout={300}>
+                            {globalError && <Error error={globalError} closeErrorWindow={this.closeErrorWindow}/>}
+                        </CSSTransitionGroup>
+                        <HeaderContainer/>
+                        <main className='appMain'>
+                            <Routes/>
+                        </main>
+                        <Footer isFixed={this.props.isFixedFooter}/>
+                    </div>
+                </IntlProvider>
             );
         } else {
             return <Preloader/>
@@ -56,11 +64,17 @@ const mapStateToProps = (state) => {
         isFetching: state.app.isFetching,
         isFixedFooter: state.app.isFixedFooter,
         isInitializedApp: state.app.isInitializedApp,
-        region: state.app.region
+        region: state.app.region,
+        interfaceText: state.app.interfaceText
     }
 };
 
-const AppConnected = connect(mapStateToProps, {initializeApp, setGlobalError, getGeolocationPosition})(AppContainer);
+const AppConnected = connect(mapStateToProps, {
+    initializeApp,
+    setGlobalError,
+    getGeolocationPosition,
+    getInterfaceText
+})(AppContainer);
 
 const App = () => {
     return (

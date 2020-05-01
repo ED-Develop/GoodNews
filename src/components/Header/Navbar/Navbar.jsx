@@ -2,18 +2,19 @@ import React, {useRef, useState} from 'react';
 import style from './Navbar.module.css';
 import {faTimes} from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {NavLink} from "react-router-dom";
 import useOutsideClick from "../../../hook/useOutsideClick";
+import {FormattedMessage} from "react-intl";
+import renderMenuItems from "../../common/Navbar/renderMenuItems";
 
 const Navbar = ({toggleIsShowNavbar}) => {
     const [menuItems] = useState({
-        'General': '/articles/general',
-        'Technology': '/articles/technology',
-        'Entertainment': '/articles/entertainment',
-        'Sports': '/articles/sports',
-        'Business': '/articles/business',
-        'Health': '/articles/health',
-        'Science': '/articles/science',
+        'navbar.general': '/articles/general',
+        'navbar.technology': '/articles/technology',
+        'navbar.entertainment': '/articles/entertainment',
+        'navbar.sports': '/articles/sports',
+        'navbar.business': '/articles/business',
+        'navbar.health': '/articles/health',
+        'navbar.science': '/articles/science',
     });
 
     const onCloseNavbar = () => {
@@ -34,15 +35,9 @@ const Navbar = ({toggleIsShowNavbar}) => {
                 <FontAwesomeIcon icon={faTimes}/>
             </div>
             <div>
-                <h4>Category</h4>
+                <h4><FormattedMessage id='navbar.category'/></h4>
                 <ul>
-                    {Object.entries(menuItems).map(i => {
-                        return (
-                            <li key={i[0]}>
-                                <NavLink onClick={onSelectMenuItem} to={i[1]}>{i[0]}</NavLink>
-                            </li>
-                        )
-                    })}
+                    {renderMenuItems(menuItems, onSelectMenuItem)}
                 </ul>
             </div>
         </nav>

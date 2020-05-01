@@ -9,6 +9,7 @@ import Navbar from "./Navbar/Navbar";
 import {CSSTransitionGroup} from "react-transition-group";
 import {NavLink} from "react-router-dom";
 import Search from "./Search/Search";
+import {FormattedMessage} from "react-intl";
 
 const Header = ({isShowNavbar, toggleIsShowNavbar, isAuth, openLoginForm, logout, userName, isSearch, toggleIsSearch,
                     searchArticles}) => {
@@ -55,7 +56,7 @@ const Header = ({isShowNavbar, toggleIsShowNavbar, isAuth, openLoginForm, logout
                     <Col sm={6}>
                         <div className={`d-flex justify-content-end align-items-center h-100 ${style.login}`}>
                             {isAuth ? <UserInfo userName={userName} logout={logout}/>
-                                : <button onClick={onOpenLoginForm}>Login</button>}
+                                : <button onClick={onOpenLoginForm}><FormattedMessage id='header.login'/></button>}
                         </div>
                     </Col>
                 </Row>

@@ -3,11 +3,9 @@ import style from "../Profile.module.css";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faEdit} from "@fortawesome/free-solid-svg-icons";
 import {NavLink} from "react-router-dom";
-
-import {formatToKey} from "../../../helpers/stringFormater";
 import useOutsideClick from "../../../hook/useOutsideClick";
 
-const UserInfoItem = ({isTitle, property, value, confirmChanges, changeReduxForm, startSubmit, EditComponent}) => {
+const UserInfoItem = ({isTitle, title, property, value, confirmChanges, changeReduxForm, startSubmit, EditComponent}) => {
     const [editMode, setEditMode] = useState(false);
     const onEditMode = () => setEditMode(true);
 
@@ -22,8 +20,7 @@ const UserInfoItem = ({isTitle, property, value, confirmChanges, changeReduxForm
 
     useOutsideClick(submitProfileForm, fieldRef, editMode);
 
-    const key = formatToKey(property);
-    const clearField = () => changeReduxForm('profile', key, '');
+    const clearField = () => changeReduxForm('profile', property, '');
 
     const onSubmit = (data) => {
         setEditMode(false);
@@ -33,7 +30,7 @@ const UserInfoItem = ({isTitle, property, value, confirmChanges, changeReduxForm
     const info = <>
         {isTitle
             ? <h2>{value}</h2>
-            : <p><span>{property}:</span> {value}</p>}
+            : <p><span>{title}:</span> {value}</p>}
 
         {typeof EditComponent === 'string'
             ? <NavLink className='btn btn-danger btn-sm' to={EditComponent}><FontAwesomeIcon icon={faEdit}/></NavLink>
@@ -41,11 +38,11 @@ const UserInfoItem = ({isTitle, property, value, confirmChanges, changeReduxForm
     </>;
 
     const edit = (EditComponent && <EditComponent
-        name={key}
-        initialValues={{[key]: value}}
+        name={property}
+        initialValues={{[property]: value}}
         onSubmit={onSubmit}
         clearField={clearField}
-        placeholder={property}
+        placeholder={title}
     />);
 
     return (

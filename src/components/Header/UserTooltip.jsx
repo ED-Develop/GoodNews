@@ -1,9 +1,16 @@
-import React from 'react';
+import React, {useState} from 'react';
 import style from './Header.module.css';
 import user from '../../assets/image/user.jpg';
-import {NavLink} from "react-router-dom";
+import {FormattedMessage} from "react-intl";
+import renderMenuItems from "../common/Navbar/renderMenuItems";
 
 const UserTooltip = ({logout, userName}) => {
+    const [menuItems] = useState({
+        'header.profile': '/profile',
+        'header.membership': '/membership',
+        'header.saved': '/saved'
+    });
+
     const onLogout = () => {
         logout();
     };
@@ -15,12 +22,10 @@ const UserTooltip = ({logout, userName}) => {
                 <div>{userName}</div>
             </div>
             <ul className={style.userNav}>
-                <li><NavLink to='/profile'>My profile</NavLink></li>
-                <li><a href="#">My account</a></li>
-                <li><a href="#">My saved item</a></li>
+                {renderMenuItems(menuItems)}
             </ul>
             <div>
-                <button onClick={onLogout}>Logout</button>
+                <button onClick={onLogout}><FormattedMessage id='header.logout'/></button>
             </div>
         </div>
     )

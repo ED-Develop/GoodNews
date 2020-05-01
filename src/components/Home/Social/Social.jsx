@@ -6,6 +6,7 @@ import {faTwitter} from "@fortawesome/free-brands-svg-icons"
 import {faGooglePlusG} from "@fortawesome/free-brands-svg-icons"
 import {faYoutube} from "@fortawesome/free-brands-svg-icons"
 import {faLinkedinIn} from "@fortawesome/free-brands-svg-icons"
+import {FormattedMessage} from "react-intl";
 
 const Social = ({className, theme, color}) => {
     const [socialLinks] = useState([
@@ -17,7 +18,7 @@ const Social = ({className, theme, color}) => {
 
     return (
         <div className={style.social + ' ' + className}>
-            <h4>Follow Us</h4>
+            <h4><FormattedMessage id='social.title'/></h4>
             <div>
                 {socialLinks.map(s => <a style={{backgroundColor: s.background}} key={s.link} href={s.link}>
                     <FontAwesomeIcon color={color || '#fff'} icon={s.icon}/></a>)}

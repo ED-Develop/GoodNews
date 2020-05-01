@@ -4,11 +4,12 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faSortDown} from "@fortawesome/free-solid-svg-icons";
 import FollowTooltip from "./FollowTooltip";
 import withHoverEffect from "../../hoc/withHoverEffect";
+import {FormattedMessage} from "react-intl";
 
 const FollowHover = () => {
     return (
         <div className={style.follow}>
-            Follow Us
+            <FormattedMessage id='header.follow'/>
             <span>
                 <FontAwesomeIcon icon={faSortDown}/>
             </span>

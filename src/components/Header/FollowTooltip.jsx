@@ -5,6 +5,7 @@ import twitter from '../../assets/image/twitter.svg';
 import google from '../../assets/image/google.svg';
 import linkedin from '../../assets/image/linkedIn.svg';
 import pinterest from '../../assets/image/pinterest.svg';
+import {FormattedMessage} from "react-intl";
 
 
 const FollowTooltip = () => {
@@ -16,7 +17,9 @@ const FollowTooltip = () => {
             {social.map(i => {
                 return (
                     <li key={i}>
-                        <a href="#"> <img src={icon[i.toLowerCase()]} alt={i}/>Follow us on {i}</a>
+                        <a href="#"> <img src={icon[i.toLowerCase()]} alt={i}/>
+                            <FormattedMessage id='header.followTooltip'/> {i}
+                        </a>
                     </li>
                 )
             })}

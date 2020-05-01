@@ -44,8 +44,8 @@ class ProfileContainer extends React.PureComponent {
             <>
                 <ModalDialog
                     isShow={this.state.isModal}
-                    title='Confirm changes'
-                    body={'Do you want to save changes?'}
+                    title='profile.confirm'
+                    body='profile.confirmBody'
                     closeModal={this.closeModal}
                     updateProfile={this.updateProfile}
                 />

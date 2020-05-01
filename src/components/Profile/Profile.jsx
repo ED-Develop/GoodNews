@@ -7,16 +7,17 @@ import {startUpperCase} from "../../helpers/stringFormater";
 import InputField from "./UserInfo/InputField";
 import DoBField from "./UserInfo/DoBField";
 import RegionField from "./UserInfo/RegioonField";
+import {injectIntl} from "react-intl";
 
-const Profile = ({user, region, confirmChanges, changeReduxForm, startSubmit}) => {
+const Profile = ({user, region, confirmChanges, changeReduxForm, startSubmit, intl}) => {
     const {login, email, dateOfBirth, membership} = user;
 
     const profileData = [
-        {property: 'Login', value: startUpperCase(login), EditComponent: InputField},
-        {property: 'Email', value: email, EditComponent: InputField},
-        {property: 'Date of Birth', value: dateOfBirth, EditComponent: DoBField},
-        {property: 'Membership', value: membership, EditComponent: '/membership'},
-        {property: 'Region', value: region, EditComponent: RegionField}
+        {title: 'profile.login', property: 'login', value: startUpperCase(login), EditComponent: InputField},
+        {title: 'profile.email', property: 'email', value: email, EditComponent: InputField},
+        {title: 'profile.dateOfBirth', property: 'dateOfBirth', value: dateOfBirth, EditComponent: DoBField},
+        {title: 'profile.membership', property: 'membership', value: membership, EditComponent: '/membership'},
+        {title: 'profile.region', property: 'region', value: region, EditComponent: RegionField}
     ];
 
     return (
@@ -31,6 +32,7 @@ const Profile = ({user, region, confirmChanges, changeReduxForm, startSubmit}) =
                             return <UserInfoItem
                                 property={item.property}
                                 isTitle={!index}
+                                title={intl.formatMessage({id: item.title})}
                                 value={item.value}
                                 confirmChanges={confirmChanges}
                                 changeReduxForm={changeReduxForm}
@@ -45,4 +47,4 @@ const Profile = ({user, region, confirmChanges, changeReduxForm, startSubmit}) =
     )
 };
 
-export default Profile;
+export default injectIntl(Profile);

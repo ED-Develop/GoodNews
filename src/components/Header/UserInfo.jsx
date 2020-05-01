@@ -4,11 +4,15 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faSortDown} from "@fortawesome/free-solid-svg-icons";
 import withHoverEffect from "../../hoc/withHoverEffect";
 import UserTooltip from "./UserTooltip";
+import {FormattedMessage} from "react-intl";
 
 const UserInfo = ({userName}) => {
     return (
         <div className={style.userInfoTriger}>
-            Welcome <span> {userName} <FontAwesomeIcon icon={faSortDown}/></span>
+            <FormattedMessage
+                id='header.welcome'
+            />
+            <span> {userName} <FontAwesomeIcon icon={faSortDown}/></span>
         </div>
     )
 };

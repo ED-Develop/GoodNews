@@ -3,6 +3,7 @@ import style from './Login.module.css'
 import LoginReduxForm from "./LoginReduxForm";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faTimes} from "@fortawesome/free-solid-svg-icons";
+import {FormattedMessage} from "react-intl";
 
 const Login = ({closeLoginForm, login}) => {
     const onCloseLoginForm = () => {
@@ -19,7 +20,7 @@ const Login = ({closeLoginForm, login}) => {
                 <div onClick={onCloseLoginForm} className={style.closeBtn}>
                     <FontAwesomeIcon icon={faTimes}/>
                 </div>
-                <h4>Login</h4>
+                <h4><FormattedMessage id='login.title'/></h4>
                 <LoginReduxForm initialValues={{email: "admin@gmail.com", password: '12345'}}  onSubmit={onSubmit}/>
             </div>
         </div>

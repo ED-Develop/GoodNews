@@ -3,6 +3,7 @@ import style from './CustomInput.module.css';
 import {Form, InputGroup} from "react-bootstrap";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faTimes} from "@fortawesome/free-solid-svg-icons";
+import {FormattedMessage} from "react-intl";
 
 const ReduxFormInput = ({input, label, type, placeholder, icon, isError, meta, className, size, isClear, clearField}) => {
     let customInput = <Form.Control size={size} type={type} {...input} placeholder={placeholder}
@@ -27,7 +28,9 @@ const ReduxFormInput = ({input, label, type, placeholder, icon, isError, meta, c
                 </InputGroup.Append>}
 
                 {customInput}
-                <Form.Control.Feedback type="invalid">{meta.error}</Form.Control.Feedback>
+                {meta.error && <Form.Control.Feedback type="invalid">
+                    <FormattedMessage {...meta.error}/>
+                </Form.Control.Feedback>}
             </InputGroup>
         </Form.Group>
     )
