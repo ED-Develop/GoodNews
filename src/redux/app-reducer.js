@@ -10,6 +10,7 @@ const TOGGLE_IS_INITIALIZED = 'good-news/app/TOGGLE_IS_INITIALIZED';
 const SET_REGION = 'good-news/app/SET_REGION';
 const INITIALIZE_APP = 'good-news/app/INITIALIZE_APP';
 const SET_INTERFACE_TEXT = 'good-news/app/SET_INTERFACE_TEXT';
+const INCREMENT = 'good-news/app/INCREMENT';
 
 const initialState = {
     isFixedFooter: false,
@@ -19,7 +20,8 @@ const initialState = {
     isInitialized: false,
     isInitializedApp: false,
     region: null,
-    interfaceText: null
+    interfaceText: null,
+    counter: 1
 };
 
 const appReducer = (state = initialState, action) => {
@@ -35,6 +37,11 @@ const appReducer = (state = initialState, action) => {
                 ...state,
                 ...action.payload
             };
+        case INCREMENT:
+            return {
+                ...state,
+                counter: state.counter + 1
+            };
         default:
             return state;
     }
@@ -46,6 +53,10 @@ export const toggleIsFetching = (isFetching) => ({
     payload: {
         isFetching
     }
+});
+
+export const increment = () => ({
+    type: INCREMENT,
 });
 
 export const toggleIsFixedFooter = (isFixedFooter) => ({
@@ -88,6 +99,10 @@ export const setInterfaceText = (interfaceText) => ({
     payload: {
         interfaceText
     }
+});
+
+export const action = (action) => ({
+    type: action
 });
 
 // thunks

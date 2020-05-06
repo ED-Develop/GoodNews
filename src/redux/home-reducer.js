@@ -2,8 +2,10 @@ import {setIdInArrayObjects} from "../helpers/redux-helpers";
 import {topHeadlinesAPI} from "../api/newsApi";
 import {commonAsyncHandler, initializeAsyncHandler} from "./common";
 
+
 const SET_TOP_ARTICLES = 'good-news/articles/SET_TOP_ARTICLES';
 const SET_CATEGORY_ARTICLES = 'good-news/articles/SET_CATEGORY_ARTICLES';
+export const INITIALIZE_HOME_PAGE = 'good-news/articles/INITIALIZE_HOME_PAGE';
 
 const initialState = {
     topArticles: [],
@@ -39,16 +41,24 @@ const setCategoryArticles = (articles) => ({
     articles
 });
 
+export const initializeHomePage = (topArticlesArg, categoryArticlesArg) => ({
+    type: INITIALIZE_HOME_PAGE,
+    payload: {
+        topArticlesArg,
+        categoryArticlesArg
+    }
+});
+
 // thunks
 
-export const initializeHomePage = (topArticlesArg, categoryArticlesArg) => async (dispatch, getState) => {
+/*export const initializeHomePage = (topArticlesArg, categoryArticlesArg) => async (dispatch, getState) => {
     await initializeAsyncHandler(() => {
         const promise1 = dispatch(getTopArticles(...topArticlesArg));
         const promise2 = dispatch(getCategoryArticles(...categoryArticlesArg));
 
         return [promise1, promise2];
     }, dispatch, getState);
-};
+};*/
 
 export const getTopArticles = (pageSize, category = 'general') => async (dispatch, getState) => {
     await commonAsyncHandler(async () => {

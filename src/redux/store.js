@@ -3,11 +3,14 @@ import articlesReducer from "./articles-reducer";
 import ReduxThunk from 'redux-thunk';
 import appReducer from "./app-reducer";
 import authReducer from "./auth-reducer";
-import { reducer as formReducer } from 'redux-form'
+import { reducer as formReducer } from 'redux-form';
 import homeReducer from "./home-reducer";
 import profileReducer from "./profile-reducer";
+import createSagaMiddleware from 'redux-saga';
+import rootSaga from "./saga/sagas";
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+const sagaMiddleware = createSagaMiddleware();
 
 const rootReducer = combineReducers({
     articles: articlesReducer,
@@ -18,6 +21,8 @@ const rootReducer = combineReducers({
     form: formReducer
 });
 
-const store = createStore(rootReducer, composeEnhancers(applyMiddleware(ReduxThunk)));
+const store = createStore(rootReducer, composeEnhancers(applyMiddleware(ReduxThunk, sagaMiddleware)));
+
+sagaMiddleware.run(rootSaga);
 
 export default store;

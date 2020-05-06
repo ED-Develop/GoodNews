@@ -65,7 +65,7 @@ const mapStateToProps = (state) => {
         isFixedFooter: state.app.isFixedFooter,
         isInitializedApp: state.app.isInitializedApp,
         region: state.app.region,
-        interfaceText: state.app.interfaceText
+        interfaceText: state.app.interfaceText,
     }
 };
 
@@ -73,7 +73,7 @@ const AppConnected = connect(mapStateToProps, {
     initializeApp,
     setGlobalError,
     getGeolocationPosition,
-    getInterfaceText
+    getInterfaceText,
 })(AppContainer);
 
 const App = () => {
