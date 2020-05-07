@@ -1,7 +1,7 @@
 import React from 'react';
 import Articles from "./Articles";
 import {connect} from "react-redux";
-import {getEverythingArticles, initializeArticlesPage} from "../../redux/articles-reducer";
+import {getEverythingArticles, initializeArticlesPage} from "../../redux/articles/articles-reducer";
 import Preloader from "../common/Preloader/Preloader";
 import {compose} from "redux";
 import {withRouter} from "react-router-dom";

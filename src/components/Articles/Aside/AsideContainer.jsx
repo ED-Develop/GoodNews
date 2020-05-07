@@ -1,8 +1,8 @@
 import React from 'react';
 import Aside from "./Aside";
 import {connect} from "react-redux";
-import {getAsideArticles, setAsideFilter} from "../../../redux/articles-reducer";
-import {getArticlesTitle} from "../../../redux/articles-selector";
+import {getAsideArticles, setAsideFilter} from "../../../redux/articles/articles-reducer";
+import {getArticlesTitle} from "../../../redux/articles/articles-selector";
 
 class AsideContainer extends React.Component {
     componentDidUpdate(prevProps, prevState) {

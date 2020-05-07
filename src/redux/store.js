@@ -1,13 +1,13 @@
 import {applyMiddleware, combineReducers, compose, createStore} from "redux";
-import articlesReducer from "./articles-reducer";
+import articlesReducer from "./articles/articles-reducer";
 import ReduxThunk from 'redux-thunk';
 import appReducer from "./app-reducer";
 import authReducer from "./auth-reducer";
 import { reducer as formReducer } from 'redux-form';
-import homeReducer from "./home-reducer";
+import homeReducer from "./home/home-reducer";
 import profileReducer from "./profile-reducer";
 import createSagaMiddleware from 'redux-saga';
-import rootSaga from "./saga/sagas";
+import rootSaga from "./saga/rootSaga";
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const sagaMiddleware = createSagaMiddleware();

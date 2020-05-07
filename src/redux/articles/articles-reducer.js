@@ -1,11 +1,15 @@
-import {topHeadlinesAPI, everythingAPI} from "../api/newsApi";
-import {setIdInArrayObjects} from "../helpers/redux-helpers";
-import {commonAsyncHandler, initializeAsyncHandler} from "./common";
+import {topHeadlinesAPI, everythingAPI} from "../../api/newsApi";
+import {setIdInArrayObjects} from "../../helpers/redux-helpers";
+import {commonAsyncHandler, initializeAsyncHandler} from "../common";
+import {INITIALIZE} from "redux-form/lib/actionTypes";
 
 const SET_ASIDE_ARTICLES = 'good-news/articles/SET_ASIDE_ARTICLES';
 const SET_EVERYTHING_ARTICLES = 'good-news/articles/SET_EVERYTHING_ARTICLES';
 const SET_ASIDE_FILTER = 'good-news/articles/SET_ASIDE_FILTER';
 const SET_CURRENT_PAGE = 'good-news/articles/SET_CURRENT_PAGE';
+export const GET_ARTICLES_LIST = 'good-news/articles/GET_ARTICLES_LIST';
+export const GET_ASIDE_ARTICLES = 'good-news/articles/GET_ASIDE_ARTICLES';
+export const INITIALIZE_ARTICLE_PAGE = 'good-news/articles/INITIALIZE_ARTICLE_PAGE';
 
 const initialState = {
     asideArticles: [],
@@ -64,51 +68,41 @@ export const setEverythingArticles = (articles, page) => ({
     page
 });
 
-export const setCurrentPage = (page) => {
-    return {
-        type: SET_CURRENT_PAGE,
-        payload: {
-            page
-        }
+export const setCurrentPage = (page) => ({
+    type: SET_CURRENT_PAGE,
+    payload: {
+        page
     }
+});
+
+export const getEverythingArticles = (options) => ({
+    type: GET_ARTICLES_LIST,
+    payload: {
+        options
+    }
+});
+
+export const getAsideArticles = () => ({
+    type: GET_ASIDE_ARTICLES
+});
+
+export const initializeArticlesPage = (everythingArticlesArgs) => ({
+    type: INITIALIZE_ARTICLE_PAGE,
+    payload: {
+        everythingArticlesArgs
+    }
+});
+
+export const fetchAsideArticles = async (state) => {
+    let response;
+
+    if (state.articles.asideFilter === 'popular') {
+        response = await topHeadlinesAPI.getArticles({pageSize: 60, country: state.app.region});
+    } else {
+        response = await everythingAPI.getArticles({sortBy: 'publishedAt', pageSize: 60});
+    }
+
+    return response.articles;
 };
-
-//thunks
-export const initializeArticlesPage = (everythingArticlesArgs) => async (dispatch, getState) => {
-    await initializeAsyncHandler(() => {
-        const promise1 = dispatch(getAsideArticles(false));
-        const promise2 = dispatch(getEverythingArticles(...everythingArticlesArgs, false));
-
-        return [promise1, promise2];
-    }, dispatch, getState);
-};
-
-export const getAsideArticles = (isVisualization = true) => async (dispatch, getState) => {
-    await commonAsyncHandler(async () => {
-        let response;
-
-        if (getState().articles.asideFilter === 'popular') {
-            response = await topHeadlinesAPI.getArticles({pageSize: 60, country: getState().app.region});
-        } else {
-            response = await everythingAPI.getArticles({sortBy: 'publishedAt', pageSize: 60});
-        }
-
-        dispatch(setAsideArticles(response.articles));
-
-        return response;
-    }, dispatch, isVisualization);
-};
-
-export const getEverythingArticles = (options, isVisualization = true) => async (dispatch, getState) => {
-    await commonAsyncHandler(async () => {
-        let response = await topHeadlinesAPI.getArticles({...options, country: getState().app.region});
-
-        dispatch(setEverythingArticles(response.articles, options.page));
-        dispatch(setCurrentPage(options.page));
-
-        return response;
-    }, dispatch, isVisualization);
-};
-
 
 export default articlesReducer;
