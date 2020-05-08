@@ -1,6 +1,6 @@
 import React from "react";
 import {connect} from "react-redux";
-import {toggleIsFixedFooter} from "../redux/app-reducer";
+import {toggleIsFixedFooter} from "../redux/app/app-reducer";
 
 export const withFixedFooter = (Component) => {
     class ContainerComponent extends React.Component {

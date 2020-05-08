@@ -1,4 +1,4 @@
-import {setGlobalError, toggleIsFetching, toggleIsInitialized} from "./app-reducer";
+import {setGlobalError, toggleIsFetching, toggleIsInitialized} from "./app/app-reducer";
 
 export const commonAsyncHandler = async (operation, dispatch, isVisualization, isResultCode = true, isTryCatch) => {
     let preloader;

@@ -1,7 +1,7 @@
-import {commonAsyncHandler} from "./common";
-import geolocationApi from "../api/geolocationApi";
-import {authMe} from "./auth-reducer";
-import {translationApi} from "../api/translationApi";
+import {commonAsyncHandler} from "../common";
+import geolocationApi from "../../api/geolocationApi";
+import {translationApi} from "../../api/translationApi";
+import {authMe} from "../auth/auth-reducer";
 
 const TOGGLE_IS_FETCHING = 'good-news/app/TOGGLE_IS_FETCHING';
 const TOGGLE_IS_FIXED_FOOTER = 'good-news/app/TOGGLE_IS_FIXED_FOOTER';

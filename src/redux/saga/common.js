@@ -1,4 +1,4 @@
-import {setGlobalError, toggleIsFetching, toggleIsInitialized} from "../app-reducer";
+import {setGlobalError, toggleIsFetching, toggleIsInitialized} from "../app/app-reducer";
 import {all, put} from "redux-saga/effects";
 
 export function* commonSagaHandler(operation, isVisualization, isResultCode = true, isTryCatch = true) {
@@ -35,7 +35,7 @@ export function* commonSagaHandler(operation, isVisualization, isResultCode = tr
             return yield preloader();
         } else {
             if (isResultCode) {
-                return yield withResultCodeHandlingError(operation);
+                return yield withResultCodeHandlingError(operation)();
             }
 
             return yield operation();

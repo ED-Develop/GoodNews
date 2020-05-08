@@ -1,14 +1,14 @@
 import {all} from "redux-saga/effects";
-import {watchInitHomePage,
-} from "../home/home-sagas";
-import {watchGetArticlesList, watchGetAsideArticles, watchInitArticlePage} from "../articles/articles-sagas";
+import {articlesSaga} from "../articles/articles-sagas";
+import {homeSaga} from "../home/home-sagas";
+import {appSaga} from "../app/app-sagas";
+import {watchAuthSagas} from "../auth/auth-saga";
 
 function* rootSaga() {
     yield all([
-        watchInitHomePage(),
-        watchGetArticlesList(),
-        watchGetAsideArticles(),
-        watchInitArticlePage()
+        homeSaga(),
+        articlesSaga(),
+        watchAuthSagas()
     ])
 }
 

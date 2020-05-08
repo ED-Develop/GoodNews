@@ -1,8 +1,8 @@
 import {applyMiddleware, combineReducers, compose, createStore} from "redux";
 import articlesReducer from "./articles/articles-reducer";
 import ReduxThunk from 'redux-thunk';
-import appReducer from "./app-reducer";
-import authReducer from "./auth-reducer";
+import appReducer from "./app/app-reducer";
+import authReducer from "./auth/auth-reducer";
 import { reducer as formReducer } from 'redux-form';
 import homeReducer from "./home/home-reducer";
 import profileReducer from "./profile-reducer";

@@ -1,6 +1,6 @@
 import {mockApi} from "../api/mockApi";
-import {setRegion, toggleIsFetching} from "./app-reducer";
-import {setUserData} from "./auth-reducer";
+import {setRegion, toggleIsFetching} from "./app/app-reducer";
+import {setUserData} from "./auth/auth-reducer";
 
 const SET_USER_PROFILE = 'good-news/profile/SET_USER_PROFILE';
 const EDIT_USER_PROFILE = 'good-news/profile/EDIT_USER_PROFILE';

@@ -6,7 +6,7 @@ import HeaderContainer from "./components/Header/HeaderContainer";
 import {HashRouter} from "react-router-dom";
 import Routes from "./components/Routes";
 import Error from "./components/common/Error/Error";
-import {getGeolocationPosition, getInterfaceText, initializeApp, setGlobalError} from "./redux/app-reducer";
+import {getGeolocationPosition, getInterfaceText, initializeApp, setGlobalError} from "./redux/app/app-reducer";
 import {CSSTransitionGroup} from "react-transition-group";
 import Preloader from "./components/common/Preloader/Preloader";
 import Footer from "./components/Footer/Footer";
@@ -18,7 +18,7 @@ class AppContainer extends React.PureComponent {
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
-        if (this.props.isInitializedApp && !this.props.region) {
+        if (this.props.isInitializedApp && !this.props.region && !this.props.isFetching) {
             this.props.getGeolocationPosition();
         }
 

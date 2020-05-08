@@ -3,7 +3,7 @@ import Home from "./Home";
 import {connect} from "react-redux";
 import {getCarouselData} from "../../redux/articles/articles-selector";
 import {initializeHomePage} from "../../redux/home/home-reducer";
-import {subscribe} from "../../redux/auth-reducer";
+import {subscribe} from "../../redux/auth/auth-reducer";
 import {compose} from "redux";
 import {withScrollTop} from "../../hoc/withScrollTop";
 import Preloader from "../common/Preloader/Preloader";

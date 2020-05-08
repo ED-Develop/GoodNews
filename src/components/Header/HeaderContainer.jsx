@@ -3,7 +3,7 @@ import Header from "./Header";
 import {connect} from "react-redux";
 import Login from "./Login/Login";
 import {CSSTransitionGroup} from "react-transition-group";
-import {login, logout} from "../../redux/auth-reducer";
+import {login, logout} from "../../redux/auth/auth-reducer";
 import {compose} from "redux";
 import {withRouter} from "react-router-dom";
 

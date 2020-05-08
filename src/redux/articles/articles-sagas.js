@@ -1,4 +1,4 @@
-import {call, select, put, takeEvery} from "redux-saga/effects";
+import {call, select, put, takeEvery, all} from "redux-saga/effects";
 import {topHeadlinesAPI} from "../../api/newsApi";
 import {
     fetchAsideArticles,
@@ -19,7 +19,7 @@ function* getArticlesListSaga(action, isVisualization = true, isTryCatch) {
     }, isVisualization, false, isTryCatch);
 }
 
-export function* watchGetArticlesList() {
+function* watchGetArticlesList() {
     yield takeEvery(GET_ARTICLES_LIST, getArticlesListSaga);
 }
 
@@ -31,8 +31,7 @@ function* getAsideArticlesSaga(isVisualization = true, isTryCatch) {
    }, isVisualization, false, isTryCatch);
 }
 
-
-export function* watchGetAsideArticles() {
+function* watchGetAsideArticles() {
     yield takeEvery(GET_ASIDE_ARTICLES, getAsideArticlesSaga);
 }
 
@@ -44,6 +43,14 @@ function* initializeArticlePageSaga(action) {
     ]);
 }
 
-export function* watchInitArticlePage() {
+function* watchInitArticlePage() {
     yield takeEvery(INITIALIZE_ARTICLE_PAGE, initializeArticlePageSaga);
+}
+
+export function* articlesSaga() {
+    yield all([
+        watchGetArticlesList(),
+        watchGetAsideArticles(),
+        watchInitArticlePage(),
+    ]);
 }
