@@ -3,7 +3,7 @@ import {call, put, select, takeEvery, takeLatest} from "redux-saga/effects";
 import {mockApi} from "../../api/mockApi";
 import {stopSubmit} from "redux-form";
 import {getGeolocationPosition, setRegion} from "../app/app-reducer";
-import {updateUserProfile} from "../profile-reducer";
+import {updateUserProfile} from "../profile/profile-reducer";
 import {
     AUTH_ME,
     LOGIN,

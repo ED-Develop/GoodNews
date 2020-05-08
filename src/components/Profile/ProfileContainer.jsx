@@ -1,7 +1,7 @@
 import React from "react";
 import Profile from "./Profile";
 import {connect} from "react-redux";
-import {getUserProfile, updateUserProfile} from "../../redux/profile-reducer";
+import {getUserProfile, updateUserProfile} from "../../redux/profile/profile-reducer";
 import {change, submit} from "redux-form";
 import ModalDialog from "../common/Modal/ModalDialog";
 import {compose} from "redux";

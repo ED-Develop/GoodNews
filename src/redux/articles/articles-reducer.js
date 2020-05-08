@@ -1,7 +1,5 @@
 import {topHeadlinesAPI, everythingAPI} from "../../api/newsApi";
 import {setIdInArrayObjects} from "../../helpers/redux-helpers";
-import {commonAsyncHandler, initializeAsyncHandler} from "../common";
-import {INITIALIZE} from "redux-form/lib/actionTypes";
 
 const SET_ASIDE_ARTICLES = 'good-news/articles/SET_ASIDE_ARTICLES';
 const SET_EVERYTHING_ARTICLES = 'good-news/articles/SET_EVERYTHING_ARTICLES';

@@ -12,4 +12,4 @@ class GeolocationApi {
     }
 }
 
-export default new GeolocationApi();
+export const geolocationApi = new GeolocationApi();

@@ -5,7 +5,7 @@ import appReducer from "./app/app-reducer";
 import authReducer from "./auth/auth-reducer";
 import { reducer as formReducer } from 'redux-form';
 import homeReducer from "./home/home-reducer";
-import profileReducer from "./profile-reducer";
+import profileReducer from "./profile/profile-reducer";
 import createSagaMiddleware from 'redux-saga';
 import rootSaga from "./saga/rootSaga";
 
