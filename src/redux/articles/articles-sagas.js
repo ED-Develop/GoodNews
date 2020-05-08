@@ -19,20 +19,12 @@ function* getArticlesListSaga(action, isVisualization = true, isTryCatch) {
     }, isVisualization, false, isTryCatch);
 }
 
-function* watchGetArticlesList() {
-    yield takeEvery(GET_ARTICLES_LIST, getArticlesListSaga);
-}
-
 function* getAsideArticlesSaga(isVisualization = true, isTryCatch) {
    yield commonSagaHandler(function* () {
        const state = yield select();
        const articles = yield call(fetchAsideArticles, state);
        yield put(setAsideArticles(articles));
    }, isVisualization, false, isTryCatch);
-}
-
-function* watchGetAsideArticles() {
-    yield takeEvery(GET_ASIDE_ARTICLES, getAsideArticlesSaga);
 }
 
 function* initializeArticlePageSaga(action) {
@@ -43,14 +35,8 @@ function* initializeArticlePageSaga(action) {
     ]);
 }
 
-function* watchInitArticlePage() {
+export function* watchArticlesSagas() {
+    yield takeEvery(GET_ARTICLES_LIST, getArticlesListSaga);
+    yield takeEvery(GET_ASIDE_ARTICLES, getAsideArticlesSaga);
     yield takeEvery(INITIALIZE_ARTICLE_PAGE, initializeArticlePageSaga);
-}
-
-export function* articlesSaga() {
-    yield all([
-        watchGetArticlesList(),
-        watchGetAsideArticles(),
-        watchInitArticlePage(),
-    ]);
 }

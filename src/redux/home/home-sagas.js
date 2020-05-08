@@ -1,4 +1,4 @@
-import {call, put, select, takeEvery, all} from "redux-saga/effects";
+import {call, put, select, takeEvery} from "redux-saga/effects";
 import {topHeadlinesAPI} from "../../api/newsApi";
 import {
     fetchCategoryArticles, INITIALIZE_HOME_PAGE,
@@ -31,13 +31,6 @@ function* initializeHomePageSaga(action) {
     ]);
 }
 
-function* watchInitHomePage() {
-    yield takeEvery(INITIALIZE_HOME_PAGE, initializeHomePageSaga)
-}
-
-
-export function* homeSaga() {
-    yield all([
-        watchInitHomePage(),
-    ]);
+export function* watchHomeSagas() {
+    yield takeEvery(INITIALIZE_HOME_PAGE, initializeHomePageSaga);
 }
