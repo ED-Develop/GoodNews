@@ -48,3 +48,20 @@ export const getRegionOptions = () => {
         });
 
 };
+
+export const findRegionLocale = (region) => {
+    if (!region) return 'en';
+    let locale;
+
+    switch (region.toLowerCase()) {
+        case 'ua':
+        case 'ru':
+        case 'by':
+            locale = 'ru';
+            break;
+        default:
+            locale = 'en';
+    }
+
+    return locale;
+};

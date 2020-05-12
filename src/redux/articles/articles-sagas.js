@@ -1,4 +1,4 @@
-import {call, select, put, takeEvery, all} from "redux-saga/effects";
+import {call, select, put, takeEvery, takeLatest} from "redux-saga/effects";
 import {topHeadlinesAPI} from "../../api/newsApi";
 import {
     fetchAsideArticles,
@@ -36,7 +36,7 @@ function* initializeArticlePageSaga(action) {
 }
 
 export function* watchArticlesSagas() {
-    yield takeEvery(GET_ARTICLES_LIST, getArticlesListSaga);
+    yield takeLatest(GET_ARTICLES_LIST, getArticlesListSaga);
     yield takeEvery(GET_ASIDE_ARTICLES, getAsideArticlesSaga);
     yield takeEvery(INITIALIZE_ARTICLE_PAGE, initializeArticlePageSaga);
 }

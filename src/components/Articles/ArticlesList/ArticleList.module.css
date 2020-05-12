@@ -31,13 +31,13 @@
     margin-bottom: 26px;
 }
 
-.articleHeading .info {
+.info {
     font-size: 16px;
     color: #b7b7b7;
     margin-bottom: 39px;
 }
 
-.articleHeading .info span {
+.info span {
     color: #e8280b;
 }
 
@@ -45,23 +45,23 @@
     margin-bottom: 44px;
 }
 
-.articleItem button {
+.articleItem a {
     background-color: #e8280b;
     color: #ffffff;
     font-size: 16px;
     transition: background-color .3s;
 }
 
-.articleItem button:hover {
+.articleItem a:hover {
     color: #ffffff;
     background-color: #db280b;
     transition: background-color .3s;
 }
 
-.articleItem button span {
-    margin-right: 10px;
+.articleItem a span {
+    margin-left: 10px;
 }
 
-.articleItem .comment {
+.articleItem .link {
     margin: 30px 0 60px;
 }

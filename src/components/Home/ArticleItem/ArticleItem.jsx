@@ -1,19 +1,28 @@
 import React from "react";
 import style from './ArticleItem.module.css';
 import {Col, Row} from "react-bootstrap";
-import {articleDateFormatter} from "../../../helpers/dateFormater";
-import defaultImage from '../../../assets/image/newsDefault.jpg';
+import {FormattedDate} from "react-intl";
+import ImgWithDefault from "../../common/Utils/ImgWithDefault";
 
 const ArticleItem = ({article}) => {
     return (
         <div className={style.articleItem}>
             <Row>
                 <Col sm={4} className={style.articleItemImage}>
-                    <img src={article.urlToImage || defaultImage} alt="article"/>
+                    <ImgWithDefault url={article.urlToImage} alt="article"/>
                 </Col>
                 <Col sm={8} className={style.articleItemDescr}>
                     <h4><a href={article.url}>{article.title}</a></h4>
-                    <p className={style.articleItemDate}>{articleDateFormatter(article.publishedAt)}</p>
+                    <p className={style.articleItemDate}>
+                        <FormattedDate
+                            value={article.publishedAt}
+                            day="2-digit"
+                            month="short"
+                            year="numeric"
+                            hour='2-digit'
+                            minute='2-digit'
+                        />
+                    </p>
                 </Col>
             </Row>
         </div>

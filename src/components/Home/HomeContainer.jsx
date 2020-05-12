@@ -24,7 +24,7 @@ class HomeContainer extends React.Component {
     getArticles = () => {
         this.props.initializeHomePage(
             [5],
-            [['politics', 'technology', 'sport', 'business', 'science'], 6]
+            [['technology', 'entertainment', 'sports', 'business', 'science', 'health'], 6]
         );
     };
 

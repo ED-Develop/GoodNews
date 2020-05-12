@@ -1,4 +1,6 @@
 {
+	"articles.by": "By",
+	"articles.published": "Published",
 	"header.follow": "Follow us",
 	"header.followTooltip": "Follow us on",
 	"header.login": "Login",
@@ -29,6 +31,13 @@
 	"profile.membership": "Membership",
 	"profile.region": "Region",
 	"social.title": "Follow Us",
+	"tabs.apple": "apple",
+	"tabs.business": "business",
+	"tabs.popular": "Popular",
+	"tabs.samsung": "samsung",
+	"tabs.sports": "sports",
+	"tabs.tags": "Tags",
+	"tabs.technology": "technology",
 	"validate.email": "Invalid email address!",
 	"validate.minLength": "Must be {min} characters or more!",
 	"validate.required": "Field is required!"

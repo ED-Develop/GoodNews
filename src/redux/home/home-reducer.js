@@ -58,7 +58,11 @@ export const fetchCategoryArticles = async (categories, pageSize, state) => {
             country: state.app.region
         });
 
-        articles = [...articles, {category: categories[i], data: setIdInArrayObjects(response.articles)}]
+        articles = [...articles, {
+            category: categories[i],
+            title: `navbar.${categories[i]}`,
+            data: setIdInArrayObjects(response.articles)
+        }];
     }
 
     return articles;

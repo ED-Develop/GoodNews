@@ -11,6 +11,7 @@ import {CSSTransitionGroup} from "react-transition-group";
 import Preloader from "./components/common/Preloader/Preloader";
 import Footer from "./components/Footer/Footer";
 import {IntlProvider} from "react-intl";
+import {getLocale} from "./redux/app/app-selector";
 
 class AppContainer extends React.PureComponent {
     componentDidMount() {
@@ -32,12 +33,11 @@ class AppContainer extends React.PureComponent {
     };
 
     render() {
-        const {globalError, isInitializedApp, interfaceText} = this.props;
-
+        const {globalError, isInitializedApp, interfaceText, locale} = this.props;
 
         if (isInitializedApp) {
             return (
-                <IntlProvider locale='en' messages={interfaceText}>
+                <IntlProvider locale={locale} messages={interfaceText}>
                     <div className="App">
                         {this.props.isFetching && <Preloader/>}
                         <CSSTransitionGroup transitionName="fade" transitionEnterTimeout={300} transitionLeaveTimeout={300}>
@@ -54,7 +54,6 @@ class AppContainer extends React.PureComponent {
         } else {
             return <Preloader/>
         }
-
     }
 }
 
@@ -65,6 +64,7 @@ const mapStateToProps = (state) => {
         isFixedFooter: state.app.isFixedFooter,
         isInitializedApp: state.app.isInitializedApp,
         region: state.app.region,
+        locale: getLocale(state),
         interfaceText: state.app.interfaceText,
     }
 };

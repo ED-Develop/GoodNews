@@ -75,7 +75,6 @@ export function* loginFlow() {
         if (!isAuth) {
             const {payload: {loginData}} = yield take(LOGIN);
             isAuth = yield call(loginSaga, loginData);
-            console.log(isAuth)
         }
 
         if (isAuth) {

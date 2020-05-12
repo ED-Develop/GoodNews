@@ -1,4 +1,6 @@
 {
+	"articles.by": "Источник",
+	"articles.published": "Опубликовано",
 	"header.follow": "Подпишись",
 	"header.followTooltip": "Подпишись на",
 	"header.login": "Войти",
@@ -29,6 +31,13 @@
 	"profile.membership": "Подписка",
 	"profile.region": "Регион",
 	"social.title": "Подпишись на нас",
+	"tabs.apple": "apple",
+	"tabs.business": "бизнес",
+	"tabs.popular": "Популярное",
+	"tabs.samsung": "samsung",
+	"tabs.sports": "спорт",
+	"tabs.tags": "Теги",
+	"tabs.technology": "технологии",
 	"validate.email": "Некорректный email адрес!",
 	"validate.minLength": "Должно быть не меньше чем {min} символов!",
 	"validate.required": "Поле обязательно для заполнения!"

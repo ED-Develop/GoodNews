@@ -1,5 +1,6 @@
 import {geolocationApi} from "../../api/geolocationApi";
 import {translationApi} from "../../api/translationApi";
+import {findRegionLocale} from "../../helpers/utils";
 
 const TOGGLE_IS_FETCHING = 'good-news/app/TOGGLE_IS_FETCHING';
 const TOGGLE_IS_FIXED_FOOTER = 'good-news/app/TOGGLE_IS_FIXED_FOOTER';
@@ -60,21 +61,7 @@ export const fetchGeolocationPosition = async () => {
     return await geolocationApi.getCountryCode();
 };
 
-export const fetchInterfaceText = (region) => {
-    let regionLanguage;
-
-    switch (region.toLowerCase()) {
-        case 'ua':
-        case 'ru':
-        case 'by':
-            regionLanguage = 'ru';
-            break;
-        default:
-            regionLanguage = 'en';
-    }
-
-    return translationApi.getLocale(regionLanguage);
-};
+export const fetchInterfaceText = (region) => translationApi.getLocale(findRegionLocale(region));
 
 export default appReducer;
 

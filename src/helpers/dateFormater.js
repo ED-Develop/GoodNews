@@ -7,7 +7,6 @@ export const articleDateFormatter = (date) => {
     return `${time} on ${month} ${day}`;
 };
 
-
 const dateFormatter = (options, date) => {
     return new Intl.DateTimeFormat('en', options).format(date)
 };
