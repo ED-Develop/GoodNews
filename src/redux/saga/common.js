@@ -57,8 +57,10 @@ export const withTryCatch = (operation) => {
 export const withPreloader = (operation) => {
     return function* () {
         yield put(toggleIsFetching(true));
-        yield operation();
+        const response = yield operation();
         yield put(toggleIsFetching(false));
+
+        return response;
     }
 };
 

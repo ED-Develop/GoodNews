@@ -7,7 +7,7 @@ import {
     setInterfaceText,
     setRegion
 } from "./app-reducer";
-import {authSaga} from "../auth/auth-saga";
+import {authSaga, loginFlow} from "../auth/auth-saga";
 
 function* getGeolocationPositionSaga() {
     const region = yield call(fetchGeolocationPosition);
@@ -25,6 +25,7 @@ function* getInterfaceTextSaga() {
 function* initializeAppSaga() {
     yield call(authSaga);
     yield put(initializeAppSuccess());
+    yield call(loginFlow)
 }
 
 export function* watchAppSagas() {

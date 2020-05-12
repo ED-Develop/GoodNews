@@ -1,11 +1,10 @@
 import {commonSagaHandler} from "../saga/common";
-import {call, put, select, takeEvery, takeLatest} from "redux-saga/effects";
+import {call, put, select, takeEvery, take} from "redux-saga/effects";
 import {mockApi} from "../../api/mockApi";
 import {stopSubmit} from "redux-form";
 import {getGeolocationPosition, setRegion} from "../app/app-reducer";
 import {updateUserProfile} from "../profile/profile-reducer";
 import {
-    AUTH_ME,
     LOGIN,
     LOGOUT,
     setUserData, SUBSCRIBE,
@@ -27,9 +26,8 @@ export function* handleUserDataSaga(action) {
     }
 }
 
-function* loginSaga(action) {
-    yield commonSagaHandler(function* () {
-        const {loginData} = yield action.payload;
+function* loginSaga(loginData) {
+    const response = yield commonSagaHandler(function* () {
         const response = yield call(mockApi.login, loginData);
 
         if (response.resultCode === 0) {
@@ -40,6 +38,8 @@ function* loginSaga(action) {
 
         return response;
     }, true);
+
+    return response.resultCode === 0;
 }
 
 export function* authSaga() {
@@ -65,7 +65,24 @@ function* logoutSaga() {
         }
 
         return data;
-    })
+    });
+}
+
+export function* loginFlow() {
+    while (true) {
+        let {auth: {isAuth}} = yield select();
+
+        if (!isAuth) {
+            const {payload: {loginData}} = yield take(LOGIN);
+            isAuth = yield call(loginSaga, loginData);
+            console.log(isAuth)
+        }
+
+        if (isAuth) {
+            yield take(LOGOUT);
+            yield call(logoutSaga);
+        }
+    }
 }
 
 function* subscribeSaga(action) {
@@ -81,8 +98,5 @@ function* subscribeSaga(action) {
 
 export function* watchAuthSagas() {
     yield takeEvery(USER_DATA_HANDLING, handleUserDataSaga);
-    yield takeLatest(LOGIN, loginSaga);
-    yield takeEvery(AUTH_ME, authSaga);
-    yield takeEvery(LOGOUT, logoutSaga);
     yield takeEvery(SUBSCRIBE, subscribeSaga);
 }

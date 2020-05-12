@@ -11,7 +11,7 @@ function* rootSaga() {
         watchHomeSagas(),
         watchArticlesSagas(),
         watchAuthSagas(),
-        watchProfileSagas()
+        watchProfileSagas(),
     ])
 }
 
