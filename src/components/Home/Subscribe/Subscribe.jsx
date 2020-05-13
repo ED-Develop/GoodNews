@@ -5,6 +5,7 @@ import {Field, reduxForm} from "redux-form";
 import ReduxFormInput from "../../common/CustomInput/ReduxFormInput";
 import {email, required} from "../../../helpers/validators";
 import {CSSTransitionGroup} from "react-transition-group";
+import {FormattedMessage} from "react-intl";
 
 const Subscribe = ({subscribe, isSubscribeChange}) => {
     const onSubmit = (formData) => {
@@ -13,11 +14,12 @@ const Subscribe = ({subscribe, isSubscribeChange}) => {
 
     return (
         <div className={style.subscribe}>
-            <h3>Good News Newsetter</h3>
-            <p>Subscribe to our email newsletter for good news, sent out every Monday</p>
+            <h3><FormattedMessage id='subscription.title'/></h3>
+            <p><FormattedMessage id='subscription.description'/></p>
             <CSSTransitionGroup transitionName="fade" transitionEnterTimeout={300} transitionLeaveTimeout={300}>
                 {isSubscribeChange && <p className='text-success'>
-                    Thank you for joining our mailing list! Please check your email for a confirmation link.
+                    <FormattedMessage id='subscription.success'/>
+
                 </p>}
                 {!isSubscribeChange && <SubscribeForm onSubmit={onSubmit}/>}
             </CSSTransitionGroup>
@@ -30,7 +32,7 @@ let SubscribeForm = ({handleSubmit}) => {
         <Form onSubmit={handleSubmit} className={style.subscribeForm}>
             <Field name='email' type='text' validate={[required, email]} placeholder='Email'
                    component={ReduxFormInput}/>
-            <button type='submit'>Subscribe</button>
+            <button type='submit'><FormattedMessage id='subscription.button'/></button>
         </Form>
     )
 };
