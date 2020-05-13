@@ -2,19 +2,12 @@ import React from 'react';
 import Aside from "./Aside";
 import {connect} from "react-redux";
 import {getAsideArticles, setAsideFilter} from "../../../redux/articles/articles-reducer";
-import {getArticlesTitle} from "../../../redux/articles/articles-selector";
+import {sortAsideArticles} from "../../../redux/articles/articles-selector";
 
 class AsideContainer extends React.Component {
-    componentDidUpdate(prevProps, prevState) {
-        if (prevProps.asideFilter !== this.props.asideFilter) {
-            this.props.getAsideArticles();
-        }
-    }
-
     setActiveButton = (button) => {
         this.props.setAsideFilter(button);
     };
-
 
     render() {
         return (
@@ -32,7 +25,7 @@ class AsideContainer extends React.Component {
 
 const mapsStateToProps = (state) => {
     return {
-        articles: getArticlesTitle(state),
+        articles: sortAsideArticles(state),
         asideFilter: state.articles.asideFilter,
     }
 };

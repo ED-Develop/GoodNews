@@ -1,7 +1,7 @@
 import {call, select, put, takeEvery, takeLatest} from "redux-saga/effects";
 import {topHeadlinesAPI} from "../../api/newsApi";
 import {
-    fetchAsideArticles,
+    formatAsideArticles,
     GET_ARTICLES_LIST, GET_ASIDE_ARTICLES, getEverythingArticles, INITIALIZE_ARTICLE_PAGE,
     setAsideArticles,
     setCurrentPage,
@@ -22,7 +22,8 @@ function* getArticlesListSaga(action, isVisualization = true, isTryCatch) {
 function* getAsideArticlesSaga(isVisualization = true, isTryCatch) {
    yield commonSagaHandler(function* () {
        const state = yield select();
-       const articles = yield call(fetchAsideArticles, state);
+       let {articles} = yield call(topHeadlinesAPI.getArticles, {pageSize: 60, country: state.app.region});
+       articles = yield formatAsideArticles(articles);
        yield put(setAsideArticles(articles));
    }, isVisualization, false, isTryCatch);
 }

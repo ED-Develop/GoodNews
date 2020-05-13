@@ -1,12 +1,12 @@
 import React from "react";
 import Home from "./Home";
 import {connect} from "react-redux";
-import {getCarouselData} from "../../redux/articles/articles-selector";
 import {initializeHomePage} from "../../redux/home/home-reducer";
 import {subscribe} from "../../redux/auth/auth-reducer";
 import {compose} from "redux";
 import {withScrollTop} from "../../hoc/withScrollTop";
 import Preloader from "../common/Preloader/Preloader";
+import {getCarouselData} from "../../redux/home/home-selector";
 
 class HomeContainer extends React.Component {
     componentDidMount() {

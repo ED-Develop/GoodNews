@@ -1,29 +1,19 @@
 import {createSelector} from "reselect";
 
-const getAsideArticles = (state) => {
-    return state.articles.asideArticles
-};
+const getAsideArticles = (state) => state.articles.asideArticles;
+const getAsideFilter = (state) => state.articles.asideFilter;
 
-const getTopArticles = (state) => {
-    return state.home.topArticles;
-};
+export const sortAsideArticles = createSelector(getAsideArticles, getAsideFilter,
+    (articles, filter) => {
+        if (filter === 'popular') {
+            return articles.sort((a, b) => a.id - b.id);
+        } else if (filter === 'latest'){
+            return articles.sort((a, b) => {
+                const dateA = new Date(a.publishedAt);
+                const dateB = new Date(b.publishedAt);
 
-export const getArticlesTitle = createSelector(getAsideArticles, (articles) => {
-    return articles.map((a, index) => {
-        return {
-            title: a.title,
-            url: a.url,
-            id: index
+                return dateB - dateA;
+            });
         }
-    })
-});
-
-export const getCarouselData = createSelector(getTopArticles, (articles) => {
-    return articles.map( (a) => {
-        return {
-            id: a.source.id,
-            image: a.urlToImage,
-            title: a.title
-        }
-    })
-});
+    }
+);

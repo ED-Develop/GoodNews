@@ -1,4 +1,3 @@
-import {topHeadlinesAPI, everythingAPI} from "../../api/newsApi";
 import {setIdInArrayObjects} from "../../helpers/redux-helpers";
 
 const SET_ASIDE_ARTICLES = 'good-news/articles/SET_ASIDE_ARTICLES';
@@ -21,7 +20,7 @@ const articlesReducer = (state = initialState, action) => {
         case SET_ASIDE_ARTICLES:
             return {
                 ...state,
-                asideArticles: setIdInArrayObjects(action.articles)
+                asideArticles: action.articles
             };
         case SET_EVERYTHING_ARTICLES:
             if (action.page === 1) {
@@ -46,44 +45,13 @@ const articlesReducer = (state = initialState, action) => {
     }
 };
 
-export const setAsideFilter = (asideFilter) => ({
-    type: SET_ASIDE_FILTER,
-    payload: {
-        asideFilter
-    }
-});
-
 //actions
-
-export const setAsideArticles = (articles) => ({
-    type: SET_ASIDE_ARTICLES,
-    articles
-});
-
-export const setEverythingArticles = (articles, page) => ({
-    type: SET_EVERYTHING_ARTICLES,
-    articles,
-    page
-});
-
-export const setCurrentPage = (page) => ({
-    type: SET_CURRENT_PAGE,
-    payload: {
-        page
-    }
-});
-
-export const getEverythingArticles = (options) => ({
-    type: GET_ARTICLES_LIST,
-    payload: {
-        options
-    }
-});
-
-export const getAsideArticles = () => ({
-    type: GET_ASIDE_ARTICLES
-});
-
+export const setAsideFilter = (asideFilter) => ({type: SET_ASIDE_FILTER, payload: {asideFilter}});
+export const setAsideArticles = (articles) => ({type: SET_ASIDE_ARTICLES, articles});
+export const setEverythingArticles = (articles, page) => ({type: SET_EVERYTHING_ARTICLES, articles, page});
+export const setCurrentPage = (page) => ({type: SET_CURRENT_PAGE, payload: {page}});
+export const getEverythingArticles = (options) => ({type: GET_ARTICLES_LIST, payload: {options}});
+export const getAsideArticles = () => ({type: GET_ASIDE_ARTICLES});
 export const initializeArticlesPage = (everythingArticlesArgs) => ({
     type: INITIALIZE_ARTICLE_PAGE,
     payload: {
@@ -91,16 +59,13 @@ export const initializeArticlesPage = (everythingArticlesArgs) => ({
     }
 });
 
-export const fetchAsideArticles = async (state) => {
-    let response;
-
-    if (state.articles.asideFilter === 'popular') {
-        response = await topHeadlinesAPI.getArticles({pageSize: 60, country: state.app.region});
-    } else {
-        response = await everythingAPI.getArticles({sortBy: 'publishedAt', pageSize: 60});
-    }
-
-    return response.articles;
-};
+// helpers
+export const formatAsideArticles = (articles) => setIdInArrayObjects(articles.sort(() => 0.5 - Math.random()))
+    .map((a) => ({
+        id: a.source.id,
+        image: a.urlToImage,
+        title: a.title,
+        publishedAt: a.publishedAt
+    }));
 
 export default articlesReducer;
