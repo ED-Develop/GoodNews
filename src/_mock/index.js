@@ -15,7 +15,7 @@ mock.onGet('/login').reply((config) => {
             isAuth: false,
             login: "admin",
             dateOfBirth: '1999/07/26',
-            membership: 'trial for 30 days',
+            membership: {name: 'trial for 30 days', id: null},
             isSubscribe: false,
             region: null
         }]
@@ -72,6 +72,10 @@ mock.onGet('/logout').reply((config) => {
 mock.onGet('/auth').reply((config) => {
     const users = JSON.parse(localStorage.getItem('users'));
     const cookiesData = getCookie('user');
+    const notAuthorizedResp = [201, {resultCode: 10, message: 'No authorized'}];
+
+    if (!users) return notAuthorizedResp;
+
     const user = users.find( user => user.email === cookiesData);
 
     if (user) {
@@ -79,7 +83,7 @@ mock.onGet('/auth').reply((config) => {
 
         return [200, {resultCode: 0, data: {id, login, email, isSubscribe, region, membership}}]
     } else if (!cookiesData) {
-        return [200, {resultCode: 10, message: 'Not authorized'}]
+        return notAuthorizedResp;
     } else {
         return [201, {
             resultCode: 1,

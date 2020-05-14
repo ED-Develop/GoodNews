@@ -9,16 +9,23 @@ import {FormattedMessage} from "react-intl";
 
 
 const FollowTooltip = () => {
-    let [social] = useState(['Facebook', 'Twitter', 'Google', 'Linkedin', 'Pinterest']);
+    let [social] = useState([
+        {title: 'Facebook', href: 'https://www.facebook.com/'},
+        {title: 'Twitter', href: 'https://twitter.com/'},
+        {title: 'Google', href: 'https://www.google.com/'},
+        {title: 'Linkedin', href: 'https://www.linkedin.com/'},
+        {title: 'Pinterest', href: 'https://www.pinterest.com/'}
+    ]);
     let [icon] = useState({facebook, twitter, google, linkedin, pinterest});
 
     return (
         <ul className={style.followTooltip}>
-            {social.map(i => {
+            {social.map(item => {
                 return (
-                    <li key={i}>
-                        <a href="#"> <img src={icon[i.toLowerCase()]} alt={i}/>
-                            <FormattedMessage id='header.followTooltip'/> {i}
+                    <li key={item.title}>
+                        <a href={item.href}>
+                            <img src={icon[item.title.toLowerCase()]} alt={item.title}/>
+                            <FormattedMessage id='header.followTooltip'/> {item.title}
                         </a>
                     </li>
                 )

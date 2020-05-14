@@ -7,9 +7,13 @@ const MembershipProfit = ({profits}) => {
         <ul className={style.membershipProfit}>
             {
                 profits.map(({quantity, title}) => {
-                    return <li>
+                    return <li key={title}>
                         <span className={`${style.textBlack} mr-2`}>
-                            <FormattedMessage id={quantity} defaultMessage={quantity}/>
+                            {
+                                typeof quantity === 'number'
+                                    ? quantity
+                                    : <FormattedMessage id={quantity}/>
+                            }
                         </span>
                         <FormattedMessage id={title}/>
                     </li>;

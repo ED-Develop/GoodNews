@@ -25,11 +25,12 @@ const Profile = ({user, region, confirmChanges, changeReduxForm, startSubmit, in
             <div className={style.profileContainer}>
                 <Row>
                     <Col md={4} className={style.profileImage}>
-                        <img src={profileImage} alt="image"/>
+                        <img src={profileImage} alt="profileImage"/>
                     </Col>
                     <Col md={8} className={style.userInfo}>
                         {profileData.map((item, index) => {
                             return <UserInfoItem
+                                key={item.property}
                                 property={item.property}
                                 isTitle={!index}
                                 title={intl.formatMessage({id: item.title})}

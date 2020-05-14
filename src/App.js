@@ -23,7 +23,7 @@ class AppContainer extends React.PureComponent {
             this.props.getGeolocationPosition();
         }
 
-        if (this.props.region) {
+        if ((this.props.region && !this.props.interfaceText) || (this.props.region !== prevProps.region)) {
             this.props.getInterfaceText();
         }
     }

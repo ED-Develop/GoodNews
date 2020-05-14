@@ -23,7 +23,13 @@ function* getInterfaceTextSaga() {
 }
 
 function* initializeAppSaga() {
-    yield call(authSaga);
+    const region = yield call(authSaga);
+
+    if (!region) {
+        yield call(getGeolocationPositionSaga);
+    }
+
+    yield call(getInterfaceTextSaga);
     yield put(initializeAppSuccess());
     yield call(loginFlow)
 }

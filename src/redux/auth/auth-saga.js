@@ -5,7 +5,6 @@ import {stopSubmit} from "redux-form";
 import {getGeolocationPosition, setRegion} from "../app/app-reducer";
 import {updateUserProfile} from "../profile/profile-reducer";
 import {
-    login,
     LOGIN,
     LOGOUT,
     setUserData, SUBSCRIBE,
@@ -13,15 +12,19 @@ import {
 } from "./auth-reducer";
 
 export function* handleUserDataSaga({id, login, email, region, membership}) {
-    const state = yield select();
+    const {app: {region: regionInState}} = yield select();
     yield put(setUserData(id, login, email, true, membership));
     yield put(setUserData({id, login, email, isAuth: true, membership}));
 
     if (region) {
         yield put(setRegion(region));
     } else {
-        yield put(updateUserProfile({region: state.app.region}));
+        if (regionInState) {
+            yield put(updateUserProfile({region: regionInState}));
+        }
     }
+
+    return region;
 }
 
 function* loginSaga(loginData) {
@@ -41,15 +44,13 @@ function* loginSaga(loginData) {
 }
 
 export function* authSaga() {
-    yield commonSagaHandler(function* () {
+    return yield commonSagaHandler(function* () {
         const response = yield call(mockApi.authMe);
 
         if (response.resultCode === 0) {
-            yield call(handleUserDataSaga, response.data);
+            return yield call(handleUserDataSaga, response.data);
         }
-
-        return response;
-    }, false, true, false);
+    }, false, true);
 }
 
 function* logoutSaga() {

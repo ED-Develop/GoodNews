@@ -25,6 +25,7 @@
 	"memberships.standard": "standard",
 	"memberships.titleActive": "You have activated a {name} plan.",
 	"memberships.titleFree": "Free for 30 days.",
+	"memberships.trial": "",
 	"modal.cancel": "Cancel",
 	"modal.save": "Save Changes",
 	"navbar.business": "Business",

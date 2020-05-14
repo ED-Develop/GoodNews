@@ -34,7 +34,7 @@ const Slider = ({carouselData}) => {
                 {carouselData.map(i => {
                     return (
                         <Carousel.Item key={i.id} className={style.sliderItem}>
-                            <img className='w-100 h-100' src={i.image || defaultImage} alt="image"/>
+                            <img className='w-100 h-100' src={i.image || defaultImage} alt="carouselImage"/>
                             <CSSTransitionGroup transitionName="slider" transitionEnterTimeout={300}
                                                 transitionLeaveTimeout={300}>
                                 {isShowDescription && <Carousel.Caption className={style.sliderDescription}>

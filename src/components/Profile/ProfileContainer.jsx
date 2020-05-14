@@ -66,14 +66,12 @@ class ProfileContainer extends React.PureComponent {
     }
 }
 
-const mapStateToProps = (state) => {
-    return {
-        isAuth: state.auth.isAuth,
-        user: state.profile.user,
-        region: state.app.region,
-        isInitialized: state.app.isInitialized
-    }
-};
+const mapStateToProps = (state) => ({
+    isAuth: state.auth.isAuth,
+    user: state.profile.user,
+    region: state.app.region,
+    isInitialized: state.app.isInitialized
+});
 
 export default compose(
     connect(mapStateToProps, {getUserProfile, updateUserProfile, change, submit}),
