@@ -75,3 +75,13 @@
     color: #2d3340;
     margin-right: 3px;
 }
+
+/*custom btn*/
+
+.btn.btn-danger {
+    background-color: #e8280b;
+}
+
+.btn.btn-danger:hover {
+    background-color: #d6280b;
+}

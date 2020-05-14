@@ -4,6 +4,7 @@ import HomeContainer from "./Home/HomeContainer";
 import ArticlesContainer from "./Articles/ArticlesContainer";
 import ProfileContainer from "./Profile/ProfileContainer";
 import {Container} from "react-bootstrap";
+import MembershipsContainer from "./Memberships/MembershipsContainer";
 
 const Routes = () => {
     return (
@@ -11,6 +12,7 @@ const Routes = () => {
             <Route path='/' exact component={HomeContainer}/>
             <Route path="/articles/:category?" component={ArticlesContainer}/>
             <Route path="/profile" component={ProfileContainer}/>
+            <Route path="/membership" component={MembershipsContainer}/>
         </Container>
     )
 };

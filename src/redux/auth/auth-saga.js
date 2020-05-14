@@ -5,19 +5,17 @@ import {stopSubmit} from "redux-form";
 import {getGeolocationPosition, setRegion} from "../app/app-reducer";
 import {updateUserProfile} from "../profile/profile-reducer";
 import {
+    login,
     LOGIN,
     LOGOUT,
     setUserData, SUBSCRIBE,
     toggleIsSubscribe,
-    USER_DATA_HANDLING,
-    userDataHandling
 } from "./auth-reducer";
 
-export function* handleUserDataSaga(action) {
-    const {id, login, email, region} = yield action.payload.data;
+export function* handleUserDataSaga({id, login, email, region, membership}) {
     const state = yield select();
-
-    yield put(setUserData(id, login, email, true));
+    yield put(setUserData(id, login, email, true, membership));
+    yield put(setUserData({id, login, email, isAuth: true, membership}));
 
     if (region) {
         yield put(setRegion(region));
@@ -31,7 +29,7 @@ function* loginSaga(loginData) {
         const response = yield call(mockApi.login, loginData);
 
         if (response.resultCode === 0) {
-            yield put(userDataHandling(response));
+            yield call(handleUserDataSaga, response.data);
         } else if (response.resultCode === 10) {
             yield put(stopSubmit('login', {_error: response.message}));
         }
@@ -47,7 +45,7 @@ export function* authSaga() {
         const response = yield call(mockApi.authMe);
 
         if (response.resultCode === 0) {
-            yield put(userDataHandling(response));
+            yield call(handleUserDataSaga, response.data);
         }
 
         return response;
@@ -60,7 +58,7 @@ function* logoutSaga() {
         const data = yield mockApi.logout(state.auth.id);
 
         if (data.resultCode === 0) {
-            yield put(setUserData(null, null, null, false, false));
+            yield put(setUserData({id: null, login: null, email: null, isAuth: false, membership: null}));
             yield put(getGeolocationPosition());
         }
 
@@ -96,6 +94,5 @@ function* subscribeSaga(action) {
 }
 
 export function* watchAuthSagas() {
-    yield takeEvery(USER_DATA_HANDLING, handleUserDataSaga);
     yield takeEvery(SUBSCRIBE, subscribeSaga);
 }

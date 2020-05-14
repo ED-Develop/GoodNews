@@ -4,6 +4,7 @@ import {watchHomeSagas} from "../home/home-sagas";
 import {watchAppSagas} from "../app/app-sagas";
 import {watchAuthSagas} from "../auth/auth-saga";
 import {watchProfileSagas} from "../profile/profile-sagas";
+import {updateMembershipSaga} from "../memberships/memberships-saga";
 
 function* rootSaga() {
     yield all([
@@ -12,6 +13,7 @@ function* rootSaga() {
         watchArticlesSagas(),
         watchAuthSagas(),
         watchProfileSagas(),
+        updateMembershipSaga()
     ])
 }
 

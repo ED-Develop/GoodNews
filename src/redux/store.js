@@ -8,6 +8,7 @@ import homeReducer from "./home/home-reducer";
 import profileReducer from "./profile/profile-reducer";
 import createSagaMiddleware from 'redux-saga';
 import rootSaga from "./saga/rootSaga";
+import membershipsReducer from "./memberships/memberships-reducer";
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const sagaMiddleware = createSagaMiddleware();
@@ -18,6 +19,7 @@ const rootReducer = combineReducers({
     auth: authReducer,
     home: homeReducer,
     profile: profileReducer,
+    memberships: membershipsReducer,
     form: formReducer
 });
 

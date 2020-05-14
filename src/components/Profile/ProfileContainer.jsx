@@ -6,6 +6,7 @@ import {change, submit} from "redux-form";
 import ModalDialog from "../common/Modal/ModalDialog";
 import {compose} from "redux";
 import {withFixedFooter} from "../../hoc/withFixedFooter";
+import Preloader from "../common/Preloader/Preloader";
 
 class ProfileContainer extends React.PureComponent {
     constructor(props) {
@@ -21,7 +22,7 @@ class ProfileContainer extends React.PureComponent {
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
-        if (this.props.isAuth && this.props.isAuth !== prevProps.isAuth && !this.props.user) {
+        if (this.props.isAuth && this.props.user !== prevProps.isAuth && !this.props.user) {
             this.props.getUserProfile();
         }
     }
@@ -49,13 +50,17 @@ class ProfileContainer extends React.PureComponent {
                     closeModal={this.closeModal}
                     updateProfile={this.updateProfile}
                 />
-                {this.props.user && <Profile
-                    user={this.props.user}
-                    region={this.props.region}
-                    confirmChanges={this.confirmChanges}
-                    changeReduxForm={this.props.change}
-                    startSubmit={this.props.submit}
-                />}
+                {
+                    this.props.isInitialized && this.props.user
+                        ? <Profile
+                            user={this.props.user}
+                            region={this.props.region}
+                            confirmChanges={this.confirmChanges}
+                            changeReduxForm={this.props.change}
+                            startSubmit={this.props.submit}
+                        />
+                        : <Preloader/>
+                }
             </>
         )
     }
@@ -65,7 +70,8 @@ const mapStateToProps = (state) => {
     return {
         isAuth: state.auth.isAuth,
         user: state.profile.user,
-        region: state.app.region
+        region: state.app.region,
+        isInitialized: state.app.isInitialized
     }
 };
 
