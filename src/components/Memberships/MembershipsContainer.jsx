@@ -2,6 +2,8 @@ import React from "react";
 import Memberships from "./Memberships";
 import {connect} from "react-redux";
 import {toggleMembership} from "../../redux/memberships/memberships-reducer";
+import {compose} from "redux";
+import {withAuthRedirect} from "../../hoc/withAuthRedirect";
 
 class MembershipsContainer extends React.Component{
     render() {
@@ -18,4 +20,7 @@ const mapStateToProps = (state) => ({
     currentMembership: state.auth.membership
 });
 
-export default connect(mapStateToProps, {toggleMembership})(MembershipsContainer);
+export default compose(
+    connect(mapStateToProps, {toggleMembership}),
+    withAuthRedirect
+)(MembershipsContainer);

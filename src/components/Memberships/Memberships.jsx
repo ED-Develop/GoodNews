@@ -14,7 +14,7 @@ const Memberships = ({memberships, toggleMembership, currentMembership}) => {
                         key={membership.id}
                         membership={membership}
                         toggleMembership={toggleMembership}
-                        isActive={membership.id === currentMembership.id}
+                        isActive={currentMembership && membership.id === currentMembership.id}
                     />)
                 }
             </Row>

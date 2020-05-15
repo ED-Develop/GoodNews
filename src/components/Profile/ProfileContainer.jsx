@@ -7,6 +7,7 @@ import ModalDialog from "../common/Modal/ModalDialog";
 import {compose} from "redux";
 import {withFixedFooter} from "../../hoc/withFixedFooter";
 import Preloader from "../common/Preloader/Preloader";
+import {withAuthRedirect} from "../../hoc/withAuthRedirect";
 
 class ProfileContainer extends React.PureComponent {
     constructor(props) {
@@ -75,5 +76,6 @@ const mapStateToProps = (state) => ({
 
 export default compose(
     connect(mapStateToProps, {getUserProfile, updateUserProfile, change, submit}),
-    withFixedFooter
+    withFixedFooter,
+    withAuthRedirect
 )(ProfileContainer);

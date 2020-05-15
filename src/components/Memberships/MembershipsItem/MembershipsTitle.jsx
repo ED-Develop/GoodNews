@@ -6,7 +6,7 @@ const MembershipsTitle = ({currentMembership, intl}) => {
     return (
         <div>
             {
-                currentMembership.id !== null
+                currentMembership && currentMembership.id !== null
                     ? <>
                         <h2 className={style.membershipsTitle}>
                             <FormattedMessage
