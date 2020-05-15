@@ -65,3 +65,13 @@ export const findRegionLocale = (region) => {
 
     return locale;
 };
+
+export const maxLengthString = (string, maxLength) => {
+    if (!maxLength) return string;
+
+    const cuttingString = string.slice(0, maxLength);
+
+    return cuttingString
+        .slice(0, cuttingString.lastIndexOf(' ') + 1)
+        .slice(0, cuttingString.lastIndexOf(' - ')) + '...';
+};

@@ -3,6 +3,7 @@ import style from './ArticleItem.module.css';
 import {Col, Row} from "react-bootstrap";
 import {FormattedDate} from "react-intl";
 import ImgWithDefault from "../../common/Utils/ImgWithDefault";
+import {maxLengthString} from "../../../helpers/utils";
 
 const ArticleItem = ({article}) => {
     return (
@@ -12,7 +13,7 @@ const ArticleItem = ({article}) => {
                     <ImgWithDefault url={article.urlToImage} alt="article"/>
                 </Col>
                 <Col sm={8} className={style.articleItemDescr}>
-                    <h4><a href={article.url}>{article.title}</a></h4>
+                    <h4><a href={article.url}>{maxLengthString(article.title, 70)}</a></h4>
                     <p className={style.articleItemDate}>
                         <FormattedDate
                             value={article.publishedAt}
