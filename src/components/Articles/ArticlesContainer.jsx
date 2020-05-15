@@ -30,7 +30,6 @@ class ArticlesContainer extends React.PureComponent {
         if (this.props.match.params.category !== prevProps.match.params.category
             || this.props.location.search !== prevProps.location.search) {
             this.props.getEverythingArticles(this.getArticlesOptions(1));
-            this.props.scrollTop();
         }
     };
 

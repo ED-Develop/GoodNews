@@ -12,6 +12,7 @@ import Preloader from "./components/common/Preloader/Preloader";
 import Footer from "./components/Footer/Footer";
 import {IntlProvider} from "react-intl";
 import {getLocale} from "./redux/app/app-selector";
+import ScrollToTop from "./components/ScrollToTop/ScrollToTop";
 
 class AppContainer extends React.PureComponent {
     componentDidMount() {
@@ -39,6 +40,7 @@ class AppContainer extends React.PureComponent {
             return (
                 <IntlProvider locale={locale} messages={interfaceText}>
                     <div className="App">
+                        <ScrollToTop/>
                         {this.props.isFetching && <Preloader/>}
                         <CSSTransitionGroup transitionName="fade" transitionEnterTimeout={300} transitionLeaveTimeout={300}>
                             {globalError && <Error error={globalError} closeErrorWindow={this.closeErrorWindow}/>}
