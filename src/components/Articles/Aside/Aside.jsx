@@ -2,6 +2,7 @@ import React from 'react';
 import style from './Aside.module.css';
 import AsideList from "./AsideList";
 import {FormattedMessage} from "react-intl";
+import { Scrollbars } from 'react-custom-scrollbars';
 
 const Aside = ({articles, setActiveButton, asideFilter}) => {
     return (
@@ -20,7 +21,13 @@ const Aside = ({articles, setActiveButton, asideFilter}) => {
                     <FormattedMessage id='aside.latest'/>
                 </button>
             </div>
-            <AsideList articles={articles}/>
+            <Scrollbars
+                autoHide
+                autoHideTimeout={1000}
+                autoHideDuration={200}
+            >
+                <AsideList articles={articles}/>
+            </Scrollbars>
         </aside>
     )
 };

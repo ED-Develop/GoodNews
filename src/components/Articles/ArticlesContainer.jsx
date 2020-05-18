@@ -7,6 +7,7 @@ import {compose} from "redux";
 import {withRouter} from "react-router-dom";
 import {withScrollTop} from "../../hoc/withScrollTop";
 import queryString from 'query-string';
+import {toggleIsFooter} from "../../redux/app/app-reducer";
 
 class ArticlesContainer extends React.PureComponent {
     componentDidMount() {
@@ -15,10 +16,12 @@ class ArticlesContainer extends React.PureComponent {
         }
 
         window.addEventListener('scroll', this.onScrollEnd);
+        this.props.toggleIsFooter(false);
     };
 
     componentWillUnmount() {
         window.removeEventListener('scroll', this.onScrollEnd);
+        this.props.toggleIsFooter(true);
     };
 
     componentDidUpdate(prevProps, prevState, snapshot) {
@@ -80,14 +83,15 @@ class ArticlesContainer extends React.PureComponent {
     }
 }
 
-const mapStateToProps = (state) => {
-    return ({
-        articles: state.articles.everythingArticles,
-        page: state.articles.page,
-        isInitialized: state.app.isInitialized,
-        region: state.app.region
-    })
-};
+const mapStateToProps = (state) => ({
+    articles: state.articles.everythingArticles,
+    page: state.articles.page,
+    isInitialized: state.app.isInitialized,
+    region: state.app.region
+});
 
-export default compose(connect(mapStateToProps, {getEverythingArticles, initializeArticlesPage}), withRouter,
-    withScrollTop)(ArticlesContainer);
+export default compose(
+    connect(mapStateToProps, {getEverythingArticles, initializeArticlesPage, toggleIsFooter}),
+    withRouter,
+    withScrollTop
+)(ArticlesContainer);

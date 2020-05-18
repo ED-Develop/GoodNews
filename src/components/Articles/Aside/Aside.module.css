@@ -1,8 +1,15 @@
+.asideContainer {
+    position: fixed;
+    max-width: 350px;
+}
+
 .aside {
-    height: 100%;
+    display: flex;
+    flex-direction: column;
     padding-top: 20px;
     border-left: 1px solid #eaeaea;
     border-right: 1px solid #eaeaea;
+    height: calc(100vh - 60px);
 }
 
 .btnGroup {
@@ -36,14 +43,25 @@
     border-bottom: 1px solid #ebebeb;
     font-weight: normal;
     border-left: none;
-    transition: all 0.2s;
+    background-color: #fff;
+    transition: background-color 0.2s;
+    position: relative;
 }
 
 .title:hover {
     background-color: #f3f3f3;
-    border-left: 5px solid #e8280b;
     font-weight: bold;
-    transition: all 0.2s;
+    transition: background-color 0.2s;
+}
+
+.title:hover::after {
+    content: "";
+    position: absolute;
+    height: 100%;
+    width: 5px;
+    background-color: #e8280b;
+    left: 0;
+    top: 0;
 }
 
 .title a {

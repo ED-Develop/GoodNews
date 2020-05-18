@@ -1,6 +1,7 @@
 .footer {
     background-color: #252525;
     color: #acacac;
+    position: relative;
 }
 
 .footer.footerFixed {

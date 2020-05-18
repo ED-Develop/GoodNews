@@ -34,7 +34,7 @@ class AppContainer extends React.PureComponent {
     };
 
     render() {
-        const {globalError, isInitializedApp, interfaceText, locale} = this.props;
+        const {globalError, isInitializedApp, interfaceText, locale, isFooter} = this.props;
 
         if (isInitializedApp) {
             return (
@@ -42,14 +42,18 @@ class AppContainer extends React.PureComponent {
                     <div className="App">
                         <ScrollToTop/>
                         {this.props.isFetching && <Preloader/>}
-                        <CSSTransitionGroup transitionName="fade" transitionEnterTimeout={300} transitionLeaveTimeout={300}>
+                        <CSSTransitionGroup
+                            transitionName="fade"
+                            transitionEnterTimeout={300}
+                            transitionLeaveTimeout={300}
+                        >
                             {globalError && <Error error={globalError} closeErrorWindow={this.closeErrorWindow}/>}
                         </CSSTransitionGroup>
                         <HeaderContainer/>
                         <main className='appMain'>
                             <Routes/>
                         </main>
-                        <Footer isFixed={this.props.isFixedFooter}/>
+                        {isFooter && <Footer isFixed={this.props.isFixedFooter}/>}
                     </div>
                 </IntlProvider>
             );
@@ -59,17 +63,16 @@ class AppContainer extends React.PureComponent {
     }
 }
 
-const mapStateToProps = (state) => {
-    return {
-        globalError: state.app.globalError,
-        isFetching: state.app.isFetching,
-        isFixedFooter: state.app.isFixedFooter,
-        isInitializedApp: state.app.isInitializedApp,
-        region: state.app.region,
-        locale: getLocale(state),
-        interfaceText: state.app.interfaceText,
-    }
-};
+const mapStateToProps = (state) => ({
+    globalError: state.app.globalError,
+    isFetching: state.app.isFetching,
+    isFixedFooter: state.app.isFixedFooter,
+    isInitializedApp: state.app.isInitializedApp,
+    region: state.app.region,
+    locale: getLocale(state),
+    interfaceText: state.app.interfaceText,
+    isFooter: state.app.isFooter
+});
 
 const AppConnected = connect(mapStateToProps, {
     initializeApp,

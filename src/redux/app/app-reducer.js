@@ -4,6 +4,7 @@ import {findRegionLocale} from "../../helpers/utils";
 
 const TOGGLE_IS_FETCHING = 'good-news/app/TOGGLE_IS_FETCHING';
 const TOGGLE_IS_FIXED_FOOTER = 'good-news/app/TOGGLE_IS_FIXED_FOOTER';
+const TOGGLE_IS_FOOTER = 'good-news/app/TOGGLE_IS_FOOTER';
 const SET_GLOBAL_ERROR = 'good-news/app/SET_GLOBAL_ERROR';
 const TOGGLE_IS_INITIALIZED = 'good-news/app/TOGGLE_IS_INITIALIZED';
 const SET_REGION = 'good-news/app/SET_REGION';
@@ -15,6 +16,7 @@ export const GET_GEOLOCATION_POSITION = 'good-news/app/GET_GEOLOCATION_POSITION'
 
 const initialState = {
     isFixedFooter: false,
+    isFooter: true,
     isFetching: false,
     isGoTop: false,
     globalError: null,
@@ -34,6 +36,7 @@ const appReducer = (state = initialState, action) => {
         case INITIALIZE_APP_SUCCESS:
         case SET_REGION:
         case SET_INTERFACE_TEXT:
+        case TOGGLE_IS_FOOTER:
             return {
                 ...state,
                 ...action.payload
@@ -46,6 +49,7 @@ const appReducer = (state = initialState, action) => {
 //actions
 export const toggleIsFetching = (isFetching) => ({type: TOGGLE_IS_FETCHING, payload: {isFetching}});
 export const toggleIsFixedFooter = (isFixedFooter) => ({type: TOGGLE_IS_FIXED_FOOTER, payload: {isFixedFooter}});
+export const toggleIsFooter = (isFooter) => ({type: TOGGLE_IS_FOOTER, payload: {isFooter}});
 export const setGlobalError = (error) => ({type: SET_GLOBAL_ERROR, payload: {globalError: error}});
 export const toggleIsInitialized = (isInitialized) => ({type: TOGGLE_IS_INITIALIZED, payload: {isInitialized}});
 export const setRegion = (region) => ({type: SET_REGION, payload: {region}});

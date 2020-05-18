@@ -11,12 +11,12 @@ import {injectIntl} from "react-intl";
 
 const Profile = ({user, region, confirmChanges, changeReduxForm, startSubmit, intl}) => {
     const {login, email, dateOfBirth, membership} = user;
-
+    const membershipName = intl.formatMessage({id: membership.name});
     const profileData = [
         {title: 'profile.login', property: 'login', value: startUpperCase(login), EditComponent: InputField},
         {title: 'profile.email', property: 'email', value: email, EditComponent: InputField},
         {title: 'profile.dateOfBirth', property: 'dateOfBirth', value: dateOfBirth, EditComponent: DoBField},
-        {title: 'profile.membership', property: 'membership', value: membership.name, EditComponent: '/membership'},
+        {title: 'profile.membership', property: 'membership', value: membershipName, EditComponent: '/membership'},
         {title: 'profile.region', property: 'region', value: region, EditComponent: RegionField}
     ];
 

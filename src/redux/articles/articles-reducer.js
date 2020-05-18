@@ -65,7 +65,8 @@ export const formatAsideArticles = (articles) => setIdInArrayObjects(articles.so
         id: a.source.id,
         image: a.urlToImage,
         title: a.title,
-        publishedAt: a.publishedAt
+        publishedAt: a.publishedAt,
+        url: a.url
     }));
 
 export default articlesReducer;
