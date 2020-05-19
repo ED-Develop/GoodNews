@@ -1,12 +1,12 @@
 import React from 'react';
-import style from './Header.module.css'
+import style from '../Header.module.css'
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faSortDown} from "@fortawesome/free-solid-svg-icons";
-import withHoverEffect from "../../hoc/withHoverEffect";
+import withHoverEffect from "../../../hoc/withHoverEffect";
 import UserTooltip from "./UserTooltip";
 import {FormattedMessage} from "react-intl";
 
-const UserInfo = ({userName}) => {
+const UserInfoDesktop = ({userName}) => {
     return (
         <div className={style.userInfoTriger}>
             <FormattedMessage
@@ -17,4 +17,4 @@ const UserInfo = ({userName}) => {
     )
 };
 
-export default withHoverEffect(UserTooltip)(UserInfo);
+export default withHoverEffect(UserTooltip)(UserInfoDesktop);

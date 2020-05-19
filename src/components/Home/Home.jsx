@@ -6,6 +6,9 @@ import Subscribe from "./Subscribe/Subscribe";
 import Category from "./Category/Category";
 import AsideTabs from "./Tabs/Tabs";
 import Social from "./Social/Social";
+import Large from "../common/MediaQuery/Large";
+import Mobile from "../common/MediaQuery/Mobile";
+import Desktop from "../common/MediaQuery/Desktop";
 
 const Home = ({carouselData, categories, subscribe, isSubscribe, isAuth, popularArticles}) => {
     const [isSubscribeChange, setIsSubscribeChange] = useState(false);
@@ -16,22 +19,29 @@ const Home = ({carouselData, categories, subscribe, isSubscribe, isAuth, popular
         }
     }, [isSubscribe, isAuth]);
 
+    const subscribeElement = (
+        <>
+            {!isSubscribe && !isAuth && <Subscribe isSubscribeChange={isSubscribeChange} subscribe={subscribe}/>}
+            {isSubscribeChange && !isAuth  && <Subscribe isSubscribeChange={isSubscribeChange} subscribe={subscribe}/>}
+        </>
+    );
+
     return (
         <div className={style.home}>
             <section>
                 <Row>
-                    <Col sm={8}>
+                    <Col lg={8}>
                         <Slider carouselData={carouselData}/>
-                        {categories.map(c => {
-                            return <Category key={c.category} category={c}/>
-                        })}
+                        <Mobile>{subscribeElement}</Mobile>
+                        {categories.map(c => <Category key={c.category} category={c}/>)}
                     </Col>
-                    <Col sm={4}>
-                        {!isSubscribe && !isAuth && <Subscribe isSubscribeChange={isSubscribeChange} subscribe={subscribe}/>}
-                        {isSubscribeChange && !isAuth  && <Subscribe isSubscribeChange={isSubscribeChange} subscribe={subscribe}/>}
-                        <AsideTabs articles={popularArticles}/>
-                        <Social/>
-                    </Col>
+                    <Desktop>
+                        <Col lg={4}>
+                            {subscribeElement}
+                            <AsideTabs articles={popularArticles}/>
+                            <Social/>
+                        </Col>
+                    </Desktop>
                 </Row>
             </section>
         </div>

@@ -31,3 +31,21 @@
 .search input:focus {
     box-shadow: none;
 }
+
+@media (max-width: 767px) {
+    .search {
+        position: static;
+        width: 100%;
+        padding: 15px 17px;
+        display: flex;
+    }
+
+    .search input {
+        margin-right: 10px;
+        font-size: 15px;
+    }
+
+    .searchInput {
+        margin: 0;
+    }
+}

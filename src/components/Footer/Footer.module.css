@@ -54,3 +54,21 @@
     height: 33px;
     background: url("../../assets/image/logo-footer.svg") no-repeat;
 }
+
+@media (max-width: 767px) {
+    .footer {
+        padding-top: 20px;
+    }
+
+    .footer.footerFixed {
+        position: static;
+    }
+
+    .footerMain::before {
+        margin-left: 20px;
+    }
+
+    .footerBottom {
+        padding: 0 15px;
+    }
+}

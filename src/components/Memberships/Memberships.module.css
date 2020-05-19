@@ -59,10 +59,6 @@
 .membership {
     transform: translate(0, 0);
     transition: 0.2s transform;
-}
-
-.membership.active {
-    transform: translate(0, -10px);
     position: relative;
     overflow: hidden;
 }
@@ -84,4 +80,30 @@
 .membership:hover {
     transform: translate(0, -10px);
     transition: 0.2s transform;
+}
+
+
+@media (min-width: 767px) {
+    .membership.active {
+        transform: translate(0, -10px);
+    }
+}
+
+@media (max-width: 768px) {
+    .membership {
+        margin-bottom: 15px;
+    }
+
+    .memberships {
+        padding: 40px 0;
+    }
+
+    .membershipsTitle {
+        font-size: 36px;
+    }
+
+    .membershipsTrial {
+        font-size: 20px;
+        margin-bottom: 40px;
+    }
 }

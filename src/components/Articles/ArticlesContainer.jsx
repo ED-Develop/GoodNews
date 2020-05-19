@@ -10,6 +10,13 @@ import queryString from 'query-string';
 import {toggleIsFooter} from "../../redux/app/app-reducer";
 
 class ArticlesContainer extends React.PureComponent {
+    constructor(props) {
+        super(props);
+        this.state = {
+            nextPage: this.props.page
+        }
+    }
+
     componentDidMount() {
         if (this.props.region) {
             this.props.initializeArticlesPage([this.getArticlesOptions(this.props.page, 5)]);
@@ -43,13 +50,15 @@ class ArticlesContainer extends React.PureComponent {
         }
     };
 
-    onScrollEnd = (e) => {
+    onScrollEnd = () => {
         let scroll = window.pageYOffset;
         let heightDocument = document.querySelector('#root').scrollHeight;
         const {isInitialized, isFetching} = this.props;
 
-        if (scroll >= heightDocument - document.documentElement.clientHeight - 300 && !isFetching && isInitialized) {
+        if (scroll >= heightDocument - document.documentElement.clientHeight - 300
+            && !isFetching && isInitialized && this.props.page === this.state.nextPage) {
             this.props.getEverythingArticles(this.getArticlesOptions(this.props.page + 1));
+            this.setState({...this.state, nextPage: this.props.page + 1});
         }
     };
 

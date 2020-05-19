@@ -14,8 +14,11 @@ function* getArticlesListSaga(action, isVisualization = true, isTryCatch) {
         const {options} = yield action.payload;
         const state = yield select();
         const response = yield call(topHeadlinesAPI.getArticles, {...options, country: state.app.region});
-        yield put(setEverythingArticles(response.articles, options.page));
-        yield put(setCurrentPage(options.page));
+
+        if (response.articles.length) {
+            yield put(setEverythingArticles(response.articles, options.page));
+            yield put(setCurrentPage(options.page));
+        }
     }, isVisualization, false, isTryCatch);
 }
 

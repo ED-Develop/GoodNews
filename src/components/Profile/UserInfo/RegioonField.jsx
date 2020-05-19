@@ -18,7 +18,7 @@ const RegionField = ({name, onSubmit, initialValues}) => {
     };
 
     return (
-        <p className='d-flex justify-content-between w-100'>
+        <div className='d-flex justify-content-between w-100'>
             <span className='mr-2'>Region:</span>
             {
                 regionOptions
@@ -32,7 +32,7 @@ const RegionField = ({name, onSubmit, initialValues}) => {
                         onSubmit={handleSubmit}
                     />
             }
-        </p>
+        </div>
     )
 };
 

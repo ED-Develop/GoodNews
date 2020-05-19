@@ -5,6 +5,7 @@
 .slider p {
     font-size: 24px;
     text-align: left;
+    margin: 0;
 }
 
 .home {
@@ -24,4 +25,23 @@
     bottom: 0;
     color: white;
     padding: 20px 30px;
+}
+
+@media (max-width: 767px) {
+    .slider .sliderItem {
+        height: 220px;
+    }
+
+    .sliderDescription {
+        padding: 10px;
+        min-height: 86px;
+    }
+
+    .slider {
+        margin-bottom: 40px;
+    }
+
+    .slider p {
+        font-size: 15px;
+    }
 }

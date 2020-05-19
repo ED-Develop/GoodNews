@@ -12,6 +12,8 @@
 	"header.profile": "My profile",
 	"header.saved": "My saved articles",
 	"header.search": "Type keyword and hit Enter",
+	"header.searchBtn": "Search",
+	"header.searchMobile": "Type this",
 	"header.welcome": "Welcome",
 	"login.password": "Password",
 	"login.remember": "Remember me",

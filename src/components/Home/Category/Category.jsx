@@ -11,10 +11,10 @@ const Category = ({category}) => {
         <div className={style.categoryContainer}>
             <h2><NavLink to={`/articles/${category.category}`}><FormattedMessage id={category.title}/></NavLink></h2>
             <Row>
-                <Col className='pr-1'>
+                <Col md={6} className='pr-md-1'>
                     <CategoryBigItem article={category.data[0]}/>
                 </Col>
-                <Col>
+                <Col md={6}>
                     {category.data.map( (a, index) => {
                         if (index === 0) return false;
 

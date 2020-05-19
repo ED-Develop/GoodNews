@@ -70,3 +70,30 @@
     font-weight: 500;
     color: #191919;
 }
+
+@media (max-width: 1125px) {
+    .profileContainer {
+        flex-basis: 100%;
+    }
+}
+
+@media (max-width: 767px) {
+    .profileWrapper {
+        padding: 40px 15px;
+        min-height: auto;
+    }
+
+    .userInfo,
+    .profileImage {
+        padding: 0;
+    }
+
+    .profileImage,
+    .profileContainer {
+        border: none;
+    }
+
+    .profileImage {
+        margin-bottom: 20px;
+    }
+}

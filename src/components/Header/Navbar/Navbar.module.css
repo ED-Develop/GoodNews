@@ -1,7 +1,7 @@
 .navbar {
     position: fixed;
     height: 100vh;
-    width: 213px;
+    width: 280px;
     background-color: white;
     z-index: 10;
     border-right: 1px solid #e9e9e9;
@@ -42,9 +42,14 @@
     top: 15px;
     color: #181818;
     transition: color .3s;
+    z-index: 10;
 }
 
 .navbar .close:hover {
     color: #e8280b;
     transition: color .3s;
+}
+
+.navbarScroll {
+    height: calc(100vh - 98px - 65px - 73px);
 }

@@ -11,12 +11,16 @@ class HeaderContainer extends React.Component {
     state = {
         isShowNavbar: false,
         isLoginMode: false,
-        isSearch: false
+        isSearch: false,
     };
 
     componentDidUpdate(prevProps, prevState, snapshot) {
         if (!prevProps.isAuth && this.props.isAuth) {
-            this.setState({isLoginMode: false})
+            this.setState({isLoginMode: false});
+        }
+
+        if (prevProps.isAuth !== this.props.isAuth) {
+            this.toggleIsShowNavbar(false);
         }
     }
 
@@ -38,24 +42,29 @@ class HeaderContainer extends React.Component {
         this.props.history.push(`/articles?search=${searchRequest}`);
     };
 
-    onOutsideClick = () => {
-
-    };
-
     render() {
         const {login, isAuth, logout, userName} = this.props;
         const {isLoginMode, isSearch, isShowNavbar} = this.state;
 
         return (
             <div>
-                <CSSTransitionGroup transitionName="fade" transitionEnterTimeout={300}
-                                    transitionLeaveTimeout={300}>
+                <CSSTransitionGroup
+                    transitionName="fade"
+                    transitionEnterTimeout={300}
+                    transitionLeaveTimeout={300}
+                >
                     {isLoginMode && <Login login={login} closeLoginForm={this.toggleLoginMode}/>}
                 </CSSTransitionGroup>
-                <Header isAuth={isAuth} toggleIsShowNavbar={this.toggleIsShowNavbar}
-                        isShowNavbar={isShowNavbar} openLoginForm={this.toggleLoginMode}
-                        logout={logout} userName={userName} isSearch={isSearch} toggleIsSearch={this.toggleIsSearch}
-                        searchArticles={this.searchArticles}/>
+                <Header
+                    isAuth={isAuth}
+                    toggleIsShowNavbar={this.toggleIsShowNavbar}
+                    isShowNavbar={isShowNavbar}
+                    openLoginForm={this.toggleLoginMode}
+                    logout={logout} userName={userName}
+                    isSearch={isSearch}
+                    toggleIsSearch={this.toggleIsSearch}
+                    searchArticles={this.searchArticles}
+                />
             </div>
         )
     }

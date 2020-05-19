@@ -53,3 +53,14 @@
     color: #e8280b;
 }
 
+@media (max-width: 767px) {
+    .categoryContainer {
+        margin-bottom: 25px;
+    }
+
+    .categoryBigItem {
+        padding-bottom: 5px;
+        margin-bottom: 20px;
+        border-bottom: 1px solid #b7b7b7;
+    }
+}

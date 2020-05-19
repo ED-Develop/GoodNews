@@ -65,6 +65,15 @@
     transition: all .4s;
 }
 
+@media (max-width: 768px) {
+    .custom-slider a.carousel-control-next,
+    .custom-slider a.carousel-control-prev {
+        width: 40px;
+        height: 40px;
+        font-size: 20px;
+    }
+}
+
 /*custom tabs*/
 .nav.nav-tabs {
     border-bottom: none;

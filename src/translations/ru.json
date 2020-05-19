@@ -12,6 +12,8 @@
 	"header.profile": "Мой профиль",
 	"header.saved": "Мои закладки",
 	"header.search": "Введите ключевое слово  ",
+	"header.searchBtn": "Поиск",
+	"header.searchMobile": "Введите запрос",
 	"header.welcome": "Добро пожаловать",
 	"login.password": "Пароль",
 	"login.remember": "Запомнить меня",

@@ -1,10 +1,11 @@
 import React, {useState} from 'react';
-import style from './Header.module.css';
-import user from '../../assets/image/user.jpg';
+import style from '../Header.module.css';
 import {FormattedMessage} from "react-intl";
-import renderMenuItems from "../common/Navbar/renderMenuItems";
+import renderMenuItems from "../../common/Navbar/renderMenuItems";
+import Large from "../../common/MediaQuery/Large";
+import UserTooltipHeader from "./UserTooltipHeader";
 
-const UserTooltip = ({logout, userName}) => {
+const UserTooltip = ({logout, userName, handleLinkClick}) => {
     const [menuItems] = useState({
         'header.profile': '/profile',
         'header.membership': '/membership',
@@ -17,14 +18,13 @@ const UserTooltip = ({logout, userName}) => {
 
     return (
         <div className={`${style.userTooltip} ${style.tooltip}`}>
-            <div className={style.userHeader}>
-                <img src={user} alt="user"/>
-                <div>{userName}</div>
-            </div>
+            <Large>
+                <UserTooltipHeader userName={userName}/>
+            </Large>
             <ul className={style.userNav}>
-                {renderMenuItems(menuItems)}
+                {renderMenuItems(menuItems, handleLinkClick)}
             </ul>
-            <div>
+            <div className={style.logoutBtn}>
                 <button onClick={onLogout}><FormattedMessage id='header.logout'/></button>
             </div>
         </div>

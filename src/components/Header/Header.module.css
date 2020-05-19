@@ -212,3 +212,31 @@
     position: relative;
     height: 100%;
 }
+
+.mobileUserLink {
+    padding: 10px;
+}
+
+@media (max-width: 767px) {
+    .tooltip.userTooltip {
+        position: static;
+        width: 100%;
+        box-shadow: none;
+        padding: 0;
+    }
+
+    .userHeader {
+        padding: 0 17px 17px;
+    }
+
+    .logoutBtn {
+        position: fixed;
+        left: 17px;
+        bottom: 17px;
+        padding-top: 20px;
+    }
+
+    .logoutBtn button {
+        width: 246px;
+    }
+}

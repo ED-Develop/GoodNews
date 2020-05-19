@@ -2,7 +2,7 @@ import {useEffect} from "react";
 
 const useOutsideClick = (callback, ref, dependency) => {
     const onMouseDown = (e) => {
-        if (ref.current && !ref.current.contains(e.target)) {
+        if (ref && callback && ref.current && !ref.current.contains(e.target)) {
             callback(dependency);
         }
     };

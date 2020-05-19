@@ -9,13 +9,22 @@ import {maxLengthString} from "../../../helpers/utils";
 
 const Slider = ({carouselData}) => {
     const [index, setIndex] = useState(0);
+    const [myTimeout, setMyTimeout] = useState(null);
     const [direction, setDirection] = useState(null);
     const [isShowDescription, setIsShowDescription] = useState(true);
 
     useEffect(() => {
-        setTimeout(() => {
-            setIsShowDescription(true);
-        }, 700)
+        if (!isShowDescription) {
+            const timeout = setTimeout(() => {
+                setIsShowDescription(true);
+            }, 700);
+
+            setMyTimeout(timeout);
+        }
+
+        return () => {
+            clearTimeout(myTimeout);
+        };
     }, [isShowDescription]);
 
     const onSlide = (selectedIndex, e) => {

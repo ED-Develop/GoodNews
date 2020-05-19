@@ -1,20 +1,39 @@
 .asideContainer {
     position: fixed;
-    max-width: 350px;
+    width: 100%;
+    z-index: 1000;
+}
+
+@media (min-width: 576px) {
+    .asideContainer {
+        max-width: 29%;
+    }
+}
+
+@media (min-width: 1100px) {
+    .asideContainer {
+        max-width: 25%;
+    }
+}
+
+@media (min-width: 1300px) {
+    .asideContainer {
+        max-width: 300px;
+    }
 }
 
 .aside {
     display: flex;
     flex-direction: column;
-    padding-top: 20px;
-    border-left: 1px solid #eaeaea;
-    border-right: 1px solid #eaeaea;
     height: calc(100vh - 60px);
 }
 
 .btnGroup {
     text-align: center;
-    margin-bottom: 10px;
+    padding-top: 20px;
+    padding-bottom: 10px;
+    border-right: 1px solid #eaeaea;
+    border-left: 1px solid #eaeaea;
 }
 
 .btnGroup button {
@@ -46,6 +65,8 @@
     background-color: #fff;
     transition: background-color 0.2s;
     position: relative;
+    border-right: 1px solid #eaeaea;
+    border-left: 1px solid #eaeaea;
 }
 
 .title:hover {
