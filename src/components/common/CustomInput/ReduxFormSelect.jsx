@@ -1,11 +1,11 @@
 import React from "react";
 import Select from "react-select";
 
-const ReduxFormSelect = ({options, input}) => {
+const ReduxFormSelect = ({options, input, width = 100}) => {
     const customStyles = {
         control: base => ({
             ...base,
-            width: 120,
+            width,
             height: 30,
             minHeight: 30,
             marginRight: 4
@@ -31,8 +31,9 @@ const ReduxFormSelect = ({options, input}) => {
                 {...input}
                 options={options}
                 onChange={value => input.onChange(value)}
-                onBlur={() => input.onBlur(input.value)}
-                styles={customStyles}/>
+                onBlur={event => event.preventDefault()}
+                styles={customStyles}
+            />
         </>
     )
 };

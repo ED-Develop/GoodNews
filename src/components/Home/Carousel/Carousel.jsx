@@ -1,15 +1,14 @@
 import React, {useEffect, useState} from 'react';
 import style from '../Home.module.css';
 import {Carousel} from "react-bootstrap";
-import {CSSTransitionGroup} from "react-transition-group";
 import {faChevronLeft, faChevronRight} from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import ImgWithDefault from "../../common/Utils/ImgWithDefault";
 import {maxLengthString} from "../../../helpers/utils";
+import CSSTransition from "react-transition-group/cjs/CSSTransition";
 
 const Slider = ({carouselData}) => {
     const [index, setIndex] = useState(0);
-    const [myTimeout, setMyTimeout] = useState(null);
     const [direction, setDirection] = useState(null);
     const [isShowDescription, setIsShowDescription] = useState(true);
 
@@ -19,12 +18,10 @@ const Slider = ({carouselData}) => {
                 setIsShowDescription(true);
             }, 700);
 
-            setMyTimeout(timeout);
+            return () => {
+                clearTimeout(timeout);
+            };
         }
-
-        return () => {
-            clearTimeout(myTimeout);
-        };
     }, [isShowDescription]);
 
     const onSlide = (selectedIndex, e) => {
@@ -50,15 +47,16 @@ const Slider = ({carouselData}) => {
                     return (
                         <Carousel.Item key={i.id} className={style.sliderItem}>
                             <ImgWithDefault className='w-100 h-100' url={i.image} alt="carouselImage"/>
-                            <CSSTransitionGroup
-                                transitionName="slider"
-                                transitionEnterTimeout={300}
-                                transitionLeaveTimeout={300}
+                            <CSSTransition
+                                in={isShowDescription}
+                                classNames="slider"
+                                timeout={300}
+                                unmountOnExit
                             >
-                                {isShowDescription && <Carousel.Caption className={style.sliderDescription}>
+                                <Carousel.Caption className={style.sliderDescription}>
                                     <p>{maxLengthString(i.title, 100)}</p>
-                                </Carousel.Caption>}
-                            </CSSTransitionGroup>
+                                </Carousel.Caption>
+                            </CSSTransition>
                         </Carousel.Item>
                     )
                 })

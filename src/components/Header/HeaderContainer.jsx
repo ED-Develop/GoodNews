@@ -2,10 +2,10 @@ import React from 'react';
 import Header from "./Header";
 import {connect} from "react-redux";
 import Login from "./Login/Login";
-import {CSSTransitionGroup} from "react-transition-group";
 import {login, logout} from "../../redux/auth/auth-reducer";
 import {compose} from "redux";
 import {withRouter} from "react-router-dom";
+import CSSTransition from "react-transition-group/cjs/CSSTransition";
 
 class HeaderContainer extends React.Component {
     state = {
@@ -48,13 +48,14 @@ class HeaderContainer extends React.Component {
 
         return (
             <div>
-                <CSSTransitionGroup
-                    transitionName="fade"
-                    transitionEnterTimeout={300}
-                    transitionLeaveTimeout={300}
+                <CSSTransition
+                    in={isLoginMode}
+                    classNames="fade"
+                    timeout={300}
+                    unmountOnExit
                 >
-                    {isLoginMode && <Login login={login} closeLoginForm={this.toggleLoginMode}/>}
-                </CSSTransitionGroup>
+                    <Login login={login} closeLoginForm={this.toggleLoginMode}/>
+                </CSSTransition>
                 <Header
                     isAuth={isAuth}
                     toggleIsShowNavbar={this.toggleIsShowNavbar}

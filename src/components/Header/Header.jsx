@@ -6,7 +6,7 @@ import {faBars, faSearch} from "@fortawesome/free-solid-svg-icons";
 import FollowHover from "./FollowHover";
 import UserInfo from "./UserInfo/UserInfo";
 import Navbar from "./Navbar/Navbar";
-import {CSSTransitionGroup} from "react-transition-group";
+import CSSTransition from 'react-transition-group/CSSTransition';
 import {NavLink} from "react-router-dom";
 import Search from "./Search/Search";
 import Large from "../common/MediaQuery/Large";
@@ -23,15 +23,15 @@ const Header = ({isShowNavbar, isAuth, logout, userName, isSearch, ...props}) =>
 
     return (
         <header className={style.header}>
-            <CSSTransitionGroup transitionName="navbar" transitionEnterTimeout={300} transitionLeaveTimeout={300}>
-                {isShowNavbar && <Navbar
+            <CSSTransition in={isShowNavbar} classNames="navbar" timeout={300} unmountOnExit>
+                <Navbar
                     toggleIsShowNavbar={props.toggleIsShowNavbar}
                     userName={userName}
                     logout={logout}
                     isAuth={isAuth}
                     onSearch={onSearch}
-                />}
-            </CSSTransitionGroup>
+                />
+            </CSSTransition>
             <Container>
                 <Row>
                     <Col xs={8} md={6}>
@@ -42,13 +42,14 @@ const Header = ({isShowNavbar, isAuth, logout, userName, isSearch, ...props}) =>
                             <Large>
                                 <div className={style.search}>
                                     <FontAwesomeIcon onClick={props.toggleIsSearch} icon={faSearch}/>
-                                    <CSSTransitionGroup
-                                        transitionName="fade"
-                                        transitionEnterTimeout={300}
-                                        transitionLeaveTimeout={300}
+                                    <CSSTransition
+                                        in={isSearch}
+                                        classNames="fade"
+                                        timeout={300}
+                                        unmountOnExit
                                     >
-                                        {isSearch && <Search onToggleSearch={props.toggleIsSearch} onSubmit={onSearch}/>}
-                                    </CSSTransitionGroup>
+                                        <Search onToggleSearch={props.toggleIsSearch} onSubmit={onSearch}/>
+                                    </CSSTransition>
                                 </div>
                             </Large>
                             <h1><NavLink to='/'>Good News</NavLink></h1>

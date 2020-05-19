@@ -43,9 +43,14 @@
     .search input {
         margin-right: 10px;
         font-size: 15px;
+        height: 35px;
     }
 
     .searchInput {
         margin: 0;
+    }
+
+    .search button {
+        height: 35px;
     }
 }

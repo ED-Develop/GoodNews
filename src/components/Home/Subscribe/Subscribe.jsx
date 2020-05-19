@@ -4,8 +4,9 @@ import {Form} from "react-bootstrap";
 import {Field, reduxForm} from "redux-form";
 import ReduxFormInput from "../../common/CustomInput/ReduxFormInput";
 import {email, required} from "../../../helpers/validators";
-import {CSSTransitionGroup} from "react-transition-group";
 import {FormattedMessage} from "react-intl";
+import TransitionGroup from "react-transition-group/cjs/TransitionGroup";
+import CSSTransition from "react-transition-group/cjs/CSSTransition";
 
 const Subscribe = ({subscribe, isSubscribeChange}) => {
     const onSubmit = (formData) => {
@@ -16,13 +17,17 @@ const Subscribe = ({subscribe, isSubscribeChange}) => {
         <div className={style.subscribe}>
             <h3><FormattedMessage id='subscription.title'/></h3>
             <p><FormattedMessage id='subscription.description'/></p>
-            <CSSTransitionGroup transitionName="fade" transitionEnterTimeout={300} transitionLeaveTimeout={300}>
-                {isSubscribeChange && <p className='text-success'>
-                    <FormattedMessage id='subscription.success'/>
-
-                </p>}
-                {!isSubscribeChange && <SubscribeForm onSubmit={onSubmit}/>}
-            </CSSTransitionGroup>
+            <TransitionGroup>
+                <CSSTransition classNames="fade" timeout={300}>
+                    {
+                        isSubscribeChange
+                            ? <p className='text-success'>
+                                <FormattedMessage id='subscription.success'/>
+                            </p>
+                            : <SubscribeForm onSubmit={onSubmit}/>
+                    }
+                </CSSTransition>
+            </TransitionGroup>
         </div>
     )
 };

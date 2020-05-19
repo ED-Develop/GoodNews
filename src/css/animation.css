@@ -10,13 +10,13 @@
     transition: all .3s;
 }
 
-.hoverTooltip-leave {
+.hoverTooltip-exit {
     opacity: 1;
     transform: translate(0, 0);
     transition: all .3s;
 }
 
-.hoverTooltip-leave.hoverTooltip-leave-active {
+.hoverTooltip-exit.hoverTooltip-exit-active {
     opacity: 0.01;
     transform: translate(0, 20px);
     transition: all .3s;
@@ -34,13 +34,13 @@
     transition: all .3s;
 }
 
-.navbar-leave {
+.navbar-exit {
     opacity: 1;
     transform: translate(0, 0);
     transition: all .3s;
 }
 
-.navbar-leave.navbar-leave-active {
+.navbar-exit.navbar-exit-active {
     opacity: 0.01;
     transform: translate(-213px, 0);
     transition: all .3s;
@@ -63,13 +63,13 @@
     transition: all .3s ease-out;
 }
 
-.btnGoTop-leave {
+.btnGoTop-exit {
     opacity: 1;
     transform: translate(0, 0);
     transition: all .3s ease-out;
 }
 
-.btnGoTop-leave.btnGoTop-leave-active {
+.btnGoTop-exit.btnGoTop-exit-active {
     opacity: 0.01;
     transform: translate(50px, 0);
     transition: all .3s ease-out;
@@ -89,12 +89,12 @@
     transition: all .3s;
 }
 
-.fade-leave {
+.fade-exit {
     opacity: 1;
     transition: all .3s;
 }
 
-.fade-leave.fade-leave-active {
+.fade-exit.fade-exit-active {
     opacity: 0;
     transition: all .3s;
 }
@@ -112,13 +112,13 @@
     transition: all .6s;
 }
 
-.slider-leave {
+.slider-exit {
     opacity: 1;
     transform: translate(0, 0);
     transition: all .6s;
 }
 
-.slider-leave.slider-leave-active {
+.slider-exit.slider-exit-active {
     opacity: 0;
     transform: translate(-100%, 0);
     transition: all .6s;

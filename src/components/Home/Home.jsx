@@ -6,7 +6,6 @@ import Subscribe from "./Subscribe/Subscribe";
 import Category from "./Category/Category";
 import AsideTabs from "./Tabs/Tabs";
 import Social from "./Social/Social";
-import Large from "../common/MediaQuery/Large";
 import Mobile from "../common/MediaQuery/Mobile";
 import Desktop from "../common/MediaQuery/Desktop";
 

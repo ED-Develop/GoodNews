@@ -12,7 +12,7 @@ class AsideContainer extends React.Component {
 
     render() {
         return (
-            <div className={style.asideContainer + ' ' + 'position-fixed'}>
+            <div className={style.asideContainer}>
                 <Aside
                     articles={this.props.articles}
                     asideFilter={this.props.asideFilter}

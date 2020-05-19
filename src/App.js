@@ -7,12 +7,12 @@ import {HashRouter} from "react-router-dom";
 import Routes from "./components/Routes";
 import Error from "./components/common/Error/Error";
 import {getGeolocationPosition, getInterfaceText, initializeApp, setGlobalError} from "./redux/app/app-reducer";
-import {CSSTransitionGroup} from "react-transition-group";
 import Preloader from "./components/common/Preloader/Preloader";
 import Footer from "./components/Footer/Footer";
 import {IntlProvider} from "react-intl";
 import {getLocale} from "./redux/app/app-selector";
 import ScrollToTop from "./components/ScrollToTop/ScrollToTop";
+import CSSTransition from "react-transition-group/cjs/CSSTransition";
 
 class AppContainer extends React.PureComponent {
     componentDidMount() {
@@ -42,13 +42,14 @@ class AppContainer extends React.PureComponent {
                     <div className="App">
                         <ScrollToTop/>
                         {this.props.isFetching && <Preloader/>}
-                        <CSSTransitionGroup
-                            transitionName="fade"
-                            transitionEnterTimeout={300}
-                            transitionLeaveTimeout={300}
+                        <CSSTransition
+                            in={globalError}
+                            classNames="fade"
+                            timeout={300}
+                            unmountOnExit
                         >
-                            {globalError && <Error error={globalError} closeErrorWindow={this.closeErrorWindow}/>}
-                        </CSSTransitionGroup>
+                            <Error error={globalError} closeErrorWindow={this.closeErrorWindow}/>
+                        </CSSTransition>
                         <HeaderContainer/>
                         <main className='appMain'>
                             <Routes/>
