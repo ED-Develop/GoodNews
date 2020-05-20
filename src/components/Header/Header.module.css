@@ -231,9 +231,9 @@
 
     .logoutBtn {
         position: fixed;
-        left: 17px;
-        bottom: 17px;
-        padding-top: 20px;
+        bottom: 0;
+        padding: 20px 17px 17px;
+        z-index: 100;
     }
 
     .logoutBtn button {
