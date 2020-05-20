@@ -10,7 +10,7 @@ import {
 import {setRegion} from "../app/app-reducer";
 import {setUserData} from "../auth/auth-reducer";
 
-function* getUserProfile() {
+function* getUserProfileSaga() {
     yield commonSagaHandler(function* () {
         const state = yield select();
         const response = yield call(mockApi.getProfile, state.auth.id);
@@ -22,7 +22,7 @@ function* getUserProfile() {
 }
 
 function* initializeProfilePage() {
-    yield initializePageCommonSaga([getUserProfile()]);
+    yield initializePageCommonSaga([getUserProfileSaga()]);
 }
 
 export function* updateUserProfileSaga({payload: {data}}) {

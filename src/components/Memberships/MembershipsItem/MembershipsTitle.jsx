@@ -19,7 +19,7 @@ const MembershipsTitle = ({currentMembership, intl}) => {
                         </p>
                     </>
                     : <>
-                        <h2 className={style.membershipsTitle}><FormattedMessage id='memberships.titleFree'/></h2>
+                        <h2 className={style.membershipsTitle}><FormattedMessage id={currentMembership.name}/></h2>
                         <p className={style.membershipsTrial}>
                             <FormattedMessage id='memberships.descriptionFree'/>
                         </p>

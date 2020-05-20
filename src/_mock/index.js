@@ -15,7 +15,7 @@ mock.onGet('/login').reply((config) => {
             isAuth: false,
             login: "admin",
             dateOfBirth: '1999/07/26',
-            membership: {name: 'trial for 30 days', id: null},
+            membership: {name: 'memberships.titleFree', id: null},
             isSubscribe: false,
             region: null
         }]

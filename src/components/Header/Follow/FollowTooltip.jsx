@@ -15,7 +15,7 @@ const FollowTooltip = () => {
 
     return (
         <ul className={style.followTooltip}>
-            {social.map(item => <FollowLink link={item}/>)}
+            {social.map(item => <FollowLink link={item} key={item.title}/>)}
         </ul>
     )
 };

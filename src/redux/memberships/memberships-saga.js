@@ -8,7 +8,7 @@ export function* updateMembershipSaga() {
         const {payload: {membership, isActive}} = yield take(TOGGLE_MEMBERSHIP);
         let data;
 
-        isActive ? data = {membership} : data = {membership: {name: 'trial for 30 days', id: null}};
+        isActive ? data = {membership} : data = {membership: {name: 'memberships.titleFree', id: null}};
         yield call(updateUserProfileSaga, updateUserProfile(data));
     }
 }

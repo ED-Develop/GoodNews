@@ -52,7 +52,7 @@ class ProfileContainer extends React.PureComponent {
                     updateProfile={this.updateProfile}
                 />
                 {
-                    this.props.isInitialized && this.props.user
+                    this.props.isInitialized && this.props.user.id
                         ? <Profile
                             user={this.props.user}
                             region={this.props.region}
