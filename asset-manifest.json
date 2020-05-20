@@ -1,31 +1,27 @@
 {
   "files": {
-    "main.css": "/good-news/static/css/main.77b8eba7.chunk.css",
-    "main.js": "/good-news/static/js/main.4096546a.chunk.js",
-    "main.js.map": "/good-news/static/js/main.4096546a.chunk.js.map",
+    "main.css": "/good-news/static/css/main.8bb6a3f4.chunk.css",
+    "main.js": "/good-news/static/js/main.218de4c9.chunk.js",
+    "main.js.map": "/good-news/static/js/main.218de4c9.chunk.js.map",
     "runtime-main.js": "/good-news/static/js/runtime-main.18eb4327.js",
     "runtime-main.js.map": "/good-news/static/js/runtime-main.18eb4327.js.map",
     "static/css/2.47e06e2e.chunk.css": "/good-news/static/css/2.47e06e2e.chunk.css",
-    "static/js/2.487cccfe.chunk.js": "/good-news/static/js/2.487cccfe.chunk.js",
-    "static/js/2.487cccfe.chunk.js.map": "/good-news/static/js/2.487cccfe.chunk.js.map",
+    "static/js/2.20c0717d.chunk.js": "/good-news/static/js/2.20c0717d.chunk.js",
+    "static/js/2.20c0717d.chunk.js.map": "/good-news/static/js/2.20c0717d.chunk.js.map",
     "index.html": "/good-news/index.html",
-    "precache-manifest.a36ab2cefe1ea2059f48cc295e325bc0.js": "/good-news/precache-manifest.a36ab2cefe1ea2059f48cc295e325bc0.js",
+    "precache-manifest.5afa97f77e25a602956322dbcb9aa53d.js": "/good-news/precache-manifest.5afa97f77e25a602956322dbcb9aa53d.js",
     "service-worker.js": "/good-news/service-worker.js",
     "static/css/2.47e06e2e.chunk.css.map": "/good-news/static/css/2.47e06e2e.chunk.css.map",
-    "static/css/main.77b8eba7.chunk.css.map": "/good-news/static/css/main.77b8eba7.chunk.css.map",
-    "static/js/2.487cccfe.chunk.js.LICENSE.txt": "/good-news/static/js/2.487cccfe.chunk.js.LICENSE.txt",
-    "static/media/facebook.svg": "/good-news/static/media/facebook.53757d93.svg",
-    "static/media/google.svg": "/good-news/static/media/google.276f52a7.svg",
-    "static/media/linkedIn.svg": "/good-news/static/media/linkedIn.1e01f0c0.svg",
-    "static/media/newsDefault.jpg": "/good-news/static/media/newsDefault.924a74c9.jpg",
-    "static/media/pinterest.svg": "/good-news/static/media/pinterest.74f3c20a.svg",
-    "static/media/twitter.svg": "/good-news/static/media/twitter.6620c8ae.svg"
+    "static/css/main.8bb6a3f4.chunk.css.map": "/good-news/static/css/main.8bb6a3f4.chunk.css.map",
+    "static/js/2.20c0717d.chunk.js.LICENSE.txt": "/good-news/static/js/2.20c0717d.chunk.js.LICENSE.txt",
+    "static/media/Footer.module.css": "/good-news/static/media/logo-footer.a898cfe1.svg",
+    "static/media/newsDefault.jpg": "/good-news/static/media/newsDefault.924a74c9.jpg"
   },
   "entrypoints": [
     "static/js/runtime-main.18eb4327.js",
     "static/css/2.47e06e2e.chunk.css",
-    "static/js/2.487cccfe.chunk.js",
-    "static/css/main.77b8eba7.chunk.css",
-    "static/js/main.4096546a.chunk.js"
+    "static/js/2.20c0717d.chunk.js",
+    "static/css/main.8bb6a3f4.chunk.css",
+    "static/js/main.218de4c9.chunk.js"
   ]
 }
