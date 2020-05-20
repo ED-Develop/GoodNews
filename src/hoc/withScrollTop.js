@@ -1,6 +1,6 @@
 import React from "react";
-import {CSSTransitionGroup} from "react-transition-group";
 import GoTop from "../components/common/GoTop/GoTop";
+import CSSTransition from "react-transition-group/cjs/CSSTransition";
 
 export const withScrollTop = (Component) => {
     class ScrollTop extends React.Component {
@@ -27,23 +27,27 @@ export const withScrollTop = (Component) => {
         };
 
         scrollTop = () => {
-            let increment = window.pageYOffset / 20;
-            let scroller = setInterval(() => {
+            let increment = window.pageYOffset / 24;
+            const scroll = () => {
                 window.scrollTo(0, window.pageYOffset - increment);
 
-                if (window.pageYOffset <= 0) clearInterval(scroller);
-            }, 20);
+                if (window.pageYOffset > 0) requestAnimationFrame(scroll);
+            };
+
+            requestAnimationFrame(scroll);
         };
 
         render() {
             return (
                 <>
-                    <CSSTransitionGroup
-                        transitionName="btnGoTop"
-                        transitionEnterTimeout={300}
-                        transitionLeaveTimeout={300}>
-                        {this.state.isGoTop && <GoTop scrollTop={this.scrollTop}/>}
-                    </CSSTransitionGroup>
+                    <CSSTransition
+                        in={this.state.isGoTop}
+                        classNames="btnGoTop"
+                        timeout={300}
+                        unmountOnExit
+                    >
+                        <GoTop scrollTop={this.scrollTop}/>
+                    </CSSTransition>
                     <Component scrollTop={this.scrollTop} {...this.props}/>
                 </>
             )

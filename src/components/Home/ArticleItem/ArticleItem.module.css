@@ -12,14 +12,6 @@
     color: #959595;
 }
 
-.articleItemImage {
-    padding-right: 0;
-}
-
-.articleItemDescr {
-    margin-top: -7px;
-}
-
 .articleItem img {
     width: 100%;
 }
@@ -27,4 +19,14 @@
 .articleItem h4 a:hover {
     color: #e8280b;
     transition: color .3s;
+}
+
+@media (min-width: 767px) {
+    .articleItemImage {
+        padding-right: 0;
+    }
+
+    .articleItemDescr {
+        margin-top: -7px;
+    }
 }

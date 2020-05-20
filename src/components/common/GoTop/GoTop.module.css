@@ -6,6 +6,7 @@
     font-size: 20px;
     color: #181818;
     transition: color .3s;
+    z-index: 20;
 }
 
 .goTop:hover {

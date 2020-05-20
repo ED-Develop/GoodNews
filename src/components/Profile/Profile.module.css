@@ -1,0 +1,99 @@
+.profileWrapper {
+    min-height: calc(100vh - 60px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 124px;
+}
+
+.profileContainer {
+    flex: 0 1 70%;
+    border: 1px solid #ebebeb;
+    border-radius: 3px;
+}
+
+.profileImage {
+    border-right: 1px solid #ebebeb;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.profileImage img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+}
+
+.userInfo,
+.profileImage {
+    padding: 40px 25px;
+}
+
+.userInfo {
+    padding-left: 25px;
+    color: #181818;
+}
+
+.userInfo h2 {
+    font-size: 26px;
+    margin: 0;
+}
+
+.userInfoItem {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 24px;
+}
+
+.userInfoItem:first-child {
+    border-bottom: 1px solid #ebebeb;
+    padding-bottom: 12px;
+    margin-bottom: 12px;
+}
+
+.userInfoItem button,
+.userInfoItem a {
+    width: 30px;
+    height: 30px;
+    background-color: #e8280b;
+    font-size: 12px;
+}
+
+.userInfo p {
+    font-size: 18px;
+    margin: 0;
+    color: #7d7d7d;
+}
+
+.userInfo p span {
+    font-weight: 500;
+    color: #191919;
+}
+
+@media (max-width: 1125px) {
+    .profileContainer {
+        flex-basis: 100%;
+    }
+}
+
+@media (max-width: 767px) {
+    .profileWrapper {
+        padding: 40px 15px;
+        min-height: auto;
+    }
+
+    .userInfo,
+    .profileImage {
+        padding: 0;
+    }
+
+    .profileImage,
+    .profileContainer {
+        border: none;
+    }
+
+    .profileImage {
+        margin-bottom: 20px;
+    }
+}

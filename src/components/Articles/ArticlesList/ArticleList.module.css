@@ -1,5 +1,5 @@
 .articleItem {
-    margin-top: 40px;
+    padding-top: 40px;
     color: #181818;
     border-bottom: 3px solid #b7b7b7;
 }
@@ -31,13 +31,14 @@
     margin-bottom: 26px;
 }
 
-.articleHeading .info {
+.info {
     font-size: 16px;
     color: #b7b7b7;
     margin-bottom: 39px;
+    overflow: hidden;
 }
 
-.articleHeading .info span {
+.info span {
     color: #e8280b;
 }
 
@@ -45,23 +46,47 @@
     margin-bottom: 44px;
 }
 
-.articleItem button {
+.articleItem a {
     background-color: #e8280b;
     color: #ffffff;
     font-size: 16px;
     transition: background-color .3s;
 }
 
-.articleItem button:hover {
+.articleItem a:hover {
     color: #ffffff;
     background-color: #db280b;
     transition: background-color .3s;
 }
 
-.articleItem button span {
-    margin-right: 10px;
+.articleItem a span {
+    margin-left: 10px;
 }
 
-.articleItem .comment {
+.articleItem .link {
     margin: 30px 0 60px;
+}
+
+@media (max-width: 768px) {
+    .info {
+        font-size: 15px;
+        margin-bottom: 25px;
+    }
+
+    .articleItem {
+        padding-top: 30px;
+    }
+
+    .articleItem .link {
+        margin: 25px 0 30px;
+    }
+
+    .articleItem h2 {
+        font-size: 30px;
+        margin-bottom: 25px;
+    }
+
+    .articleHeading p {
+        font-size: 20px;
+    }
 }

@@ -1,0 +1,109 @@
+.memberships {
+    max-width: 784px;
+    min-height: calc(100vh - 60px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: auto;
+    padding: 60px 0;
+    text-align: center;
+}
+
+.membershipsTitle {
+    font-size: 48px;
+    line-height: 46px;
+    color: #191919;
+    margin-bottom: 22px;
+    font-weight: normal;
+}
+
+.membershipsTrial {
+    font-size: 22px;
+    color: #7d7d7d;
+    font-weight: 300;
+    margin-bottom: 55px;
+}
+
+.membershipName {
+    color: #191919;
+    font-size: 24px;
+    font-weight: 400;
+    margin: 0;
+    text-transform: capitalize;
+}
+
+.membershipPrice {
+    font-weight: 300;
+    color: #7d7d7d;
+    line-height: 33px;
+    margin: 0;
+}
+
+.membershipBtn {
+    display: block;
+    width: 177px;
+    height: 46px;
+    margin: auto;
+}
+
+.membershipProfit {
+    line-height: 38px;
+    font-size: 18px;
+    color: #7d7d7d;
+}
+
+.textBlack {
+    color: #191919;
+}
+
+.membership {
+    transform: translate(0, 0);
+    transition: 0.2s transform;
+    position: relative;
+    overflow: hidden;
+}
+
+.membership.active::before {
+    content: "Activated";
+    position: absolute;
+    width: 90px;
+    height: 15px;
+    background-color: red;
+    transform: rotate(45deg);
+    right: -20px;
+    top: 18px;
+    font-size: 14px;
+    line-height: 15px;
+    color: #fff;
+}
+
+.membership:hover {
+    transform: translate(0, -10px);
+    transition: 0.2s transform;
+}
+
+
+@media (min-width: 767px) {
+    .membership.active {
+        transform: translate(0, -10px);
+    }
+}
+
+@media (max-width: 768px) {
+    .membership {
+        margin-bottom: 15px;
+    }
+
+    .memberships {
+        padding: 40px 0;
+    }
+
+    .membershipsTitle {
+        font-size: 36px;
+    }
+
+    .membershipsTrial {
+        font-size: 20px;
+        margin-bottom: 40px;
+    }
+}

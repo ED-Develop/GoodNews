@@ -1,29 +1,45 @@
 import React from "react";
+import style from './CustomInput.module.css';
 import {Form, InputGroup} from "react-bootstrap";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {faTimes} from "@fortawesome/free-solid-svg-icons";
+import {FormattedMessage} from "react-intl";
 
-const ReduxFormInput = ({input, label, type, placeholder, icon, isError, meta}) => {
-    let customInput = <Form.Control type={type} {...input} placeholder={placeholder}
-                                    isInvalid={isError || (meta.touched && meta.error)}/>;
+const ReduxFormInput = ({input, label, type, placeholder, icon, isError, meta, className, size, isClear, clearField}) => {
+    const customInput = <Form.Control
+        size={size}
+        type={type}
+        placeholder={placeholder}
+        isInvalid={isError || (meta.touched && meta.error)}
+        {...input}
+    />;
 
     return (
-        <Form.Group>
+        <Form.Group className={className + ' ' + style.formGroup}>
             {label && <Form.Label>{label}</Form.Label>}
-            {icon
-                ? <InputGroup>
+            <InputGroup>
+                {icon && (
                     <InputGroup.Prepend>
                         <InputGroup.Text id='inputGroupPrepend'>
                             <FontAwesomeIcon color='#d1d1d1' icon={icon}/>
                         </InputGroup.Text>
                     </InputGroup.Prepend>
-                    {customInput}
-                    <Form.Control.Feedback type="invalid">{meta.error}</Form.Control.Feedback>
-                </InputGroup>
-                : <div>
-                    {customInput}
-                    <Form.Control.Feedback type="invalid">{meta.error}</Form.Control.Feedback>
-                </div>
-            }
+                )}
+
+                {isClear && (
+                    <InputGroup.Append className={style.clear} onClick={clearField}>
+                        <InputGroup.Text id='inputGroupAppend'>
+                            <FontAwesomeIcon color='#d1d1d1' icon={faTimes}/>
+                        </InputGroup.Text>
+                    </InputGroup.Append>
+                )}
+                {customInput}
+                {meta.error && (
+                    <Form.Control.Feedback type="invalid">
+                        <FormattedMessage {...meta.error}/>
+                    </Form.Control.Feedback>
+                )}
+            </InputGroup>
         </Form.Group>
     )
 };

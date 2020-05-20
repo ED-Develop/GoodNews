@@ -25,7 +25,7 @@
 }
 
 .subscribe button {
-    width: 98px;
+    min-width: 98px;
     height: 42px;
     background-color: #e8280b;
     color: white;

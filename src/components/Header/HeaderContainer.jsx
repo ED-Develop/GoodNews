@@ -2,21 +2,25 @@ import React from 'react';
 import Header from "./Header";
 import {connect} from "react-redux";
 import Login from "./Login/Login";
-import {CSSTransitionGroup} from "react-transition-group";
-import {login, logout} from "../../redux/auth-reducer";
+import {login, logout} from "../../redux/auth/auth-reducer";
 import {compose} from "redux";
 import {withRouter} from "react-router-dom";
+import CSSTransition from "react-transition-group/cjs/CSSTransition";
 
 class HeaderContainer extends React.Component {
     state = {
         isShowNavbar: false,
         isLoginMode: false,
-        isSearch: false
+        isSearch: false,
     };
 
     componentDidUpdate(prevProps, prevState, snapshot) {
         if (!prevProps.isAuth && this.props.isAuth) {
-            this.setState({isLoginMode: false})
+            this.setState({isLoginMode: false});
+        }
+
+        if (prevProps.isAuth !== this.props.isAuth) {
+            this.toggleIsShowNavbar(false);
         }
     }
 
@@ -38,24 +42,30 @@ class HeaderContainer extends React.Component {
         this.props.history.push(`/articles?search=${searchRequest}`);
     };
 
-    onOutsideClick = () => {
-
-    };
-
     render() {
         const {login, isAuth, logout, userName} = this.props;
         const {isLoginMode, isSearch, isShowNavbar} = this.state;
 
         return (
             <div>
-                <CSSTransitionGroup transitionName="fade" transitionEnterTimeout={300}
-                                    transitionLeaveTimeout={300}>
-                    {isLoginMode && <Login login={login} closeLoginForm={this.toggleLoginMode}/>}
-                </CSSTransitionGroup>
-                <Header isAuth={isAuth} toggleIsShowNavbar={this.toggleIsShowNavbar}
-                        isShowNavbar={isShowNavbar} openLoginForm={this.toggleLoginMode}
-                        logout={logout} userName={userName} isSearch={isSearch} toggleIsSearch={this.toggleIsSearch}
-                        searchArticles={this.searchArticles}/>
+                <CSSTransition
+                    in={isLoginMode}
+                    classNames="fade"
+                    timeout={300}
+                    unmountOnExit
+                >
+                    <Login login={login} closeLoginForm={this.toggleLoginMode}/>
+                </CSSTransition>
+                <Header
+                    isAuth={isAuth}
+                    toggleIsShowNavbar={this.toggleIsShowNavbar}
+                    isShowNavbar={isShowNavbar}
+                    openLoginForm={this.toggleLoginMode}
+                    logout={logout} userName={userName}
+                    isSearch={isSearch}
+                    toggleIsSearch={this.toggleIsSearch}
+                    searchArticles={this.searchArticles}
+                />
             </div>
         )
     }
