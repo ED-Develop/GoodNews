@@ -7,7 +7,6 @@
     border-right: 1px solid #e9e9e9;
     box-shadow: 2px 0 10px rgba(194, 194, 194, 0.4);
     padding: 20px 0;
-    top: -1px;
 }
 
 .navbar h4 {
@@ -52,6 +51,6 @@
 }
 
 .navbarScroll {
-    height: calc(100vh - 98px - 65px - 73px);
+    height: calc(100vh - 232px);
     overflow: hidden;
 }
