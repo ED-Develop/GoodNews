@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "391858ecc8773475c6e6e19a453db42e",
+    "revision": "edea280f3b15598c5983b5dad5ba242d",
     "url": "/good-news/index.html"
   },
   {
@@ -8,7 +8,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/good-news/static/css/2.47e06e2e.chunk.css"
   },
   {
-    "revision": "da567befd7368fb51461",
+    "revision": "3389322a6e742b3dc8a5",
     "url": "/good-news/static/css/main.8bb6a3f4.chunk.css"
   },
   {
@@ -20,8 +20,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/good-news/static/js/2.20c0717d.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "da567befd7368fb51461",
-    "url": "/good-news/static/js/main.218de4c9.chunk.js"
+    "revision": "3389322a6e742b3dc8a5",
+    "url": "/good-news/static/js/main.ff520dc4.chunk.js"
   },
   {
     "revision": "5c73aeb8e107e8f6a5dc",
