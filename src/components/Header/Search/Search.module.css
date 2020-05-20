@@ -36,8 +36,12 @@
     .search {
         position: static;
         width: 100%;
-        padding: 15px 17px;
+        padding: 35px 17px 15px;
         display: flex;
+    }
+
+    .search.smallPadding {
+        padding-top: 15px;
     }
 
     .search input {

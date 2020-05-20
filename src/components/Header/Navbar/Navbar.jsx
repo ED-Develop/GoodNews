@@ -41,7 +41,11 @@ const Navbar = ({toggleIsShowNavbar, logout, userName, isAuth, onSearch}) => {
             <div>
                 <Mobile>
                     {isAuth && <UserTooltipHeader userName={userName}/>}
-                    <Search onSubmit={handleSearch} placeholder='header.searchMobile'/>
+                    <Search
+                        className={isAuth && 'smallPadding'}
+                        onSubmit={handleSearch}
+                        placeholder='header.searchMobile'
+                    />
                 </Mobile>
                 <div className={style.navbarScroll}>
                     <Scrollbars

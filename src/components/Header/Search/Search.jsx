@@ -7,13 +7,13 @@ import useOutsideClick from "../../../hook/useOutsideClick";
 import {FormattedMessage, injectIntl} from "react-intl";
 import Mobile from "../../common/MediaQuery/Mobile";
 
-const Search = ({handleSubmit, onToggleSearch, intl, placeholder = 'header.search'}) => {
+const Search = ({handleSubmit, onToggleSearch, intl, placeholder = 'header.search', className}) => {
     const searchRef = useRef();
 
     useOutsideClick(onToggleSearch, onToggleSearch ? searchRef : null);
 
     return (
-        <Form ref={searchRef} onSubmit={handleSubmit} className={style.search}>
+        <Form ref={searchRef} onSubmit={handleSubmit} className={`${style.search} ${className && style[className]}`}>
             <Field
                 name='search'
                 placeholder={intl.formatMessage({id: placeholder})}

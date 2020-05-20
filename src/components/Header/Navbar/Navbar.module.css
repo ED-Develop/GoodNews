@@ -53,4 +53,5 @@
 
 .navbarScroll {
     height: calc(100vh - 98px - 65px - 73px);
+    overflow: hidden;
 }
