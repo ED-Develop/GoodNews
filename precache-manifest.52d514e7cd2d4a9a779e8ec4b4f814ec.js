@@ -1,27 +1,27 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "edea280f3b15598c5983b5dad5ba242d",
+    "revision": "77adcc74e948b076355d74cada7d90ab",
     "url": "/good-news/index.html"
   },
   {
-    "revision": "f2c75dbce8c72250d735",
+    "revision": "c7af6e85f7408bc4387c",
     "url": "/good-news/static/css/2.47e06e2e.chunk.css"
   },
   {
-    "revision": "3389322a6e742b3dc8a5",
-    "url": "/good-news/static/css/main.8bb6a3f4.chunk.css"
+    "revision": "c6a221359a6b4600f84a",
+    "url": "/good-news/static/css/main.60480375.chunk.css"
   },
   {
-    "revision": "f2c75dbce8c72250d735",
-    "url": "/good-news/static/js/2.20c0717d.chunk.js"
+    "revision": "c7af6e85f7408bc4387c",
+    "url": "/good-news/static/js/2.44638b9d.chunk.js"
   },
   {
     "revision": "9d11307d0f4add8f1fb94ce38a4f8816",
-    "url": "/good-news/static/js/2.20c0717d.chunk.js.LICENSE.txt"
+    "url": "/good-news/static/js/2.44638b9d.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "3389322a6e742b3dc8a5",
-    "url": "/good-news/static/js/main.ff520dc4.chunk.js"
+    "revision": "c6a221359a6b4600f84a",
+    "url": "/good-news/static/js/main.01840919.chunk.js"
   },
   {
     "revision": "5c73aeb8e107e8f6a5dc",
