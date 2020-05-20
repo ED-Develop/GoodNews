@@ -3,7 +3,7 @@ import style from './Header.module.css';
 import {Col, Container, Row} from "react-bootstrap";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faBars, faSearch} from "@fortawesome/free-solid-svg-icons";
-import FollowHover from "./FollowHover";
+import FollowHover from "./Follow/FollowHover";
 import UserInfo from "./UserInfo/UserInfo";
 import Navbar from "./Navbar/Navbar";
 import CSSTransition from 'react-transition-group/CSSTransition';

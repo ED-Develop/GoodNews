@@ -50,17 +50,17 @@ class HomeContainer extends React.Component {
     }
 }
 
-const mapStateToProps = (state) => {
-    return {
-        carouselData: getCarouselData(state),
-        categories: state.home.categoryArticles,
-        popularArticles: state.home.topArticles,
-        isSubscribe: state.auth.isSubscribe,
-        isAuth: state.auth.isAuth,
-        isInitialized: state.app.isInitialized,
-        region: state.app.region
-    }
-};
+const mapStateToProps = (state) => ({
+    carouselData: getCarouselData(state),
+    categories: state.home.categoryArticles,
+    popularArticles: state.home.topArticles,
+    isSubscribe: state.auth.isSubscribe,
+    isAuth: state.auth.isAuth,
+    isInitialized: state.app.isInitialized,
+    region: state.app.region
+});
 
-export default compose(connect(mapStateToProps, {subscribe, initializeHomePage}),
-    withScrollTop)(HomeContainer);
+export default compose(
+    withScrollTop,
+    connect(mapStateToProps, {subscribe, initializeHomePage}),
+   )(HomeContainer);

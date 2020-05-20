@@ -27,12 +27,14 @@ export const withScrollTop = (Component) => {
         };
 
         scrollTop = () => {
-            let increment = window.pageYOffset / 20;
-            let scroller = setInterval(() => {
+            let increment = window.pageYOffset / 24;
+            const scroll = () => {
                 window.scrollTo(0, window.pageYOffset - increment);
 
-                if (window.pageYOffset <= 0) clearInterval(scroller);
-            }, 20);
+                if (window.pageYOffset > 0) requestAnimationFrame(scroll);
+            };
+
+            requestAnimationFrame(scroll);
         };
 
         render() {

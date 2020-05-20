@@ -105,6 +105,7 @@
 
 .followTooltip li {
     border-bottom: 1px solid #eaeaea;
+    padding: 0 15px;
 }
 
 .followTooltip a {
@@ -117,7 +118,6 @@
 }
 
 .followTooltip a:hover {
-    color: #00007d;
     transition: color .3s;
 }
 
